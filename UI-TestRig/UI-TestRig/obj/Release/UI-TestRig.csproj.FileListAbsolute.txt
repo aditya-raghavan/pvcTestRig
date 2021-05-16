@@ -1,0 +1,15 @@
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Release\UI-TestRig.exe.config
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Release\UI-TestRig.exe
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Release\UI-TestRig.pdb
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\MainWindow.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\App.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig_MarkupCompile.cache
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig_MarkupCompile.lref
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\MainWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.g.resources
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI_TestRig.Properties.Resources.resources
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.csproj.GenerateResource.cache
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.csproj.CoreCompileInputs.cache
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.exe
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.pdb
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Release\UI-TestRig.csprojAssemblyReference.cache

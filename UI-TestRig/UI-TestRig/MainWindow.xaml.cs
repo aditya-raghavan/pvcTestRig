@@ -26,6 +26,8 @@ namespace UI_TestRig
         public MainWindow()
         {
             InitializeComponent();
+            WindowState = WindowState.Maximized;
+            WindowStyle = WindowStyle.None;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -36,35 +38,43 @@ namespace UI_TestRig
         //'Auto' Button Clicked Event
         private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //changes 'no test running' to 'Automatic test running' 
-            testRunningBlock.Background = new SolidColorBrush(Colors.Green);
-            testRunningBlock.Text = "Automatic Test Running";
+            if (validateForm())
+            {
+                //changes 'no test running' to 'Automatic test running' 
+                testStatusTextBlock.Background = new SolidColorBrush(Colors.Green);
+                testStatusTextBlock.Text = "Automatic Test Running";
 
-            //Inserts user details to SQL Server
-            String user = userText.Text;
-            ComboBoxItem typeItem = (ComboBoxItem)ComboBox1.SelectedItem;
-            string model = typeItem.Content.ToString();
-           
-            String op = operatorText.Text;
-            String diodecode = diodecodeText.Text;
-            String customercode = customercodeText.Text;
-            String additionalcode = additionalcodeText.Text;
-            String jbserial = jbserialText.Text;
-            String batchno = batchnoText.Text;
+                //Inserts user details to SQL Server
+                String user = userTextBox.Text;
+                ComboBoxItem typeItem = (ComboBoxItem)modelComboBox.SelectedItem;
+                string model = typeItem.Content.ToString();
 
-            obj = new sqlconnection();
-            //insertData in sqlconnection class
-            obj.insertData(user, model, op, diodecode, customercode, additionalcode, jbserial, batchno);
+                String op = operatorTextBox.Text;
+                String diodecode = diodecodeTextBox.Text;
+                String customercode = customercodeTextBox.Text;
+                String additionalcode = additionalcodeTextBox.Text;
+                String jbserial = jbserialTextBox.Text;
+                String batchno = batchnoTextBox.Text;
 
-
-
-            await Task.Delay(4000);
+                obj = new sqlconnection();
+                //insertData in sqlconnection class
+                obj.insertData(user, model, op, diodecode, customercode, additionalcode, jbserial, batchno);
 
 
-            testRunningBlock.Text = "Test Completed";
 
-            passBlock.Background = new SolidColorBrush(Colors.Green);
-            passBlock.Foreground = new SolidColorBrush(Colors.Black);
+                await Task.Delay(4000);
+
+
+                testStatusTextBlock.Text = "Test Completed";
+
+                testResultPassTextBlock.Background = new SolidColorBrush(Colors.Green);
+                testResultPassTextBlock.Foreground = new SolidColorBrush(Colors.Black);
+            }
+            else
+            {
+                MessageBox.Show("Please fill all the details. Required Values for the form to be submitted: User, model, operator, diodecode, customercode, additionalcode, jbserial, batchno");
+            }
+
 
 
 
@@ -73,9 +83,50 @@ namespace UI_TestRig
 
         }
 
+        private bool validateForm()
+        {
+            bool isFormValid = true;
+
+            if(userTextBox.Text.Trim()=="" || userTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (operatorTextBox.Text.Trim() == "" || operatorTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (diodecodeTextBox.Text.Trim() == "" || diodecodeTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (customercodeTextBox.Text.Trim() == "" || customercodeTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (additionalcodeTextBox.Text.Trim() == "" || additionalcodeTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (jbserialTextBox.Text.Trim() == "" || jbserialTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            if (batchnoTextBox.Text.Trim() == "" || batchnoTextBox.Text == null)
+            {
+                isFormValid = false;
+            }
+            return isFormValid;
+
+        }
+
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void jbserialText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

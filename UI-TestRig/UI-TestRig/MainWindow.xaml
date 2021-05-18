@@ -618,53 +618,50 @@
                             </Grid>
 
 
-                            <Grid Margin="112,152,93,77">
+                            <Grid Margin="90,140,90,70" >
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="47*"></ColumnDefinition>
-                                    <ColumnDefinition Width="142*"></ColumnDefinition>
-                                    <ColumnDefinition Width="119*"></ColumnDefinition>
-                                    <ColumnDefinition Width="22*"/>
-                                    <ColumnDefinition Width="38*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"/>
+
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="2*"></RowDefinition>
                                     <RowDefinition Height="3*"></RowDefinition>
                                     <RowDefinition Height="3*"></RowDefinition>
                                 </Grid.RowDefinitions>
 
-                                <Border Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d" Margin="47,-19,119.218,0" Grid.ColumnSpan="3">
-                                    <TextBlock x:Name="setTextBlock" Text="Set" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" Height="32" Margin="-1.6,-1.6,8,-2.4" ></TextBlock>
+                                <Border Grid.Column="1" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="1" Grid.Row="0"  x:Name="setTextBlock" Text="Set" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold"   />
                                 </Border>
-                                <Border Grid.Column="1" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d" Margin="137.8,-19,0.4,0" Grid.ColumnSpan="3">
-                                    <TextBlock x:Name="actualTextBlock" Text="Actual" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" Margin="-1.6,0.4,-0.2,-0.2" ></TextBlock>
+                                <Border Grid.Column="0" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Row="0" Grid.Column="2" x:Name="actualTextBlock" Text="Actual" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold"  />
                                 </Border>
-
-                                <Border Grid.Column="0" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d" Margin="-24,0,0.2,0">
-                                    <TextBlock x:Name="currentTextBlock" Text="Current" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" Margin="-1.6,5.4,-0.4,5.4" ></TextBlock>
+                                <Border Grid.Column="0" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="currentTextBlock" Text="Current" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold"  />
                                 </Border>
-                                <Border Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d" Grid.ColumnSpan="3" Margin="43,0,119,0">
-                                    <TextBox x:Name="currentValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="0" FontSize="23" FontWeight="Bold"  Margin="2.4,-1.6,-0.2,1.4" BorderBrush="White" />
+                                <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="currentValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="0" FontSize="23" FontWeight="Bold"    />
                                 </Border>
-                                <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d" Grid.ColumnSpan="3" Margin="137.8,0,0.4,0">
-                                    <TextBlock x:Name="actualCurrentValueTextBlock"  Text="-0.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"  Margin="0.4,-1.6,0.2,-1.6" />
+                                <Border Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="actualCurrentValueTextBlock"  Text="-0.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"   />
                                 </Border>
-                                <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d" Margin="18,2,-0.6,0" Grid.Row="1" Grid.ColumnSpan="2">
-                                    <TextBlock x:Name="currentUnitTextBlock" Text="A" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                                <Border Grid.Column="3" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="currentUnitTextBlock" Text="A" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
                                 </Border>
-
-                                <Border Grid.Column="0" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d" Margin="-24,0,0.2,0">
-                                    <TextBlock x:Name="voltageTextBlock" Text="Voltage" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                                <Border Grid.Column="2" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="voltageTextBlock" Text="Voltage" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
                                 </Border>
-                                <Border Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d" Grid.ColumnSpan="3" Margin="43,0,119,0" Height="36" VerticalAlignment="Top">
-                                    <TextBox x:Name="voltageValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"  Margin="0.4,-1.6,0,2.4" BorderBrush="#FFFDFDFF" />
+                                <Border Grid.Column="1" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="voltageValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"    />
                                 </Border>
-                                <Border Grid.Column="1" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d" Grid.ColumnSpan="3" Margin="137.8,0,0.4,0">
-                                    <TextBlock x:Name="actualVoltageValueTextBlock"  Text="2.8" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"  Margin="0.4,-1.6,0.2,-1.6" />
+                                <Border Grid.Column="2" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="actualVoltageValueTextBlock"  Text="2.8" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"   />
                                 </Border>
-                                <Border Grid.Column="3" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d" Grid.ColumnSpan="2" Margin="18,0,-0.6,0">
-                                    <TextBlock x:Name="voltageUnitTextBlock" Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                                <Border Grid.Column="3" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="voltageUnitTextBlock" Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
                                 </Border>
-
 
                             </Grid>
 

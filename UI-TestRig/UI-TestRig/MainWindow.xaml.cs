@@ -26,8 +26,8 @@ namespace UI_TestRig
         public MainWindow()
         {
             InitializeComponent();
-            WindowState = WindowState.Maximized;
-            WindowStyle = WindowStyle.None;
+            //WindowState = WindowState.Maximized;
+            //WindowStyle = WindowStyle.None;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

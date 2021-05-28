@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,6 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="IModelNameRequestor.cs" />
+    <Compile Include="ModelNameInputForm.xaml.cs">
+      <DependentUpon>ModelNameInputForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProgramParameterUI.xaml.cs">
+      <DependentUpon>ProgramParameterUI.xaml</DependentUpon>
+    </Compile>
     <Compile Include="sqlconnection.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -67,6 +75,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ModelNameInputForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProgramParameterUI.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -96,6 +112,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\background.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\programParameterBackground.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestRigLibrary\TestRigLibrary.csproj">
+      <Project>{482a074f-76fd-4546-b5fd-018d4b6c5d36}</Project>
+      <Name>TestRigLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

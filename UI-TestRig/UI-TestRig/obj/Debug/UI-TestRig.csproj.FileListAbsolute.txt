@@ -13,3 +13,10 @@ C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.Co
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.exe
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.pdb
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csprojAssemblyReference.cache
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterUI.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterUI.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.dll
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.pdb
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModelNameInputForm.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModelNameInputForm.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.CopyComplete

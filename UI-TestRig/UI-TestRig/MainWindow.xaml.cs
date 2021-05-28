@@ -40,35 +40,35 @@ namespace UI_TestRig
         {
             if (validateForm())
             {
-                //changes 'no test running' to 'Automatic test running' 
-                testStatusTextBlock.Background = new SolidColorBrush(Colors.Green);
-                testStatusTextBlock.Text = "Automatic Test Running";
+                ////changes 'no test running' to 'Automatic test running' 
+                //testStatusTextBlock.Background = new SolidColorBrush(Colors.Green);
+                //testStatusTextBlock.Text = "Automatic Test Running";
 
-                //Inserts user details to SQL Server
-                String user = userTextBox.Text;
-                ComboBoxItem typeItem = (ComboBoxItem)modelComboBox.SelectedItem;
-                string model = typeItem.Content.ToString();
+                ////Inserts user details to SQL Server
+                //String user = userTextBox.Text;
+                //ComboBoxItem typeItem = (ComboBoxItem)modelComboBox.SelectedItem;
+                //string model = typeItem.Content.ToString();
 
-                String op = operatorTextBox.Text;
-                String diodecode = diodecodeTextBox.Text;
-                String customercode = customercodeTextBox.Text;
-                String additionalcode = additionalcodeTextBox.Text;
-                String jbserial = jbserialTextBox.Text;
-                String batchno = batchnoTextBox.Text;
+                //String op = operatorTextBox.Text;
+                //String diodecode = diodecodeTextBox.Text;
+                //String customercode = customercodeTextBox.Text;
+                //String additionalcode = additionalcodeTextBox.Text;
+                //String jbserial = jbserialTextBox.Text;
+                //String batchno = batchnoTextBox.Text;
 
-                obj = new sqlconnection();
+                //obj = new sqlconnection();
                 //insertData in sqlconnection class
-                obj.insertData(user, model, op, diodecode, customercode, additionalcode, jbserial, batchno);
+                //obj.insertData(user, model, op, diodecode, customercode, additionalcode, jbserial, batchno);
 
 
 
                 await Task.Delay(4000);
 
 
-                testStatusTextBlock.Text = "Test Completed";
+                //testStatusTextBlock.Text = "Test Completed";
 
-                testResultPassTextBlock.Background = new SolidColorBrush(Colors.Green);
-                testResultPassTextBlock.Foreground = new SolidColorBrush(Colors.Black);
+                //testResultPassTextBlock.Background = new SolidColorBrush(Colors.Green);
+                //testResultPassTextBlock.Foreground = new SolidColorBrush(Colors.Black);
             }
             else
             {

@@ -19,9 +19,9 @@ namespace TestRigLibrary
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public ModelTemplate LoadModel(string fileName)
+        public TestConfigurationTemplate LoadModel(string fileName)
         {
-            ModelTemplate model = new ModelTemplate();
+            TestConfigurationTemplate model = new TestConfigurationTemplate();
             model = fileName.FullFilePath().LoadFile().ConvertToModelTemplate();
             return model;
         }
@@ -30,20 +30,36 @@ namespace TestRigLibrary
         /// Saves a model to its text file.
         /// </summary>
         /// <param name="model">Model object containing information about the model</param>
-        public void SaveModel(ModelTemplate model)
+        public void SaveModel(TestConfigurationTemplate model)
         {
             //TextFile saving format.
-            //modelname,diodecode,customercode,additionalcode,diodeindex,barcodeindex,postolvoltage,negtolvol,NFDV,postolcur,negtolcur,NRC,fortestcurrent,revtestvoltage,formaxvoltage,pottolres,negtolres,contactres
+            //modelname,diodecode,customercode,additionalcode,diodeindex,barcodeindex,postolvoltage,negtolvol,NFDV,postolcur,negtolcur,NRC,fortestcurrent,revtestvoltage,formaxvoltage,
+            //pottolres,negtolres,contactres
 
             List<string> lines = new List<string>();
 
             string fileName = model.Name+".csv";
 
-            lines.Add($"{model.Name},{model.TypeInformation.DiodeCode},{model.TypeInformation.CustomerCode},{model.TypeInformation.AdditionalCode},{model.TypeInformation.DiodeIndex},{model.TypeInformation.BarCodeIndex}," +
-                $"{model.ModelReadings.PositiveTolerenceVoltage},{model.ModelReadings.NegativeTolerenceVoltage},{model.ModelReadings.NominalForwardDropVolts}," +
-                $"{model.ModelReadings.PositiveTolerenceCurrent},{model.ModelReadings.NegativeTolerenceCurrent},{model.ModelReadings.NominalReverseCurrent}," +
-                $"{model.ModelReadings.ForwardTestCurrent},{model.ModelReadings.ReverseTestVoltage},{model.ModelReadings.ForwardMaxVoltage}," +
-                $"{model.ModelReadings.PositiveTolerenceResistance},{model.ModelReadings.NegativeTolerenceResistance},{model.ModelReadings.ContactResistance}");
+            lines.Add($"{model.Name}");
+            lines.Add($"DIODE CODE,{model.TypeInformation.DiodeCode}");
+            lines.Add($"CUSTOMER CODE,{model.TypeInformation.CustomerCode}");
+            lines.Add($"ADDITIONAL CODE,{model.TypeInformation.AdditionalCode}");
+            lines.Add($"DIODE TYPE,{model.TypeInformation.DiodeType}");
+            lines.Add($"BAR CODE OPTION,{model.TypeInformation.BarCodeOption}");
+
+            lines.Add($"POSITIVE TOLERENCE VOLTAGE,{model.ModelReadings.PositiveTolerenceVoltage},mV");
+            lines.Add($"NEGATIVE TOLERENCE VOLTAGE,{model.ModelReadings.NegativeTolerenceVoltage},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE,{model.ModelReadings.NominalForwardDropVolts},mV");
+            lines.Add($"POSTIVIE TOLERENCE CURRENT,{model.ModelReadings.PositiveTolerenceCurrent},uA");
+            lines.Add($"NEGATIVE TOLERENCE CURRENT,{model.ModelReadings.NegativeTolerenceCurrent},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT,{model.ModelReadings.NominalReverseCurrent},uA");
+            lines.Add($"FORWARD TEST CURRENT,{model.ModelReadings.ForwardTestCurrent},A");
+            lines.Add($"REVERSE TEST VOLTAGE,{model.ModelReadings.ReverseTestVoltage},V");
+            lines.Add($"FORWARD MAX VOLTAGE,{model.ModelReadings.ForwardMaxVoltage},V");
+            lines.Add($"POSITIVE TOLERENCE RESISTANCE,{model.ModelReadings.PositiveTolerenceResistance},Ohms");
+            lines.Add($"NEGATIVE TOLERENCE RESISTANCE,{model.ModelReadings.NegativeTolerenceResistance},Ohms");
+            lines.Add($"CONTACT RESISTANCE,{model.ModelReadings.ContactResistance},Ohms");
+
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
         }

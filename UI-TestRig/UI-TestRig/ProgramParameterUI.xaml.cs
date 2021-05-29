@@ -15,6 +15,9 @@ using TestRigLibrary;
 using TestRigLibrary.Templates;
 using Microsoft.Win32;
 using System.Configuration;
+using System.Text.RegularExpressions;
+
+
 
 namespace UI_TestRig
 {
@@ -35,6 +38,18 @@ namespace UI_TestRig
             RefreshForm();
             //Initializes Text Connection
             GlobalConfig.InitialiseConnections();
+        }
+
+        private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            foreach (var ch in e.Text)
+            {
+                if (!(Char.IsDigit(ch) || ch.Equals('.') | ch.Equals('-'))) {
+                    e.Handled = true;
+
+                    break;
+                }
+            }
         }
 
         private void f2Button_Click(object sender, RoutedEventArgs e)
@@ -138,53 +153,53 @@ namespace UI_TestRig
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            //Open File Dialog
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.DefaultExt = ".csv";
-            ofd.Filter = "Text documents (.csv)|*.csv";
+            ////Open File Dialog
+            //OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.DefaultExt = ".csv";
+            //ofd.Filter = "Text documents (.csv)|*.csv";
 
-            ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
-            ofd.Multiselect = false;
-            Nullable<bool> result = ofd.ShowDialog();
+            //ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
+            //ofd.Multiselect = false;
+            //Nullable<bool> result = ofd.ShowDialog();
 
-            if(result == true)
-            {
+            //if(result == true)
+            //{
                 
-                ModelTemplate model = new ModelTemplate();
-                modelTextBlock.Text = ofd.SafeFileName;
+            //    ModelTemplate model = new ModelTemplate();
+            //    modelTextBlock.Text = ofd.SafeFileName;
 
-                //Loads all the model information from text file to ModelTemplate Class.
-                model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
+            //    //Loads all the model information from text file to ModelTemplate Class.
+            //    model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
 
-                //Initializes all the textboxes with loaded model details.
-                modelTextBlock.Text = model.Name;
-                diodeCodeText.Text = model.TypeInformation.DiodeCode;
-                customerCodeText.Text = model.TypeInformation.CustomerCode;
-                additionalCodeText.Text = model.TypeInformation.AdditionalCode;
-                diodeTypeCombo.SelectedIndex = model.TypeInformation.DiodeIndex;
-                barCodePrinterCombo.SelectedIndex = model.TypeInformation.BarCodeIndex;
+            //    //Initializes all the textboxes with loaded model details.
+            //    modelTextBlock.Text = model.Name;
+            //    diodeCodeText.Text = model.TypeInformation.DiodeCode;
+            //    customerCodeText.Text = model.TypeInformation.CustomerCode;
+            //    additionalCodeText.Text = model.TypeInformation.AdditionalCode;
+            //    diodeTypeCombo.SelectedIndex = model.TypeInformation.DiodeIndex;
+            //    barCodePrinterCombo.SelectedIndex = model.TypeInformation.BarCodeIndex;
 
-                positiveTolVoltageText.Text = model.ModelReadings.PositiveTolerenceVoltage.ToString();
-                negativeTolVoltageText.Text = model.ModelReadings.NegativeTolerenceVoltage.ToString();
-                nominalFDVText.Text = model.ModelReadings.NominalForwardDropVolts.ToString() ;
+            //    positiveTolVoltageText.Text = model.ModelReadings.PositiveTolerenceVoltage.ToString();
+            //    negativeTolVoltageText.Text = model.ModelReadings.NegativeTolerenceVoltage.ToString();
+            //    nominalFDVText.Text = model.ModelReadings.NominalForwardDropVolts.ToString() ;
 
-                postiveToleranceCurrentText.Text = model.ModelReadings.PositiveTolerenceCurrent.ToString();
-                nominalRevCurrentText.Text = model.ModelReadings.NominalReverseCurrent.ToString();
-                negativeTolerenceCurrentText.Text = model.ModelReadings.NegativeTolerenceCurrent.ToString();
+            //    postiveToleranceCurrentText.Text = model.ModelReadings.PositiveTolerenceCurrent.ToString();
+            //    nominalRevCurrentText.Text = model.ModelReadings.NominalReverseCurrent.ToString();
+            //    negativeTolerenceCurrentText.Text = model.ModelReadings.NegativeTolerenceCurrent.ToString();
 
-                forwardMaxVoltageText.Text = model.ModelReadings.ForwardMaxVoltage.ToString();
-                forwardTestCurrentText.Text = model.ModelReadings.ForwardTestCurrent.ToString();
-                ReverseTestVoltageText.Text = model.ModelReadings.ReverseTestVoltage.ToString();
+            //    forwardMaxVoltageText.Text = model.ModelReadings.ForwardMaxVoltage.ToString();
+            //    forwardTestCurrentText.Text = model.ModelReadings.ForwardTestCurrent.ToString();
+            //    ReverseTestVoltageText.Text = model.ModelReadings.ReverseTestVoltage.ToString();
 
-                positiveTolResText.Text = model.ModelReadings.PositiveTolerenceResistance.ToString();
-                contactResistanceText.Text = model.ModelReadings.ContactResistance.ToString();
-                negativeTolResText.Text = model.ModelReadings.NegativeTolerenceResistance.ToString();
+            //    positiveTolResText.Text = model.ModelReadings.PositiveTolerenceResistance.ToString();
+            //    contactResistanceText.Text = model.ModelReadings.ContactResistance.ToString();
+            //    negativeTolResText.Text = model.ModelReadings.NegativeTolerenceResistance.ToString();
 
-                programTextBox.Text = model.Name;
+            //    programTextBox.Text = model.Name;
 
 
 
-            }
+            //}
         }
 
         private void RefreshForm()
@@ -233,6 +248,7 @@ namespace UI_TestRig
             {
                 //Refreshes form
                 RefreshForm();
+                statusLabel.Content = "New Model";
             }
             
         }
@@ -240,15 +256,15 @@ namespace UI_TestRig
         public void ModelNameComplete(string modelName)
         {
             //Utility method which saves Model to specified modelname file.
-            ModelTemplate model = new ModelTemplate();
+            TestConfigurationTemplate model = new TestConfigurationTemplate();
             model.Name = modelName;
             modelTextBlock.Text = model.Name;
             TypeInformationTemplate ti = new TypeInformationTemplate();
             ti.DiodeCode = diodeCodeText.Text;
             ti.CustomerCode = customerCodeText.Text;
             ti.AdditionalCode = additionalCodeText.Text;
-            ti.DiodeIndex = diodeTypeCombo.SelectedIndex;
-            ti.BarCodeIndex = barCodePrinterCombo.SelectedIndex;
+            ti.DiodeType = TypeInformationTemplate.GetDiodeTypeFromIndex(diodeTypeCombo.SelectedIndex);
+            ti.BarCodeOption = TypeInformationTemplate.GetBarcodeOptionFromIndex(barCodePrinterCombo.SelectedIndex);
             model.TypeInformation = ti;
 
             ReadingsTemplate rt = new ReadingsTemplate();
@@ -267,10 +283,18 @@ namespace UI_TestRig
 
             model.ModelReadings = rt;
 
-            
-            GlobalConfig.Connection.SaveModel(model);
 
-            MessageBox.Show("Model Saved");
+            try
+            {
+                GlobalConfig.Connection.SaveModel(model);
+                statusLabel.Content = "Model Saved";
+            }
+            catch (Exception)
+            {
+                statusLabel.Content = "Could not save model";
+            }
+
+            
 
 
 
@@ -317,7 +341,66 @@ namespace UI_TestRig
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Current.Shutdown();
+            this.Close();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //Open File Dialog
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.DefaultExt = ".csv";
+            ofd.Filter = "Text documents (.csv)|*.csv";
+
+            ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
+            ofd.Multiselect = false;
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+
+                TestConfigurationTemplate model = new TestConfigurationTemplate();
+                modelTextBlock.Text = ofd.SafeFileName;
+
+                //Loads all the model information from text file to ModelTemplate Class.
+                try
+                {
+                    model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
+
+                    //Initializes all the textboxes with loaded model details.
+                    modelTextBlock.Text = model.Name;
+                    diodeCodeText.Text = model.TypeInformation.DiodeCode.ToUpper();
+                    customerCodeText.Text = model.TypeInformation.CustomerCode.ToUpper();
+                    additionalCodeText.Text = model.TypeInformation.AdditionalCode.ToUpper();
+                    diodeTypeCombo.SelectedIndex = TypeInformationTemplate.GetIndexFromDiodeType(model.TypeInformation.DiodeType);
+                    barCodePrinterCombo.SelectedIndex = TypeInformationTemplate.GetIndexFromBarcodeOption(model.TypeInformation.BarCodeOption);
+
+                    positiveTolVoltageText.Text = model.ModelReadings.PositiveTolerenceVoltage.ToString();
+                    negativeTolVoltageText.Text = model.ModelReadings.NegativeTolerenceVoltage.ToString();
+                    nominalFDVText.Text = model.ModelReadings.NominalForwardDropVolts.ToString();
+
+                    postiveToleranceCurrentText.Text = model.ModelReadings.PositiveTolerenceCurrent.ToString();
+                    nominalRevCurrentText.Text = model.ModelReadings.NominalReverseCurrent.ToString();
+                    negativeTolerenceCurrentText.Text = model.ModelReadings.NegativeTolerenceCurrent.ToString();
+
+                    forwardMaxVoltageText.Text = model.ModelReadings.ForwardMaxVoltage.ToString();
+                    forwardTestCurrentText.Text = model.ModelReadings.ForwardTestCurrent.ToString();
+                    ReverseTestVoltageText.Text = model.ModelReadings.ReverseTestVoltage.ToString();
+
+                    positiveTolResText.Text = model.ModelReadings.PositiveTolerenceResistance.ToString();
+                    contactResistanceText.Text = model.ModelReadings.ContactResistance.ToString();
+                    negativeTolResText.Text = model.ModelReadings.NegativeTolerenceResistance.ToString();
+
+                    programTextBox.Text = model.Name;
+                    statusLabel.Content = "Model Loaded Successfully.";
+                }
+                catch(Exception)
+                {
+                    statusLabel.Content = "Model Load Failed.";
+                }
+
+
+
+            }
         }
     }
 }

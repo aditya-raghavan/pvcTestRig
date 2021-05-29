@@ -12,9 +12,9 @@ namespace TestRigLibrary
     /// </summary>
     public interface IDataConnection
     {
-        void SaveModel(ModelTemplate model);
+        void SaveModel(TestConfigurationTemplate model);
 
-        ModelTemplate LoadModel(string modelName);
+        TestConfigurationTemplate LoadModel(string modelName);
 
         List<string> GetAllModelNames();
 

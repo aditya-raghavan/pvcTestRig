@@ -7,7 +7,7 @@
 
         xmlns:local="clr-namespace:UI_TestRig"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1366">
+        Title="MainWindow" Height="768" Width="1366" WindowStyle="None">
     <StackPanel Name="MainStack">
 
         <Grid Name="TopGrid" >
@@ -117,7 +117,7 @@
         </Border>
 
         <Border Name="MainContentBorder" Padding="5">
-            <Grid>
+            <Grid Margin="0,0,0,55">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"></ColumnDefinition>
                     <ColumnDefinition Width="16*"></ColumnDefinition>
@@ -795,7 +795,7 @@
             </Border>
 
             <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="editProcessParameterButton" Height="50" Content="Edit Process &#xD;&#xA;Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="editProcessParameterButton" Height="50" Content="Edit Process &#xD;&#xA;Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="editProcessParameterButton_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>

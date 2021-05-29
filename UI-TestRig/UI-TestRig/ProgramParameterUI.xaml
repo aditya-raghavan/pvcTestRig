@@ -5,10 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         
+        
         xmlns:local="clr-namespace:UI_TestRig"
         mc:Ignorable="d"
-        Title="ProgramParameterUI" Height="768" Width="1366">
+        Title="ProgramParameterUI" Height="768" Width="1366" WindowStyle="None" FontFamily="Arial">
 
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="Background" Value="#66ffff"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <StackPanel x:Name="containerStackPanel">
 
         <Grid Name="TopGrid" >
@@ -32,7 +42,7 @@
                         <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="userTextBox" Grid.Column="1" Padding="3"></TextBox>
+                        <TextBox x:Name="userTextBox" Grid.Column="1" Padding="3" CharacterCasing="Upper"></TextBox>
                     </Border>
 
                 </Grid>
@@ -50,7 +60,7 @@
                         <TextBlock x:Name="programTextBlock" TextAlignment="Right" Text="Program" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox FontWeight="Bold" x:Name="programTextBox" Grid.Column="1" Padding="3"></TextBox>
+                        <TextBox FontWeight="Bold" x:Name="programTextBox" Grid.Column="1" Padding="3" CharacterCasing="Upper"></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nrTextBlock" TextAlignment="Right" Text="Nr" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
@@ -125,13 +135,14 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Background="#cccccc">
-                <Label x:Name="modelLabel" Margin="34,10,0,0" FontSize="14" FontWeight="Bold">Model</Label>
+                <Label x:Name="modelLabel" Margin="34,10,0,0" FontSize="14" FontWeight="Bold" Content="Test Configuration"></Label>
                 <Border Margin="0,0,0,0" Width="300" BorderThickness="2" BorderBrush="#4d4d4d">
                     <TextBlock x:Name="modelTextBlock" Text=""  Padding="10"  FontSize="18" Background="White" FontWeight="Bold" Width="300"></TextBlock>
                 </Border>
-                <Label x:Name="selectModelHyperLink" Margin="34,0,0,0">
-                    <Hyperlink Click="Hyperlink_Click">Load Model</Hyperlink></Label>
-                <Label x:Name="readyLabel" Margin="34,0,0,20" Foreground="Red" FontWeight="Bold">Ready</Label>
+                <Border Margin="0,10,0,0" Width="150" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="loadModelButton" Content="OPEN" Width="150" FontWeight="Bold"  Height="30" Background="White" Click="Button_Click"></Button>
+                </Border>
+                <Label x:Name="statusLabel" Margin="34,0,0,20" Foreground="Red" FontWeight="Bold">Ready</Label>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Margin="10,0,0,0">
@@ -139,6 +150,16 @@
                     <TextBlock x:Name="typeInformationTextBlock" Background="#cccccc" TextAlignment="Center" Padding="5" FontWeight="Bold" Text="Type Information"></TextBlock>
                 </Border>
                 <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Setter Property="Background" Value="#ccffff"></Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Background" Value="#66ffff"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Resources>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
                         <ColumnDefinition></ColumnDefinition>
@@ -155,7 +176,7 @@
                                 <TextBlock x:Name="diodeCodeTextBlock"  TextAlignment="Right" Text="Diode Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox x:Name="diodeCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3" Background="#ccffff"></TextBox>
+                                <TextBox MaxLength="25" x:Name="diodeCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper"></TextBox>
                             </Border>
 
                         </Grid>
@@ -170,7 +191,7 @@
                                 <TextBlock x:Name="customerCodeTextBlock"  TextAlignment="Right" Text="Customer Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox x:Name="customerCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3" Background="#ccffff"></TextBox>
+                                <TextBox x:Name="customerCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25"></TextBox>
                             </Border>
 
                         </Grid>
@@ -185,7 +206,7 @@
                                 <TextBlock x:Name="additionalCodeTextBlock"  TextAlignment="Right" Text="Additional Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox x:Name="additionalCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3" Background="#ccffff"></TextBox>
+                                <TextBox x:Name="additionalCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25"></TextBox>
                             </Border>
 
                         </Grid>
@@ -235,29 +256,39 @@
 
         </Grid>
 
-        <Grid Height="400">
+        <Grid Height="400" Margin="0,0,0,52">
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Background" Value="#ccffff"></Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Background" Value="#66ffff"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
             <Grid.Background>
                 <ImageBrush ImageSource="images/programParameterBackground.jpg"></ImageBrush>
             </Grid.Background>
 
-            <Grid Height="63" Width="455" Margin="275,0,630,320">
+            <Grid Height="63" Width="550" Margin="200,0,610,320">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="1.7*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <Grid >
+                    <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.6*"></ColumnDefinition>
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="positiveTolVoltageTextBlock"  Text="Postitive Tol" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                         </Border>
                         <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                            <TextBox x:Name="positiveTolVoltageText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolVoltageText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
                         </Border>
                         <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="positiveTolVoltageUnitTextBlock"  Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -266,14 +297,14 @@
                     <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.6*"></ColumnDefinition>
                             <ColumnDefinition Width="0.3*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="negativeTolVolageTextBlock"  Text="Negative Tol" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
                         </Border>
                         <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                            <TextBox x:Name="negativeTolVoltageText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolVoltageText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
                         </Border>
                         <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="negativeTolVoltageUnitTextBlock"  Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -291,7 +322,7 @@
                         <TextBlock x:Name="nominalFDVTextBlock"  Text="Nominal Forward DropVolts" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="nominalFDVText" Grid.Column="1"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold"  ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalFDVText" Grid.Column="1"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold"  ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nominalFDVUnitsTextBlock"  Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold"  ></TextBlock>
@@ -312,7 +343,7 @@
                         <TextBlock x:Name="postiveToleranceCurrentTextBlock"  Text="Postitive Tolerance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="postiveToleranceCurrentText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="postiveToleranceCurrentText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="postiveToleranceCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -328,7 +359,7 @@
                         <TextBlock x:Name="nominalRevCurrentTextBlock"  Text="Nominal Rev Current" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" />
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="nominalRevCurrentText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalRevCurrentText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nominalRevCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -344,7 +375,7 @@
                         <TextBlock x:Name="negativeTolerenceCurrentTextBlock"  Text="Negative Tolerance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="negativeTolerenceCurrentText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolerenceCurrentText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="negativeTolerenceCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -363,7 +394,7 @@
                         <TextBlock x:Name="forwardTestCurrentTextBlock"  Text="Forward Test Current" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="forwardTestCurrentText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardTestCurrentText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="forwardTestCurrentUnitTextBlock"  Text="A" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -379,7 +410,7 @@
                         <TextBlock x:Name="forwardMaxVoltageTextBlock"  Text="Forward Max Voltage" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="forwardMaxVoltageText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardMaxVoltageText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="forwardMaxVoltageUnitTextBlock"  Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -395,10 +426,10 @@
                         <TextBlock x:Name="ReverseTestVoltageTextBlock"  Text="Reverse Test Voltage" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="ReverseTestVoltageText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="ReverseTestVoltageText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBlock x:Name="ReverseTestVoltageUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
+                        <TextBlock x:Name="ReverseTestVoltageUnitTextBlock"  Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
                     </Border>
                 </Grid>
             </StackPanel>
@@ -415,7 +446,7 @@
                         <TextBlock x:Name="positiveTolResTextBlock"  Text="Postitive Tol" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="positiveTolResText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolResText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="positiveTolResUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -431,7 +462,7 @@
                         <TextBlock x:Name="contactResistanceTextBlock"  Text="Contact Resistance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="contactResistanceText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="contactResistanceText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="contactResistanceUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -447,7 +478,7 @@
                         <TextBlock x:Name="negativeTolTextBlock"  Text="Negative Tol" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="negativeTolResText"  Text="0" Background="#ccffff" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolResText"  Text="0"  Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="negativeTolUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -457,123 +488,127 @@
 
         </Grid>
 
-        <Grid Margin="0,0,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <DockPanel x:Name="dcPanel">
+            <Grid Margin="0,0,0,0" DockPanel.Dock="Bottom" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-            <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="newButton" Height="50" Content="New" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999"  HorizontalAlignment="Left" Width="134" Margin="0.4,0.4,-1.6,-0.8" Click="newButton_Click"  >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="newButton" Content="New" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999"   Click="newButton_Click"  >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="saveButton" Height="50" Content="Save" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="f2Button_Click"  >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="saveButton"  Content="Save" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="f2Button_Click"  >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="saveAsButton" Height="50" Content="Save As" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="saveAsButton_Click" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="saveAsButton"  Content="Save As" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="saveAsButton_Click" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="deleteButton" Height="50" Content="Delete" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="deleteButton_Click" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="deleteButton"  Content="Delete" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="deleteButton_Click" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="readFromPlcButton" Height="50" Content="Read From&#xD;&#xA;PLC" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="readFromPlcButton"  Content="Read From&#xD;&#xA;PLC" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="selectModelButton" Height="50" Content="Select Model" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="selectModelButton"  Content="Select Model" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="logOutButton" Height="50" Content="Log Out" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="logOutButton"  Content="Log Out" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="exportButton" Height="50" Content="Export" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="exportButton"  Content="Export" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
-            <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="importButton" Height="50" Content="Import" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="diagnosticsButton_Click" >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
-
-
-            <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="backButton" Height="50" Content="Close" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="backButton_Click"  >
-                    <Button.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="7"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </Border>
+                <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="importButton"  Content="Import" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="diagnosticsButton_Click" >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
 
 
-        </Grid>
+                <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                    <Button x:Name="backButton"  Content="Back" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="backButton_Click"  >
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="7"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Border>
+
+        
+
+
+            </Grid>
+        </DockPanel>
 
     </StackPanel>
 

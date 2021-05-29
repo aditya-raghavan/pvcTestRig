@@ -22,7 +22,7 @@ namespace UI_TestRig
     /// </summary>
     public partial class MainWindow : Window
     {
-        sqlconnection obj;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -127,6 +127,12 @@ namespace UI_TestRig
         private void jbserialText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void editProcessParameterButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProgramParameterUI frm = new ProgramParameterUI();
+            frm.Show();
         }
     }
 }

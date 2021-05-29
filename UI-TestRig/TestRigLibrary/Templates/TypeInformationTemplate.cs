@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TestRigLibrary.Templates
@@ -12,16 +13,31 @@ namespace TestRigLibrary.Templates
         public string AdditionalCode { get; set; }
 
 
-        /// <summary>
-        /// Selected Diode Index (Read from a combobox).
-        /// </summary>
-        public int DiodeIndex { get; set; }
+        
 
-        /// <summary>
-        /// selected barcode (Read from a combobox).
-        /// </summary>
-        public int BarCodeIndex { get; set; }
+        public string DiodeType { get; set; }
 
+        public string BarCodeOption { get; set; }
+
+        public static string GetDiodeTypeFromIndex(int index)
+        {
+            return DiodeTypes.ElementAt(index);
+        }
+
+        public static int GetIndexFromDiodeType(string diodeType)
+        {
+            return DiodeTypes.IndexOf(diodeType);
+        }
+
+        public static string GetBarcodeOptionFromIndex(int index)
+        {
+            return BarCodeOptions.ElementAt(index);
+        }
+
+        public static int GetIndexFromBarcodeOption(string barcodeOption)
+        {
+            return BarCodeOptions.IndexOf(barcodeOption);
+        }
 
         public static List<string> DiodeTypes = new List<string>() { "2 DIODES", "3 DIODES" };
 

@@ -31,13 +31,13 @@ namespace TestRigLibrary
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        public static string LoadFile(this string file)
+        public static List<string> LoadFile(this string file)
         {
             if (!File.Exists(file))
             {
-                return "";
+                return null;
             }
-            return File.ReadAllText(file);
+            return File.ReadAllLines(file).ToList();
 
         }
 
@@ -46,11 +46,13 @@ namespace TestRigLibrary
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public static ModelTemplate ConvertToModelTemplate(this string line)
+        public static TestConfigurationTemplate ConvertToModelTemplate(this List<string> lines)
         {
-            ModelTemplate output = new ModelTemplate();
+            TestConfigurationTemplate output = new TestConfigurationTemplate();
             TypeInformationTemplate ti = new TypeInformationTemplate();
             ReadingsTemplate rt = new ReadingsTemplate();
+
+            string line = ExtractValuesFromModelFile(lines);
 
             if(line.Length != 0)
             {
@@ -60,8 +62,8 @@ namespace TestRigLibrary
                 ti.DiodeCode = cols[1];
                 ti.CustomerCode = cols[2];
                 ti.AdditionalCode = cols[3];
-                ti.DiodeIndex = int.Parse(cols[4]);
-                ti.BarCodeIndex = int.Parse(cols[5]);
+                ti.DiodeType = cols[4];
+                ti.BarCodeOption = cols[5];
 
                 rt.PositiveTolerenceVoltage = decimal.Parse(cols[6]);
                 rt.NegativeTolerenceVoltage = decimal.Parse(cols[7]);
@@ -82,6 +84,24 @@ namespace TestRigLibrary
 
             return output;
 
+        }
+
+        private static string ExtractValuesFromModelFile(List<string> lines)
+        {
+            string output = "";
+            int index = 0;
+            foreach(string line in lines)
+            {
+                string[] cols = line.Split(',');
+                output += $"{cols[index]},";
+                if(index == 0)
+                {
+                    index = 1;
+                }
+            }
+
+            output = output.Substring(0, output.Length - 1);
+            return output;
         }
 
         

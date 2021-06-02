@@ -213,58 +213,9 @@ namespace UI_TestRig
 
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            ////Open File Dialog
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //ofd.DefaultExt = ".csv";
-            //ofd.Filter = "Text documents (.csv)|*.csv";
-
-            //ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
-            //ofd.Multiselect = false;
-            //Nullable<bool> result = ofd.ShowDialog();
-
-            //if(result == true)
-            //{
-                
-            //    ModelTemplate model = new ModelTemplate();
-            //    modelTextBlock.Text = ofd.SafeFileName;
-
-            //    //Loads all the model information from text file to ModelTemplate Class.
-            //    model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
-
-            //    //Initializes all the textboxes with loaded model details.
-            //    modelTextBlock.Text = model.Name;
-            //    diodeCodeText.Text = model.DiodeCode;
-            //    customerCodeText.Text = model.CustomerCode;
-            //    additionalCodeText.Text = model.AdditionalCode;
-            //    diodeTypeCombo.SelectedIndex = model.DiodeIndex;
-            //    barCodePrinterCombo.SelectedIndex = model.BarCodeIndex;
-
-            //    positiveTolVoltageText.Text = model.PositiveTolerenceVoltage.ToString();
-            //    negativeTolVoltageText.Text = model.NegativeTolerenceVoltage.ToString();
-            //    nominalFDVText.Text = model.NominalForwardDropVolts.ToString() ;
-
-            //    postiveToleranceCurrentText.Text = model.PositiveTolerenceCurrent.ToString();
-            //    nominalRevCurrentText.Text = model.NominalReverseCurrent.ToString();
-            //    negativeTolerenceCurrentText.Text = model.NegativeTolerenceCurrent.ToString();
-
-            //    forwardMaxVoltageText.Text = model.ForwardMaxVoltage.ToString();
-            //    forwardTestCurrentText.Text = model.ForwardTestCurrent.ToString();
-            //    ReverseTestVoltageText.Text = model.ReverseTestVoltage.ToString();
-
-            //    positiveTolResText.Text = model.PositiveTolerenceResistance.ToString();
-            //    contactResistanceText.Text = model.ContactResistance.ToString();
-            //    negativeTolResText.Text = model.NegativeTolerenceResistance.ToString();
-
-            //    programTextBox.Text = model.Name;
 
 
 
-            //}
-        }
-
-        
         //New Button event
         private void newButton_Click(object sender, RoutedEventArgs e)
         {

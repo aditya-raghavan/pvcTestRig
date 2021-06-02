@@ -17,7 +17,6 @@ C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterUI.g
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterUI.baml
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.dll
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.pdb
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModelNameInputForm.baml
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.CopyComplete
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Configuration.ConfigurationManager.dll
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Security.AccessControl.dll

@@ -72,7 +72,7 @@
                         <TextBlock  x:Name="programTextBlock" TextAlignment="Right" Text="Program" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox FontWeight="Bold" x:Name="programTextBox" Grid.Column="1" Padding="3" CharacterCasing="Upper" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"></TextBox>
+                        <TextBox FontWeight="Bold" x:Name="programTextBox" Grid.Column="1" Padding="3" CharacterCasing="Upper" Text="{Binding Path=Name}"></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nrTextBlock" TextAlignment="Right" Text="Nr" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
@@ -155,7 +155,7 @@
             <StackPanel Grid.Column="0" Background="#cccccc">
                 <Label x:Name="modelLabel" Margin="34,10,0,0" FontSize="14" FontWeight="Bold" Content="Test Configuration"></Label>
                 <Border Margin="0,0,0,0" Width="300" BorderThickness="2" BorderBrush="#4d4d4d">
-                    <TextBlock x:Name="modelTextBlock" Text="{Binding Path=Name, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"  Padding="10"  FontSize="18" Background="White" FontWeight="Bold" Width="300"></TextBlock>
+                    <TextBlock x:Name="modelTextBlock"   Padding="10"  FontSize="18" Background="White" FontWeight="Bold" Width="300"></TextBlock>
                 </Border>
                 <Border Margin="0,10,0,0" Width="150" BorderThickness="2" BorderBrush="#4d4d4d">
                     <Button x:Name="loadModelButton" Content="OPEN" Width="150" FontWeight="Bold"  Height="30" Background="White" Click="Button_Click"></Button>
@@ -194,7 +194,7 @@
                                 <TextBlock x:Name="diodeCodeTextBlock"  TextAlignment="Right" Text="Diode Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox MaxLength="25" x:Name="diodeCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" Text="{Binding Path=DiodeCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"></TextBox>
+                                <TextBox MaxLength="25" x:Name="diodeCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" LostFocus="diodeCodeText_LostFocus" ></TextBox>
                             </Border>
 
                         </Grid>
@@ -209,7 +209,7 @@
                                 <TextBlock x:Name="customerCodeTextBlock"  TextAlignment="Right" Text="Customer Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox Text="{Binding Path=CustomerCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" x:Name="customerCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25"></TextBox>
+                                <TextBox  x:Name="customerCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25" LostFocus="customerCodeText_LostFocus"></TextBox>
                             </Border>
 
                         </Grid>
@@ -224,7 +224,7 @@
                                 <TextBlock x:Name="additionalCodeTextBlock"  TextAlignment="Right" Text="Additional Code" FontWeight="Bold" FontSize="12" Padding="2" Background="White" ></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                                <TextBox Text="{Binding Path=AdditionalCode, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" x:Name="additionalCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25"></TextBox>
+                                <TextBox  x:Name="additionalCodeText" FontWeight="Bold"  Grid.Column="1" Padding="3"  CharacterCasing="Upper" MaxLength="25" LostFocus="additionalCodeText_LostFocus"></TextBox>
                             </Border>
 
                         </Grid>
@@ -283,10 +283,7 @@
                             <Setter Property="Background" Value="#ffccff"/>
                             <Setter Property="Foreground" Value="Black"/>
                         </Trigger>
-                        <Trigger Property="Validation.HasError" Value="True">
-                            <Setter Property="Background" Value="Yellow"></Setter>
-                            <Setter Property="Foreground" Value="Red"></Setter>
-                        </Trigger>
+                        
                     </Style.Triggers>
                 </Style>
             </Grid.Resources>
@@ -311,7 +308,7 @@
                             <TextBlock x:Name="positiveTolVoltageTextBlock"  Text="Postitive Tol"  VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                         </Border>
                         <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolVoltageText"  Text="{Binding Path=PositiveTolerenceVoltage, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
+                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolVoltageText"     VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" LostFocus="positiveTolVoltageText_LostFocus" ></TextBox>
                         </Border>
                         <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="positiveTolVoltageUnitTextBlock"  Text="mV"  VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -327,7 +324,7 @@
                             <TextBlock x:Name="negativeTolVolageTextBlock"  Text="Negative Tol" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
                         </Border>
                         <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolVoltageText"  Text="{Binding Path=NegativeTolerenceVoltage, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBox>
+                            <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolVoltageText"     VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" LostFocus="negativeTolVoltageText_LostFocus" ></TextBox>
                         </Border>
                         <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                             <TextBlock x:Name="negativeTolVoltageUnitTextBlock"  Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -345,7 +342,7 @@
                         <TextBlock x:Name="nominalFDVTextBlock"  Text="Nominal Forward DropVolts" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalFDVText" Grid.Column="1"  Text="{Binding Path=NominalForwardDropVolts, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold"  ></TextBox>
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalFDVText" Grid.Column="1"     VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="nominalFDVText_LostFocus"  ></TextBox>
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nominalFDVUnitsTextBlock"  Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold"  ></TextBlock>
@@ -366,7 +363,7 @@
                         <TextBlock x:Name="postiveToleranceCurrentTextBlock"  Text="Postitive Tolerance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="postiveToleranceCurrentText"  Text="{Binding Path=PositiveTolerenceCurrent, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="postiveToleranceCurrentText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="postiveToleranceCurrentText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="postiveToleranceCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -382,7 +379,7 @@
                         <TextBlock x:Name="nominalRevCurrentTextBlock"  Text="Nominal Rev Current" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" />
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalRevCurrentText"  Text="{Binding Path=NominalReverseCurrent, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="nominalRevCurrentText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="nominalRevCurrentText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="nominalRevCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -398,7 +395,7 @@
                         <TextBlock x:Name="negativeTolerenceCurrentTextBlock"  Text="Negative Tolerance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolerenceCurrentText"  Text="{Binding Path=NegativeTolerenceCurrent, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolerenceCurrentText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="negativeTolerenceCurrentText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="negativeTolerenceCurrentUnitTextBlock"  Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -417,7 +414,7 @@
                         <TextBlock x:Name="forwardTestCurrentTextBlock"  Text="Forward Test Current" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardTestCurrentText"  Text="{Binding Path=ForwardTestCurrent, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardTestCurrentText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" LostFocus="forwardTestCurrentText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="forwardTestCurrentUnitTextBlock"  Text="A" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -433,7 +430,7 @@
                         <TextBlock x:Name="forwardMaxVoltageTextBlock"  Text="Forward Max Voltage" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardMaxVoltageText"  Text="{Binding Path=ForwardMaxVoltage, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="forwardMaxVoltageText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" LostFocus="forwardMaxVoltageText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="forwardMaxVoltageUnitTextBlock"  Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -449,7 +446,7 @@
                         <TextBlock x:Name="ReverseTestVoltageTextBlock"  Text="Reverse Test Voltage" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="ReverseTestVoltageText"  Text="{Binding Path=ReverseTestVoltage, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="ReverseTestVoltageText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" LostFocus="ReverseTestVoltageText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="ReverseTestVoltageUnitTextBlock"  Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -469,7 +466,7 @@
                         <TextBlock x:Name="positiveTolResTextBlock"  Text="Postitive Tol" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolResText"  Text="{Binding Path=PositiveTolerenceResistance, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="positiveTolResText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="positiveTolResText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="positiveTolResUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -485,7 +482,7 @@
                         <TextBlock x:Name="contactResistanceTextBlock"  Text="Contact Resistance" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="contactResistanceText"  Text="{Binding Path=ContactResistance, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="contactResistanceText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="contactResistanceText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="contactResistanceUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
@@ -501,7 +498,7 @@
                         <TextBlock x:Name="negativeTolTextBlock"  Text="Negative Tol" Foreground="Black" VerticalAlignment="Bottom" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" Margin="0.4,0,-0.2,3.2" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolResText"  Text="{Binding Path=NegativeTolerenceResistance, Mode=TwoWay, UpdateSourceTrigger=LostFocus, ValidatesOnDataErrors=True,TargetNullValue=#, FallbackValue=#}" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" />
+                        <TextBox PreviewTextInput="PreviewTextInput" x:Name="negativeTolResText"   VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" LostFocus="negativeTolResText_LostFocus" />
                     </Border>
                     <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
                         <TextBlock x:Name="negativeTolUnitTextBlock"  Text="Ohms" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>

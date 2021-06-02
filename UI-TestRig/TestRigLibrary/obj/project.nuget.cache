@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "l+XpOwhYkAI4Ld1cCqEJrD6DQxbdOAOMXuW96383Pig5+qq0r5NVhcKe21yUiLiyHsJLgfgFaklfWy0QS31c8g==",
+  "dgSpecHash": "XPEhn11yOTfuJ2+OH78Ug6tK+JxFC47PvM2UjxKJqwjWzJg19xYliL2rNLkbGGqjjk4jkFZqhUzNaeTxHvr5RQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\adity\\gitrepos\\pvcTestRig\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
+  "projectFilePath": "C:\\Users\\adity\\source\\repos\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\adity\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "C:\\Users\\adity\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",

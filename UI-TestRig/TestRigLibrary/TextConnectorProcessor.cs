@@ -85,25 +85,25 @@ namespace TestRigLibrary
             {
                 string[] cols = line.Split(',');
 
-                template.Name = cols[0];
-                template.DiodeCode = cols[1];
-                template.CustomerCode = cols[2];
-                template.AdditionalCode = cols[3];
-                template.DiodeType = cols[4];
-                template.BarCodeOption = cols[5];
+                template.modelName = cols[0];
+                template.diodeCode = cols[1];
+                template.customerCode = cols[2];
+                template.additionalCode = cols[3];
+                template.diodeType = cols[4];
+                template.barCodeOption = cols[5];
 
-                template.PositiveTolerenceVoltage = double.Parse(cols[6]);
-                template.NegativeTolerenceVoltage = double.Parse(cols[7]);
-                template.NominalForwardDropVolts = double.Parse(cols[8]);
-                template.PositiveTolerenceCurrent = double.Parse(cols[9]);
-                template.NegativeTolerenceCurrent = double.Parse(cols[10]);
-                template.NominalReverseCurrent = double.Parse(cols[11]);
-                template.ForwardTestCurrent = double.Parse(cols[12]);
-                template.ReverseTestVoltage = double.Parse(cols[13]);
-                template.ForwardMaxVoltage = double.Parse(cols[14]);
-                template.PositiveTolerenceResistance = double.Parse(cols[15]);
-                template.NegativeTolerenceResistance = double.Parse(cols[16]);
-                template.ContactResistance = double.Parse(cols[17]);
+                template.positiveTolerenceVoltage = double.Parse(cols[6]);
+                template.negativeTolerenceVoltage = double.Parse(cols[7]);
+                template.nominalForwardDropVolts = double.Parse(cols[8]);
+                template.positiveTolerenceCurrent = double.Parse(cols[9]);
+                template.negativeTolerenceCurrent = double.Parse(cols[10]);
+                template.nominalReverseCurrent = double.Parse(cols[11]);
+                template.forwardTestCurrent = double.Parse(cols[12]);
+                template.reverseTestVoltage = double.Parse(cols[13]);
+                template.forwardMaxVoltage = double.Parse(cols[14]);
+                template.positiveTolerenceResistance = double.Parse(cols[15]);
+                template.negativeTolerenceResistance = double.Parse(cols[16]);
+                template.contactResistance = double.Parse(cols[17]);
 
                 
             }
@@ -148,7 +148,7 @@ namespace TestRigLibrary
                     }
                     if(typeinfoIndex == 3)
                     {
-                        List<string> diodeTypes = TestConfigurationTemplate.GetDiodeTypes();
+                        List<string> diodeTypes = TestConfigurationTemplate.DiodeTypes;
                         if(!diodeTypes.Contains(cols[1]))
                         {
                             return false;
@@ -156,7 +156,7 @@ namespace TestRigLibrary
                     }
                     if (typeinfoIndex == 4)
                     {
-                        List<string> barCodeOptions = TestConfigurationTemplate.GetBarcodeOptions();
+                        List<string> barCodeOptions = TestConfigurationTemplate.BarCodeOptions;
                         if (!barCodeOptions.Contains(cols[1]))
                         {
                             return false;

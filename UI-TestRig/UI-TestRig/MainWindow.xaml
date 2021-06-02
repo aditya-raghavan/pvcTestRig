@@ -1,0 +1,864 @@
+﻿<Window x:Class="UI_TestRig.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+
+        xmlns:local="clr-namespace:UI_TestRig"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="768" Width="1366" WindowStyle="None" FontFamily="Arial">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+    
+
+
+    <Grid Grid.Row="0" Name="TopGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TitleTextBox" Background="#cccccc" VerticalAlignment="Center" Padding="0,16" Grid.Column="0" TextAlignment="Center" Text="PhotoVoltaic Junction Box Diode Test Rig" FontWeight="Bold" FontSize="21"></TextBlock>
+            <StackPanel Name="UserStack" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="userTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80.5"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="programTextBlock" TextAlignment="Right" Text="Program" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="programTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+                    <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="nrTextBlock" TextAlignment="Right" Text="Nr" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="nrTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Name="ModeStack" Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="modeTextBlock" TextAlignment="Right" Text="Mode" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoTextBlock" Text="AUTO" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" Background="#66ffff"></TextBlock>
+                    </Border>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="statusTextBlock" TextAlignment="Right" Text="Status" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border x:Name="autoRunningTextBlock" Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoRunningTextBlock1" Text="AUTO RUNNING" Foreground="Red" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                    </Border>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="dateTextBlock" Text="{Binding Source={x:Static sys:DateTime.Today},StringFormat='{}{0:dd-MM-yyyy}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="timeTextBlock" Text="{Binding Source={x:Static sys:DateTime.Now},
+                   StringFormat='{}{0: hh:mm:ss}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <Border  BorderThickness="2" BorderBrush="#4d4d4d" Grid.Row="1">
+            <TextBlock x:Name="mainScreenTextBlock" Text="Main Screen" Padding="5" FontSize="14" FontWeight="Bold" Foreground="white" Background="#ff6600"></TextBlock>
+        </Border>
+
+        <Border Name="MainContentBorder" Padding="5" Grid.Row="2">
+            <Grid Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                    <ColumnDefinition Width="16*"></ColumnDefinition>
+                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Border Padding="2" BorderThickness="2" Grid.Column="0" >
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle StrokeDashArray="4 2" Stroke="Gray" StrokeThickness="1" Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}" Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
+
+
+
+                    <StackPanel>
+
+
+                        <TextBlock x:Name="testInformationTextBlock" Text="Test Information" Padding="10" FontSize="14" TextAlignment="Center" FontWeight="Bold" Foreground="white" Background="#ff8533"></TextBlock>
+                        <StackPanel Background="#cccccc">
+                            <ComboBox x:Name="modelComboBox" Width="300" Height="30"  HorizontalAlignment="Center" Margin="10,10,10,0"  >
+                                <ComboBoxItem IsSelected="True" Content="TREY 1256"></ComboBoxItem>
+                                <ComboBoxItem Content="TREY 1256"></ComboBoxItem>
+                                <ComboBoxItem Content="TREY 1256"></ComboBoxItem>
+                                <ComboBoxItem Content="TREY 1256"></ComboBoxItem>
+                                <ComboBoxItem Content="TREY 1256"></ComboBoxItem>
+                                <ComboBoxItem Content="TREY 1256"></ComboBoxItem>
+
+
+                            </ComboBox>
+
+                            <TextBlock x:Name="comparisonCompletedTextBlock" Margin="10,30,0,10" Text="Comparison Completed" Foreground="Red"/>
+
+                        </StackPanel>
+
+                        <Button x:Name="selectModelButton" Height="50" Content="Select Model" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,3" >
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="operatorTextBlock" TextAlignment="Right" Text="Operator" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="operatorTextBox" Grid.Column="1" Padding="3"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="diodeCodeTextBlock" TextAlignment="Right" Text="Diode Code" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="diodecodeTextBox" Grid.Column="1" Padding="3"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="customerCodeTextBlock" TextAlignment="Right" Text="Customer Code" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="customercodeTextBox" Grid.Column="1" Padding="3"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="additionalCodeTextBlock" TextAlignment="Right" Text="Additional Code" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="additionalcodeTextBox" Grid.Column="1" Padding="3"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="jbserialNoTextBlock" TextAlignment="Right" Text="JB Serial Nr" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="jbserialTextBox" Grid.Column="1" Padding="3" TextChanged="jbserialText_TextChanged"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="batchNumberTextBlock" TextAlignment="Right" Text="Batch Number" FontWeight="Bold" FontSize="14" Padding="2" Background="#999999" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox x:Name="batchnoTextBox" Grid.Column="1" Padding="3"></TextBox>
+                                </Border>
+
+
+
+                            </Grid>
+
+                        </StackPanel>
+
+                        <TextBlock Height="50"></TextBlock>
+                        <Border BorderThickness="2" BorderBrush="#4d4d4d" Margin="0,0,0,5">
+                            <TextBlock x:Name="modeMainTextBlock" Text="Mode" Padding="7" FontSize="14" TextAlignment="Center" FontWeight="Bold" Foreground="white" Background="#ff8533" ></TextBlock>
+                        </Border>
+                        <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+                            <TextBlock x:Name="autoMainTextBlock" Text="Auto" Padding="7" FontSize="14" TextAlignment="Center" FontWeight="Bold" Foreground="white" Background="#99ffcc"></TextBlock>
+                        </Border>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="manualButton" Grid.Column="0" Height="50" Content="Manual" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="3,3" >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="7"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+                            <Button x:Name="autoButton" Grid.Column="1" Height="50" Content="Auto" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="3,3,0,3" Click="Button_Click_1" HorizontalAlignment="Left" Width="171" >
+                                <Button.Resources>
+                                    <Style TargetType="{x:Type Border}">
+                                        <Setter Property="CornerRadius" Value="7"/>
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
+
+
+                        </Grid>
+
+
+
+                    </StackPanel>
+                </Border>
+
+                <Border Padding="2" BorderThickness="2" Grid.Column="2" >
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle StrokeDashArray="4 2" Stroke="Gray" StrokeThickness="1" Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}" Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
+
+                    <StackPanel>
+                        <TextBlock x:Name="testDataTextBlock" Text="Test Data" Padding="10" FontSize="14" TextAlignment="Center" FontWeight="Bold" Foreground="white" Background="#ff8533" Margin="0,0,0,7"></TextBlock>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="itemTextBlock" TextAlignment="Center" Text="Item" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="unitsTextBlock" TextAlignment="Center" Text="Units" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="lowTextBlock" TextAlignment="Center" Text="Low" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="actualTestDataTextBlock" TextAlignment="Center" Text="Actual" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="highTextBlock" TextAlignment="Center" Text="High" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="statusTestDataTextBlock" TextAlignment="Center" Text="Status" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentTextBlock" TextAlignment="Center" Text="Fwd Current" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5"  />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentUnitsTextBlock" TextAlignment="Center" Text="Amps" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentLowTextBlock" TextAlignment="Center" Text="+6.0" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentActualTextBlock" TextAlignment="Center" Text="+0.0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentHighTextBlock" TextAlignment="Center" Text="+6.3" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdCurrentStatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageTextBlock" TextAlignment="Center" Text="Fwd Voltage" FontWeight="Bold" Padding="2" Background="#cccccc" Margin="0.4,0.4,0,0" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageUnitTextBlock" TextAlignment="Center" Text="Volts" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageLowTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="1.3"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageActualTextBlock" TextAlignment="Center" Text="+0.0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageHighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="2.7"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdVoltageStatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1TextBlock" TextAlignment="Center" FontWeight="Bold" Padding="2" Background="#cccccc" Text="Fwd Drop 1" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1UnitTextBlock" TextAlignment="Center" Text="mV" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1LowTextBlock1" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="300"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1ActualTextBlock" TextAlignment="Center" Text="+0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1HighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="500"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop1StatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2TextBlock" TextAlignment="Center" Text="Fwd Drop 2" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2UnitsTextBlock" TextAlignment="Center" Text="mV" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2LowTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="300"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2ActualTextBlock" TextAlignment="Center" Text="+0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2HighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="500"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop2StatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3TextBlock" TextAlignment="Center" Text="Fwd Drop 3" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3UnitsTextBlock" TextAlignment="Center" Text="mV" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3LowTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="300"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3ActualTextBlock" TextAlignment="Center" Text="+0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3HighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="500"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="fwdDrop3StatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="totalDropTestDataTextBlock" TextAlignment="Center" Text="Total Drop" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="totalDropTestDataUnitsTextBlock" TextAlignment="Center" Text="mV" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="3" Grid.Row="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="totalDropTestDataHighTextBlock" TextAlignment="Center" Text="+0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+
+
+                            <Border Grid.Column="0" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="contactRTextBlock" TextAlignment="Center" Text="Contact R" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="contactRUnitsTextBlock" TextAlignment="Center" Text="Ohms" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="contactRLowTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="0.000"/></TextBlock>
+                            </Border>
+                            <Border x:Name="contactRActualTextBlock" Grid.Column="3" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ><Run Text="+0.0"/><Run Text="00"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="contactRHighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="0.350"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="contactRStatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+                            <Border Grid.Column="0" Grid.Row="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revVoltTextBlock" TextAlignment="Center" Text="Rev Volt" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revVoltUnitsTextBlock" TextAlignment="Center" Text="Volts" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+
+                            <Border Grid.Column="3" Grid.Row="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revVoltActualTextBlock" TextAlignment="Center" Text="+0.0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+
+
+                            <Border Grid.Column="0" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentTextBlock" TextAlignment="Center" Text="Rev Current" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+                            <Border Grid.Column="1" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentUnitsTextBlock" TextAlignment="Center" Text="uAmps" FontWeight="Bold" FontSize="14" Padding="2"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentLowTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="0"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="3" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentActualTextBlock" TextAlignment="Center" Text="+0.0" FontWeight="Bold" FontSize="14" Padding="2" Foreground="Blue"  ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="4" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentHighTextBlock" TextAlignment="Center" FontWeight="Bold" FontSize="14" Padding="2"  ><Run Text="+"/><Run Text="25"/></TextBlock>
+                            </Border>
+                            <Border Grid.Column="5" Grid.Row="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="revCurrentStatusTextBlock" TextAlignment="Center" Text="PENDNG" FontWeight="Bold" Padding="2" Background="#cccccc" FontSize="11.5" />
+                            </Border>
+
+
+                        </Grid>
+
+                    </StackPanel>
+
+
+
+
+
+                </Border>
+
+                <Border Padding="2" BorderThickness="2" Grid.Column="1" >
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle StrokeDashArray="4 2" Stroke="Gray" StrokeThickness="1" Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}" Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
+
+                    <StackPanel>
+                        <TextBlock x:Name="rigStatusTextBlock" Text="Rig Status" Padding="10" FontSize="14" TextAlignment="Center" FontWeight="Bold" Foreground="white" Background="#ff8533"></TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0" Margin="5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage1TextBlock" Text="Drop Voltage 1" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage1ValueTextBlock" Text="+0" Foreground="#0033cc" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" FontSize="16" />
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage1unitTextBlock" Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                            </Grid>
+
+                            <Grid Grid.Column="1" Margin="5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage2TextBlock" Text="Drop Voltage 2" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage2ValueTextBlock" Text="+0" Foreground="#0033cc" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" FontSize="16" />
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage2UnitTextBlock" Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                            </Grid>
+
+                            <Grid Grid.Column="2" Margin="5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage3TextBlock" Text="Drop Voltage 3" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage3ValueTextBlock" Text="+0" Foreground="#0033cc" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" FontSize="16" />
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="dropVoltage3UnitTextBlock" Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                            </Grid>
+
+                        </Grid>
+
+                        <Grid x:Name="functioningGrid" Height="313" Margin="10,0,9.8,0">
+                            <Grid.Background>
+                                <ImageBrush ImageSource="images/background.jpg"></ImageBrush>
+                            </Grid.Background>
+
+                            <Grid Margin="199,95,190,191">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.3*" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="totalDropTextBlock" Text="Total Drop" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="totalDropValueTextBlock" Text="-4" Foreground="#0033cc" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBlock>
+                                </Border>
+                                <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock x:Name="totalDropUnitTextBlock" Text="mV" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+
+                            </Grid>
+
+
+                            <Grid Margin="90,140,90,70" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"/>
+
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="2*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                    <RowDefinition Height="3*"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <Border Grid.Column="1" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="1" Grid.Row="0"  x:Name="setTextBlock" Text="Set" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold"   />
+                                </Border>
+                                <Border Grid.Column="0" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Row="0" Grid.Column="2" x:Name="actualTextBlock" Text="Actual" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold"  />
+                                </Border>
+                                <Border Grid.Column="0" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="currentTextBlock" Text="Current" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold"  />
+                                </Border>
+                                <Border Grid.Column="1" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="currentValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="0" FontSize="23" FontWeight="Bold"    />
+                                </Border>
+                                <Border Grid.Column="2" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="actualCurrentValueTextBlock"  Text="-0.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"   />
+                                </Border>
+                                <Border Grid.Column="3" Grid.Row="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="currentUnitTextBlock" Text="A" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
+                                </Border>
+                                <Border Grid.Column="2" Grid.Row="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="voltageTextBlock" Text="Voltage" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontWeight="Bold" />
+                                </Border>
+                                <Border Grid.Column="1" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="voltageValueTextBox"  Text="6.0" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"    />
+                                </Border>
+                                <Border Grid.Column="2" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="actualVoltageValueTextBlock"  Text="2.8" Foreground="#0033cc"  TextAlignment="Center" Padding="2" FontSize="23" FontWeight="Bold"   />
+                                </Border>
+                                <Border Grid.Column="3" Grid.Row="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="voltageUnitTextBlock" Text="V" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" />
+                                </Border>
+
+                            </Grid>
+
+
+                        </Grid>
+
+                        <Grid Width="300">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="actualReverseCurrentTextBlock" Text="Actual Reverse Current" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="actualReverseCurrentValueTextBlock" Text="-0" Foreground="Brown" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="actualReverseCurrentUnitTextBlock" Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                        </Grid>
+
+                        <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+                            <TextBlock x:Name="testStatusTextBlock" Text="No Test Running" TextAlignment="Center" Foreground="Black" Padding="5" FontSize="20" FontWeight="Bold"  Background="#cccccc"></TextBlock>
+                        </Border>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0"  BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="testResultPassTextBlock" Text="PASS" TextAlignment="Center" Foreground="#666666" Padding="5" FontSize="20" FontWeight="Bold"  Background="#cccccc"></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1"  BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="testResultFailTextBlock" Text="FAIL" TextAlignment="Center" Foreground="#666666" Padding="5" FontSize="20" FontWeight="Bold"  Background="#cccccc"></TextBlock>
+                            </Border>
+                        </Grid>
+
+                        <Grid Width="200" HorizontalAlignment="Right" Height="30" Margin="0,0,-0.2,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.7*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="cycleTimeTextBlock" Text="Cycle Time" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="12" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="cycleTimeValueTextBlock" Text="4.3" Foreground="Brown" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="16" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                                <TextBlock x:Name="cycleTimeUnitTextBlock" Text="uA" Foreground="Black" VerticalAlignment="Center" TextAlignment="Center" Padding="2" FontSize="14" FontWeight="Bold" ></TextBlock>
+                            </Border>
+                        </Grid>
+
+
+
+                    </StackPanel>
+
+                </Border>
+
+
+            </Grid>
+
+        </Border>
+
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="f1Button"  Content="F1" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0.4,0,-0.8" HorizontalAlignment="Left" Width="148" Click="Button_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="f2Button"  Content="F2" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="dataLogsButton"  Content="Data Logs" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button Padding="3" x:Name="runningProcessParameterButton" Content="Running Process&#xD;&#xA; Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="alarmsButton"  Content="Alarms" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="editProcessParameterButton"  Content="Edit Process &#xD;&#xA;Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="editProcessParameterButton_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="logOutButton"  Content="Log Out" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="helpButton" Content="Help" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="diagnosticsButton"  Content="Diagnostics" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+            <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="exitButton"  Content="Exit" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click_2" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+        </Grid>
+
+    </Grid>
+</Window>

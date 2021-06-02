@@ -8,9 +8,9 @@
         Title="Enter Model Name" Height="200" Width="400" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel>
-            <Label HorizontalContentAlignment="Center" FontWeight="Bold">Model Name</Label>
-            <TextBox VerticalContentAlignment="Center" x:Name="modelNameInputText" Padding="2" TextAlignment="Center" Margin="20,0,20,0" Height="50" FontWeight="Bold" FontSize="16"></TextBox>
-            <Button Margin="100,20,100,0" Height="30" Content="Save Model" FontWeight="Bold" Click="Button_Click"></Button>
+            <Label Margin="20" HorizontalContentAlignment="Left" FontWeight="Bold">Select Test Configuration</Label>
+            <ListBox x:Name="modelNamesListBox" Height="auto"></ListBox>
+            <Button Margin="100,20,100,0" Height="30" Content="Delete Model" FontWeight="Bold" Click="Button_Click"></Button>
         </StackPanel>
         
     </Grid>

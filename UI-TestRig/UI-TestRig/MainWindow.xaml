@@ -7,10 +7,22 @@
 
         xmlns:local="clr-namespace:UI_TestRig"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1366" WindowStyle="None">
-    <StackPanel Name="MainStack">
+        Title="MainWindow" Height="768" Width="1366" WindowStyle="None" FontFamily="Arial">
 
-        <Grid Name="TopGrid" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+    
+
+
+    <Grid Grid.Row="0" Name="TopGrid" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.7*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -18,7 +30,7 @@
                 <ColumnDefinition Width="0.5*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <TextBlock x:Name="TitleTextBox" Background="#cccccc" VerticalAlignment="Center" Padding="0,16" Grid.Column="0" TextAlignment="Center" Text="PhotoVoltaic Junction Box Diode Test Rig" FontWeight="Bold" FontSize="25"></TextBlock>
+            <TextBlock x:Name="TitleTextBox" Background="#cccccc" VerticalAlignment="Center" Padding="0,16" Grid.Column="0" TextAlignment="Center" Text="PhotoVoltaic Junction Box Diode Test Rig" FontWeight="Bold" FontSize="21"></TextBlock>
             <StackPanel Name="UserStack" Grid.Column="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -112,12 +124,12 @@
 
         </Grid>
 
-        <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+        <Border  BorderThickness="2" BorderBrush="#4d4d4d" Grid.Row="1">
             <TextBlock x:Name="mainScreenTextBlock" Text="Main Screen" Padding="5" FontSize="14" FontWeight="Bold" Foreground="white" Background="#ff6600"></TextBlock>
         </Border>
 
-        <Border Name="MainContentBorder" Padding="5">
-            <Grid Margin="0,0,0,55">
+        <Border Name="MainContentBorder" Padding="5" Grid.Row="2">
+            <Grid Margin="0,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="10*"></ColumnDefinition>
                     <ColumnDefinition Width="16*"></ColumnDefinition>
@@ -730,7 +742,7 @@
 
         </Border>
 
-        <Grid>
+        <Grid Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -745,7 +757,7 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="f1Button" Height="50" Content="F1" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0.4,0,-0.8" HorizontalAlignment="Left" Width="148" Click="Button_Click" >
+                <Button x:Name="f1Button"  Content="F1" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0.4,0,-0.8" HorizontalAlignment="Left" Width="148" Click="Button_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -755,7 +767,7 @@
             </Border>
 
             <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="f2Button" Height="50" Content="F2" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click" >
+                <Button x:Name="f2Button"  Content="F2" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -765,7 +777,7 @@
             </Border>
 
             <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="dataLogsButton" Height="50" Content="Data Logs" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="dataLogsButton"  Content="Data Logs" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -775,7 +787,7 @@
             </Border>
 
             <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="runningProcessParameterButton" Height="50" Content="Running Process&#xD;&#xA; Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button Padding="3" x:Name="runningProcessParameterButton" Content="Running Process&#xD;&#xA; Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -785,7 +797,7 @@
             </Border>
 
             <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="alarmsButton" Height="50" Content="Alarms" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="alarmsButton"  Content="Alarms" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -795,7 +807,7 @@
             </Border>
 
             <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="editProcessParameterButton" Height="50" Content="Edit Process &#xD;&#xA;Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="editProcessParameterButton_Click" >
+                <Button x:Name="editProcessParameterButton"  Content="Edit Process &#xD;&#xA;Parameter" FontSize="16" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="editProcessParameterButton_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -805,7 +817,7 @@
             </Border>
 
             <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="logOutButton" Height="50" Content="Log Out" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="logOutButton"  Content="Log Out" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -815,7 +827,7 @@
             </Border>
 
             <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="helpButton" Height="50" Content="Help" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="helpButton" Content="Help" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -825,7 +837,7 @@
             </Border>
 
             <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="diagnosticsButton" Height="50" Content="Diagnostics" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="diagnosticsButton"  Content="Diagnostics" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -836,7 +848,7 @@
 
 
             <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="exitButton" Height="50" Content="Exit" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click_2" >
+                <Button x:Name="exitButton"  Content="Exit" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click_2" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -848,5 +860,5 @@
 
         </Grid>
 
-    </StackPanel>
+    </Grid>
 </Window>

@@ -13,6 +13,9 @@ namespace TestRigLibrary
     /// </summary>
     public static class GlobalConfig
     {
+        public static string  AllowedFileType = "Text documents (.csv)|*.csv";
+        public static double[] maxValues = {5,5,5,5,5,5,5,5,5,5,5,5 };
+        public static double[] minValues = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         public static IDataConnection Connection { get; set; }
 
         public static void InitialiseConnections()

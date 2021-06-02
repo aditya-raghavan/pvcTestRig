@@ -23,47 +23,48 @@ namespace UI_TestRig
         /// <summary>
         /// A Form which has implemented IModelRequestor Interface.
         /// </summary>
-        IModelNameRequestor callingForm;
+        
         /// <summary>
         /// List of existing Model names.
         /// </summary>
         List<string> ModelNames;
-        public ModelNameInputForm(IModelNameRequestor caller)
+        public ModelNameInputForm()
         {
             InitializeComponent();
-            callingForm = caller;
+            
             ModelNames = GlobalConfig.Connection.GetAllModelNames();
+            loadListBox();
+            
+        }
+
+        private void loadListBox()
+        {
+            modelNamesListBox.ItemsSource = null;
+            modelNamesListBox.ItemsSource = ModelNames;
+            modelNamesListBox.SelectedIndex = 0;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (ValidateForm())
+            if (modelNamesListBox.SelectedItem == null)
             {
-                //Calls the ModelnameComplete method with inputted model name.
-                callingForm.ModelNameComplete(modelNameInputText.Text.Trim());
-                this.Close();
+                MessageBox.Show("Please select a model to be deleted.");
+            }
+            else
+            {
+                if (MessageBox.Show($"Delete Model?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    GlobalConfig.Connection.DeleteModel(modelNamesListBox.SelectedItem.ToString());
+                    ModelNames.Remove(modelNamesListBox.SelectedItem.ToString());
+                    loadListBox();
+                    MessageBox.Show("Model Deleted");
+                    
+                }
             }
             
         }
 
-        private bool ValidateForm()
-        {
-            bool output = true;
-            if(modelNameInputText.Text.Length == 0)
-            {
-                output = false;
-                MessageBox.Show("ModelName cannot be empty.");
-            }
-            if (ModelNames.Contains(modelNameInputText.Text.Trim()))
-            {
-                if(MessageBox.Show("Overwrite Model?", "ModelName Already Exists", MessageBoxButton.YesNo) == MessageBoxResult.No)
-                {
-                    output = false;
-                }
-
-
-            }
-            return output;
-        }
+        
     }
 }

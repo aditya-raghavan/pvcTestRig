@@ -41,24 +41,24 @@ namespace TestRigLibrary
             string fileName = model.Name+".csv";
 
             lines.Add($"{model.Name}");
-            lines.Add($"DIODE CODE,{model.TypeInformation.DiodeCode}");
-            lines.Add($"CUSTOMER CODE,{model.TypeInformation.CustomerCode}");
-            lines.Add($"ADDITIONAL CODE,{model.TypeInformation.AdditionalCode}");
-            lines.Add($"DIODE TYPE,{model.TypeInformation.DiodeType}");
-            lines.Add($"BAR CODE OPTION,{model.TypeInformation.BarCodeOption}");
+            lines.Add($"DIODE CODE,{model.DiodeCode}");
+            lines.Add($"CUSTOMER CODE,{model.CustomerCode}");
+            lines.Add($"ADDITIONAL CODE,{model.AdditionalCode}");
+            lines.Add($"DIODE TYPE,{model.DiodeType}");
+            lines.Add($"BAR CODE OPTION,{model.BarCodeOption}");
 
-            lines.Add($"POSITIVE TOLERENCE VOLTAGE,{model.ModelReadings.PositiveTolerenceVoltage},mV");
-            lines.Add($"NEGATIVE TOLERENCE VOLTAGE,{model.ModelReadings.NegativeTolerenceVoltage},mV");
-            lines.Add($"NOMINAL FORWARD DROP VOLTAGE,{model.ModelReadings.NominalForwardDropVolts},mV");
-            lines.Add($"POSTIVIE TOLERENCE CURRENT,{model.ModelReadings.PositiveTolerenceCurrent},uA");
-            lines.Add($"NEGATIVE TOLERENCE CURRENT,{model.ModelReadings.NegativeTolerenceCurrent},uA");
-            lines.Add($"NOMINAL REVERSE CURRENT,{model.ModelReadings.NominalReverseCurrent},uA");
-            lines.Add($"FORWARD TEST CURRENT,{model.ModelReadings.ForwardTestCurrent},A");
-            lines.Add($"REVERSE TEST VOLTAGE,{model.ModelReadings.ReverseTestVoltage},V");
-            lines.Add($"FORWARD MAX VOLTAGE,{model.ModelReadings.ForwardMaxVoltage},V");
-            lines.Add($"POSITIVE TOLERENCE RESISTANCE,{model.ModelReadings.PositiveTolerenceResistance},Ohms");
-            lines.Add($"NEGATIVE TOLERENCE RESISTANCE,{model.ModelReadings.NegativeTolerenceResistance},Ohms");
-            lines.Add($"CONTACT RESISTANCE,{model.ModelReadings.ContactResistance},Ohms");
+            lines.Add($"POSITIVE TOLERENCE VOLTAGE,{model.PositiveTolerenceVoltage},mV");
+            lines.Add($"NEGATIVE TOLERENCE VOLTAGE,{model.NegativeTolerenceVoltage},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE,{model.NominalForwardDropVolts},mV");
+            lines.Add($"POSTIVIE TOLERENCE CURRENT,{model.PositiveTolerenceCurrent},uA");
+            lines.Add($"NEGATIVE TOLERENCE CURRENT,{model.NegativeTolerenceCurrent},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT,{model.NominalReverseCurrent},uA");
+            lines.Add($"FORWARD TEST CURRENT,{model.ForwardTestCurrent},A");
+            lines.Add($"REVERSE TEST VOLTAGE,{model.ReverseTestVoltage},V");
+            lines.Add($"FORWARD MAX VOLTAGE,{model.ForwardMaxVoltage},V");
+            lines.Add($"POSITIVE TOLERENCE RESISTANCE,{model.PositiveTolerenceResistance},Ohms");
+            lines.Add($"NEGATIVE TOLERENCE RESISTANCE,{model.NegativeTolerenceResistance},Ohms");
+            lines.Add($"CONTACT RESISTANCE,{model.ContactResistance},Ohms");
 
 
             File.WriteAllLines(fileName.FullFilePath(), lines);

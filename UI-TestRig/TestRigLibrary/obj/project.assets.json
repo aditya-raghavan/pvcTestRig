@@ -260,11 +260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\adity\\source\\repos\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\adity\\gitrepos\\pvcTestRig\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
       "projectName": "TestRigLibrary",
-      "projectPath": "C:\\Users\\adity\\source\\repos\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
+      "projectPath": "C:\\Users\\adity\\gitrepos\\pvcTestRig\\UI-TestRig\\TestRigLibrary\\TestRigLibrary.csproj",
       "packagesPath": "C:\\Users\\adity\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\adity\\source\\repos\\UI-TestRig\\TestRigLibrary\\obj\\",
+      "outputPath": "C:\\Users\\adity\\gitrepos\\pvcTestRig\\UI-TestRig\\TestRigLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

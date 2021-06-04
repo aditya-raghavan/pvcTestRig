@@ -17,6 +17,7 @@ namespace TestRigLibrary.Templates
         public string customerCode;
         public string diodeType;
         public string barCodeOption;
+
         public double positiveTolerenceVoltage;
         public double negativeTolerenceVoltage;
         public double nominalForwardDropVolts;

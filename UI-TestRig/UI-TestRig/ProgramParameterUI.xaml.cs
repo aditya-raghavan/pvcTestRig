@@ -46,25 +46,25 @@ namespace UI_TestRig
             { "diodeCode", "false" },
             { "additionalCode", "false" },
             { "customerCode", "false" },
-            { "positiveTolerenceVoltage", "true" },
-            { "negativeTolerenceVoltage", "true" },
-            { "nominalForwardDropVolts", "true" },
-            { "positiveTolerenceCurrent", "true" },
-            { "negativeTolerenceCurrent", "true" },
-            { "nominalReverseCurrent", "true" },
-            { "forwardTestCurrent", "true" },
-            { "reverseTestVoltage", "true" },
-            { "forwardMaxVoltage", "true" },
-            { "positiveTolerenceResistance", "true" },
-            { "negativeTolerenceResistance", "true" },
-            { "contactResistance", "true" },
+            { "positiveTolVoltageText", "true" },
+            { "negativeTolVoltageText", "true" },
+            { "nominalFDVText", "true" },
+            { "postiveToleranceCurrentText", "true" },
+            { "negativeTolerenceCurrentText", "true" },
+            { "nominalRevCurrentText", "true" },
+            { "forwardTestCurrentText", "true" },
+            { "ReverseTestVoltageText", "true" },
+            { "forwardMaxVoltageText", "true" },
+            { "positiveTolResText", "true" },
+            { "negativeTolResText", "true" },
+            { "contactResistanceText", "true" },
         };
         public ProgramParameterUI()
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
-            
+
             //Initializes Text Connection
             GlobalConfig.InitialiseConnections();
             NewModel();
@@ -105,6 +105,57 @@ namespace UI_TestRig
             programTextBox.Text = "";
 
             RefreshComboBoxes();
+            //var bc = new BrushConverter();
+            //positiveTolVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //negativeTolVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //nominalFDVText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //postiveToleranceCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //nominalRevCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //negativeTolerenceCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //forwardMaxVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //forwardTestCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //ReverseTestVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //positiveTolResText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //contactResistanceText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //negativeTolResText.Background = (Brush)bc.ConvertFrom("#ccffff");
+            //programTextBox.Background = (Brush)bc.ConvertFrom("#ccffff");
+
+            //positiveTolVoltageText.Foreground = new SolidColorBrush(Colors.Black);
+            //negativeTolVoltageText.Foreground = new SolidColorBrush(Colors.Black);
+            //nominalFDVText.Foreground = new SolidColorBrush(Colors.Black);
+            //postiveToleranceCurrentText.Foreground = new SolidColorBrush(Colors.Black);
+            //nominalRevCurrentText.Foreground = new SolidColorBrush(Colors.Black);
+            //negativeTolerenceCurrentText.Foreground = new SolidColorBrush(Colors.Black);
+            //forwardMaxVoltageText.Foreground = new SolidColorBrush(Colors.Black);
+            //forwardTestCurrentText.Foreground = new SolidColorBrush(Colors.Black);
+            //ReverseTestVoltageText.Foreground = new SolidColorBrush(Colors.Black);
+            //positiveTolResText.Foreground = new SolidColorBrush(Colors.Black);
+            //contactResistanceText.Foreground = new SolidColorBrush(Colors.Black);
+            //negativeTolResText.Foreground = new SolidColorBrush(Colors.Black);
+            //programTextBox.Foreground = new SolidColorBrush(Colors.Black);
+
+            //RefreshValidationResults();
+        }
+
+        private void RefreshValidationResults()
+        {
+            ValidationResults["diodeCode"] = "false";
+            ValidationResults["additionalCode"] = "false";
+            ValidationResults["customerCode"] = "false";
+            ValidationResults["positiveTolerenceVoltage"] = "true";
+            ValidationResults["negativeTolerenceVoltage"] = "true";
+            ValidationResults["nominalForwardDropVolts"] = "true";
+            ValidationResults["positiveTolerenceCurrent"] = "true";
+            ValidationResults["negativeTolerenceCurrent"] = "true";
+            ValidationResults["nominalReverseCurrent"] = "true";
+            ValidationResults["forwardTestCurrent"] = "true";
+            ValidationResults["reverseTestVoltage"] = "true";
+            ValidationResults["forwardMaxVoltage"] = "true";
+            ValidationResults["positiveTolerenceResistance"] = "true";
+            ValidationResults["negativeTolerenceResistance"] = "true";
+            ValidationResults["contactResistance"] = "true";
+
+            
         }
 
 
@@ -151,7 +202,7 @@ namespace UI_TestRig
          
 
         //save Button Event
-        private void f2Button_Click(object sender, RoutedEventArgs e)
+        private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             if (ValidateForm())
             {
@@ -180,7 +231,7 @@ namespace UI_TestRig
                     }
                     else
                     {
-                        statusLabel.Content = "Save Cancelled";
+                        statusText.Text = "SAVE OPERATION CANCELLED";
                     }
                 }
                 else
@@ -192,19 +243,126 @@ namespace UI_TestRig
             }
             else
             {
+                statusText.Text = "SAVE OPERATION FAILED";
                 MessageBox.Show("Incorrect Values Detected. Please Check for missing fields. Inputted values must be within their respective limits.", "Save Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        
+
+
         private bool ValidateForm()
         {
-            if (ValidationResults.ContainsValue("false"))
-            {
-                return false;
-            }
-            return true;
+            bool output = true;
 
             
+            if (ValidationResults.ContainsValue("false"))
+            {
+                output = false;
+                
+            }
+            //if (diodeCodeText.Text.Length == 0)
+            //{
+            //    output = false;
+            //}
+            //if (customerCodeText.Text.Length == 0)
+            //{
+            //    output = false;
+            //}
+            //if (additionalCodeText.Text.Length == 0)
+            //{
+            //    output = false;
+            //}
+            //double x;
+
+            //if (!double.TryParse(positiveTolVoltageText.Text, out x) || double.Parse(positiveTolVoltageText.Text) > LoadedModel.maxPositiveTolerenceVoltage || double.Parse(positiveTolVoltageText.Text) < LoadedModel.minPositiveTolerenceVoltage)
+            //{
+            //    positiveTolVoltageText.Background = new SolidColorBrush(Colors.Yellow);
+            //    positiveTolVoltageText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(negativeTolVoltageText.Text, out x) || double.Parse(negativeTolVoltageText.Text) > LoadedModel.maxNegativeTolerenceVoltage || double.Parse(negativeTolVoltageText.Text) < LoadedModel.minNegativeTolerenceVoltage)
+            //{
+            //    negativeTolVoltageText.Background = new SolidColorBrush(Colors.Yellow);
+            //    negativeTolVoltageText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(nominalFDVText.Text, out x) || double.Parse(nominalFDVText.Text) > LoadedModel.maxNominalForwardDropVolts || double.Parse(nominalFDVText.Text) < LoadedModel.minNominalForwardDropVolts)
+            //{
+            //    nominalFDVText.Background = new SolidColorBrush(Colors.Yellow);
+            //    nominalFDVText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(postiveToleranceCurrentText.Text, out x) || double.Parse(postiveToleranceCurrentText.Text) > LoadedModel.maxPositiveTolerenceCurrent || double.Parse(postiveToleranceCurrentText.Text) < LoadedModel.minPositiveTolerenceCurrent)
+            //{
+            //    postiveToleranceCurrentText.Background = new SolidColorBrush(Colors.Yellow);
+            //    postiveToleranceCurrentText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(negativeTolerenceCurrentText.Text, out x) || double.Parse(negativeTolerenceCurrentText.Text) > LoadedModel.maxNegativeTolerenceCurrent || double.Parse(negativeTolerenceCurrentText.Text) < LoadedModel.minNegativeTolerenceCurrent)
+            //{
+            //    negativeTolerenceCurrentText.Background = new SolidColorBrush(Colors.Yellow);
+            //    negativeTolerenceCurrentText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(nominalRevCurrentText.Text, out x) || double.Parse(nominalRevCurrentText.Text) > LoadedModel.maxNominalReverseCurrent || double.Parse(nominalRevCurrentText.Text) < LoadedModel.minNominalReverseCurrent)
+            //{
+            //    nominalRevCurrentText.Background = new SolidColorBrush(Colors.Yellow);
+            //    nominalRevCurrentText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(forwardTestCurrentText.Text, out x) || double.Parse(forwardTestCurrentText.Text) > LoadedModel.maxForwardTestCurrent || double.Parse(forwardTestCurrentText.Text) < LoadedModel.minForwardTestCurrent)
+            //{
+            //    forwardTestCurrentText.Background = new SolidColorBrush(Colors.Yellow);
+            //    forwardTestCurrentText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(ReverseTestVoltageText.Text, out x) || double.Parse(ReverseTestVoltageText.Text) > LoadedModel.maxReverseTestVoltage || double.Parse(ReverseTestVoltageText.Text) < LoadedModel.minReverseTestVoltage)
+            //{
+            //    ReverseTestVoltageText.Background = new SolidColorBrush(Colors.Yellow);
+            //    ReverseTestVoltageText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(forwardMaxVoltageText.Text, out x) || double.Parse(forwardMaxVoltageText.Text) > LoadedModel.maxForwardMaxVoltage || double.Parse(forwardMaxVoltageText.Text) < LoadedModel.minForwardMaxVoltage)
+            //{
+            //    forwardMaxVoltageText.Background = new SolidColorBrush(Colors.Yellow);
+            //    forwardMaxVoltageText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(positiveTolResText.Text, out x) || double.Parse(positiveTolResText.Text) > LoadedModel.maxPositiveTolerenceResistance || double.Parse(positiveTolResText.Text) < LoadedModel.minPositiveTolerenceResistance)
+            //{
+            //    positiveTolResText.Background = new SolidColorBrush(Colors.Yellow);
+            //    positiveTolResText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(negativeTolResText.Text, out x) || double.Parse(negativeTolResText.Text) > LoadedModel.maxNegativeTolerenceResistance || double.Parse(negativeTolResText.Text) < LoadedModel.minNegativeTolerenceResistance)
+            //{
+            //    negativeTolResText.Background = new SolidColorBrush(Colors.Yellow);
+            //    negativeTolResText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+            //}
+            //if (!double.TryParse(contactResistanceText.Text, out x) || double.Parse(contactResistanceText.Text) > LoadedModel.maxContactResistance || double.Parse(contactResistanceText.Text) < LoadedModel.minContactResistance)
+            //{
+            //    contactResistanceText.Background = new SolidColorBrush(Colors.Yellow);
+            //    contactResistanceText.Foreground = new SolidColorBrush(Colors.Red);
+            //    ValidationResults["positiveTolerenceVoltage"] = "false";
+            //    output = false;
+                
+            //}
+
+            return output;
+
 
         }
 
@@ -219,14 +377,13 @@ namespace UI_TestRig
         //New Button event
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-            if(MessageBox.Show("Create New Model?","Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Create New Model?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 //Refreshes form
                 NewModel();
-                statusLabel.Content = "New Model";
-                
+                statusText.Text = "NEW TEST CONFIGURATION";
+
             }
-            
         }
 
 
@@ -289,11 +446,11 @@ namespace UI_TestRig
             {
                 
                 GlobalConfig.Connection.SaveModel(model);
-                statusLabel.Content = "Model Saved";
+                statusText.Text = "TEST CONFIGURATION FILE SAVED";
             }
             catch (Exception)
             {
-                statusLabel.Content = "Could not save model";
+                statusText.Text = "SAVE OPERATION FAILED";
             }
 
         }
@@ -321,16 +478,17 @@ namespace UI_TestRig
                     }
 
                     SaveModel(ofd.SafeFileName.Substring(0,ofd.SafeFileName.Length-4));
-                    statusLabel.Content = "Test Configuration Saved.";
+                    statusText.Text = "TEST CONFIGURATION FILE SAVED";
                 }
                 else
                 {
-                    statusLabel.Content = "Save Cancelled";
+                    statusText.Text = "SAVE OPERATION CANCELLED";
                 }
 
             }
             else
             {
+                statusText.Text = "SAVE OPERATION FAILED";
                 MessageBox.Show("Incorrect Values Detected. Please Check for missing fields. Inputted values must be within their respective limits.", "Save Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
@@ -360,7 +518,7 @@ namespace UI_TestRig
                 if (MessageBox.Show($"Delete Test Configuration {ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4)}?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     GlobalConfig.Connection.DeleteModel(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
-                    statusLabel.Content = "Test Configuration Deleted";
+                    statusText.Text = "TEST CONFIGURATION FILE DELETED";
                     if (modelTextBlock.Text == ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4))
                     {
                         NewModel();
@@ -369,13 +527,13 @@ namespace UI_TestRig
                 }
                 else
                 {
-                    statusLabel.Content = "Delete Cancelled";
+                    statusText.Text = "DELETE OPERATION CANCELLED";
                 }
 
             }
             else
             {
-                statusLabel.Content = "Delete Cancelled";
+                statusText.Text = "DELETE OPERATION CANCELLED";
             }
             
 
@@ -384,7 +542,11 @@ namespace UI_TestRig
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("Close Form?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                this.Close();
+            }
+
         }
 
         private OpenFileDialog GetOpenFileDialog()
@@ -415,7 +577,7 @@ namespace UI_TestRig
                     ofd.FileName = "";
                     if (ofd.ShowDialog() == false)
                     {
-                        
+                        statusText.Text = "OPEN OPERATION CANCELLED";
                         return;
                     }
                     
@@ -430,41 +592,392 @@ namespace UI_TestRig
                     if(model == null)
                     {
                         MessageBox.Show("File has Invalid Fields.", "File Load Failed.",MessageBoxButton.OK, MessageBoxImage.Error);
-                        statusLabel.Content = "Open Failed.";
+                        statusText.Text = "COULD NOT OPEN TEST CONGIGURATION FILE";
                         return;
                     }
                     CopyModelToTextBox(model);
+                    
+                    //ValidateForm();
 
                     //Initializes all the textboxes with loaded model details.
 
-                    statusLabel.Content = "Model Opened Successfully.";
+                    statusText.Text = "TEST CONFIGURATION FILE OPENED SUCCESSFULLY";
                 }
                 catch(Exception)
                 {
-                    statusLabel.Content = "Open Failed.";
+                    statusText.Text = "COULD NOT OPEN TEST CONFIGURATION FILE";
                 }
 
 
 
             }
+            else
+            {
+                statusText.Text = "OPEN OPERATION CANCELLED";
+            }
         }
+
+        
 
 
 
 
         //Validations of textboxes.
-        private void positiveTolVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        //private void positiveTolVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = positiveTolVoltageText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d) 
+        //        || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceVoltage ||
+        //        double.Parse(box.Text) < LoadedModel.minPositiveTolerenceVoltage)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["positiveTolerenceVoltage"] = "false";
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["positiveTolerenceVoltage"] = "true";
+
+        //    }
+        //}
+
+        //private void negativeTolVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = negativeTolVoltageText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
+        //        double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["negativeTolerenceVoltage"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["negativeTolerenceVoltage"] = "true";
+
+        //    }
+        //}
+
+        //private void nominalFDVText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = nominalFDVText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
+        //        double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["nominalForwardDropVolts"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["nominalForwardDropVolts"] = "true";
+
+        //    }
+        //}
+
+        //private void postiveToleranceCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = postiveToleranceCurrentText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceCurrent ||
+        //        double.Parse(box.Text) < LoadedModel.minPositiveTolerenceCurrent)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["positiveTolerenceCurrent"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["positiveTolerenceCurrent"] = "true";
+
+        //    }
+        //}
+
+        //private void nominalRevCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = nominalRevCurrentText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxNominalReverseCurrent ||
+        //        double.Parse(box.Text) < LoadedModel.minNominalReverseCurrent)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["negativeTolerenceCurrent"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["negativeTolerenceCurrent"] = "true";
+
+        //    }
+        //}
+
+        //private void negativeTolerenceCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = negativeTolerenceCurrentText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceCurrent ||
+        //        double.Parse(box.Text) < LoadedModel.minNegativeTolerenceCurrent)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["nominalReverseCurrent"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["nominalReverseCurrent"] = "true";
+
+        //    }
+        //}
+
+        //private void forwardTestCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = forwardTestCurrentText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxForwardTestCurrent ||
+        //        double.Parse(box.Text) < LoadedModel.minForwardTestCurrent)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["forwardTestCurrent"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["forwardTestCurrent"] = "true";
+
+        //    }
+        //}
+
+        //private void forwardMaxVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = forwardMaxVoltageText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxForwardMaxVoltage ||
+        //        double.Parse(box.Text) < LoadedModel.minForwardMaxVoltage)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["reverseTestVoltage"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["reverseTestVoltage"] = "true";
+        //    }
+        //}
+
+        //private void ReverseTestVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = ReverseTestVoltageText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxReverseTestVoltage ||
+        //        double.Parse(box.Text) < LoadedModel.minReverseTestVoltage)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["forwardMaxVoltage"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["forwardMaxVoltage"] = "true";
+
+        //    }
+        //}
+
+        //private void positiveTolResText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = positiveTolResText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceResistance ||
+        //        double.Parse(box.Text) < LoadedModel.minPositiveTolerenceResistance)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["positiveTolerenceResistance"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["positiveTolerenceResistance"] = "true";
+
+        //    }
+        //}
+
+        //private void contactResistanceText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = contactResistanceText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxContactResistance ||
+        //        double.Parse(box.Text) < LoadedModel.minContactResistance)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["negativeTolerenceResistance"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["negativeTolerenceResistance"] = "true";
+
+        //    }
+        //}
+
+        //private void negativeTolResText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = negativeTolResText;
+
+
+        //    if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+        //        || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceResistance ||
+        //        double.Parse(box.Text) < LoadedModel.minNegativeTolerenceResistance)
+        //    {
+        //        box.Background = new SolidColorBrush(Colors.Yellow);
+        //        box.Foreground = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["contactResistance"] = "false";
+
+        //    }
+        //    else
+        //    {
+        //        var bc = new BrushConverter();
+        //        //#ccffff
+        //        box.Background = (Brush)bc.ConvertFrom("#ccffff");
+        //        box.Foreground = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["contactResistance"] = "true";
+
+        //    }
+        //}
+
+        //private void diodeCodeText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = diodeCodeText;
+        //    if (box.Text.Length == 0)
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["diodeCode"] = "false";
+        //    }
+        //    else
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["diodeCode"] = "true";
+        //    }
+        //}
+
+        //private void customerCodeText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = customerCodeText;
+        //    if (box.Text.Length == 0)
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["customerCode"] = "false";
+        //    }
+        //    else
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["customerCode"] = "true";
+        //    }
+        //}
+
+        //private void additionalCodeText_LostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    var box = additionalCodeText;
+        //    if (box.Text.Length == 0)
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Red);
+        //        ValidationResults["additionalCode"] = "false";
+        //    }
+        //    else
+        //    {
+        //        box.BorderBrush = new SolidColorBrush(Colors.Black);
+        //        ValidationResults["additionalCode"] = "true";
+        //    }
+        //}
+
+        private void positiveTolVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
             var box = positiveTolVoltageText;
 
 
-            if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d) 
+            if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
                 || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceVoltage ||
                 double.Parse(box.Text) < LoadedModel.minPositiveTolerenceVoltage)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["positiveTolerenceVoltage"] = "false";
+                ValidationResults["positiveTolVoltageText"] = "false";
             }
             else
             {
@@ -472,48 +985,54 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["positiveTolerenceVoltage"] = "true";
+                ValidationResults["positiveTolVoltageText"] = "true";
+                
 
             }
         }
 
-        private void negativeTolVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        private void negativeTolVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var box = negativeTolVoltageText;
 
-
-            if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
-                double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
             {
-                box.Background = new SolidColorBrush(Colors.Yellow);
-                box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["negativeTolerenceVoltage"] = "false";
+                var box = negativeTolVoltageText;
 
-            }
-            else
-            {
-                var bc = new BrushConverter();
-                //#ccffff
-                box.Background = (Brush)bc.ConvertFrom("#ccffff");
-                box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["negativeTolerenceVoltage"] = "true";
 
+                if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+                    || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
+                    double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
+                {
+                    box.Background = new SolidColorBrush(Colors.Yellow);
+                    box.Foreground = new SolidColorBrush(Colors.Red);
+                    ValidationResults["negativeTolVoltageText"] = "false";
+
+                }
+                else
+                {
+                    var bc = new BrushConverter();
+                    //#ccffff
+                    box.Background = (Brush)bc.ConvertFrom("#ccffff");
+                    box.Foreground = new SolidColorBrush(Colors.Black);
+                    ValidationResults["negativeTolVoltageText"] = "true";
+
+                }
             }
         }
 
-        private void nominalFDVText_LostFocus(object sender, RoutedEventArgs e)
+        private void nominalFDVText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = nominalFDVText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
-                double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
+                || double.Parse(box.Text) > LoadedModel.maxNominalForwardDropVolts ||
+                double.Parse(box.Text) < LoadedModel.minNominalForwardDropVolts)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["nominalForwardDropVolts"] = "false";
+                ValidationResults["nominalFDVText"] = "false";
 
             }
             else
@@ -522,37 +1041,40 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["nominalForwardDropVolts"] = "true";
+                ValidationResults["nominalFDVText"] = "true";
 
             }
+            
         }
 
-        private void postiveToleranceCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        private void postiveToleranceCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var box = postiveToleranceCurrentText;
 
-
-            if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceCurrent ||
-                double.Parse(box.Text) < LoadedModel.minPositiveTolerenceCurrent)
             {
-                box.Background = new SolidColorBrush(Colors.Yellow);
-                box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["positiveTolerenceCurrent"] = "false";
+                var box = postiveToleranceCurrentText;
 
-            }
-            else
-            {
-                var bc = new BrushConverter();
-                //#ccffff
-                box.Background = (Brush)bc.ConvertFrom("#ccffff");
-                box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["positiveTolerenceCurrent"] = "true";
 
+                if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
+                    || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceCurrent ||
+                    double.Parse(box.Text) < LoadedModel.minPositiveTolerenceCurrent)
+                {
+                    box.Background = new SolidColorBrush(Colors.Yellow);
+                    box.Foreground = new SolidColorBrush(Colors.Red);
+                    ValidationResults["postiveToleranceCurrentText"] = "false";
+
+                }
+                else
+                {
+                    var bc = new BrushConverter();
+                    //#ccffff
+                    box.Background = (Brush)bc.ConvertFrom("#ccffff");
+                    box.Foreground = new SolidColorBrush(Colors.Black);
+                    ValidationResults["postiveToleranceCurrentText"] = "true";
+
+                }
             }
         }
-
-        private void nominalRevCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        private void nominalRevCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
             var box = nominalRevCurrentText;
 
@@ -563,7 +1085,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["negativeTolerenceCurrent"] = "false";
+                ValidationResults["nominalRevCurrentText"] = "false";
 
             }
             else
@@ -572,13 +1094,15 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["negativeTolerenceCurrent"] = "true";
+                ValidationResults["nominalRevCurrentText"] = "true";
 
             }
         }
 
-        private void negativeTolerenceCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        private void negativeTolerenceCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = negativeTolerenceCurrentText;
 
 
@@ -588,7 +1112,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["nominalReverseCurrent"] = "false";
+                ValidationResults["negativeTolerenceCurrentText"] = "false";
 
             }
             else
@@ -597,13 +1121,16 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["nominalReverseCurrent"] = "true";
+                ValidationResults["negativeTolerenceCurrentText"] = "true";
 
             }
+            
         }
 
-        private void forwardTestCurrentText_LostFocus(object sender, RoutedEventArgs e)
+        private void forwardTestCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = forwardTestCurrentText;
 
 
@@ -613,7 +1140,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["forwardTestCurrent"] = "false";
+                ValidationResults["forwardTestCurrentText"] = "false";
 
             }
             else
@@ -622,24 +1149,27 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["forwardTestCurrent"] = "true";
+                ValidationResults["forwardTestCurrentText"] = "true";
 
             }
+            
         }
 
-        private void forwardMaxVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        private void forwardMaxVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = forwardMaxVoltageText;
-
-
+            
+            
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
                 || double.Parse(box.Text) > LoadedModel.maxForwardMaxVoltage ||
                 double.Parse(box.Text) < LoadedModel.minForwardMaxVoltage)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["reverseTestVoltage"] = "false";
-
+                ValidationResults["forwardMaxVoltageText"] = "false";
+            
             }
             else
             {
@@ -647,12 +1177,15 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["reverseTestVoltage"] = "true";
+                ValidationResults["forwardMaxVoltageText"] = "true";
             }
+            
         }
 
-        private void ReverseTestVoltageText_LostFocus(object sender, RoutedEventArgs e)
+        private void ReverseTestVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = ReverseTestVoltageText;
 
 
@@ -662,7 +1195,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["forwardMaxVoltage"] = "false";
+                ValidationResults["ReverseTestVoltageText"] = "false";
 
             }
             else
@@ -671,13 +1204,16 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["forwardMaxVoltage"] = "true";
+                ValidationResults["ReverseTestVoltageText"] = "true";
 
             }
+            
         }
 
-        private void positiveTolResText_LostFocus(object sender, RoutedEventArgs e)
+        private void positiveTolResText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = positiveTolResText;
 
 
@@ -687,7 +1223,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["positiveTolerenceResistance"] = "false";
+                ValidationResults["positiveTolResText"] = "false";
 
             }
             else
@@ -696,13 +1232,16 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["positiveTolerenceResistance"] = "true";
+                ValidationResults["positiveTolResText"] = "true";
 
             }
+            
         }
 
-        private void contactResistanceText_LostFocus(object sender, RoutedEventArgs e)
+        private void contactResistanceText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = contactResistanceText;
 
 
@@ -712,7 +1251,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["negativeTolerenceResistance"] = "false";
+                ValidationResults["contactResistanceText"] = "false";
 
             }
             else
@@ -721,13 +1260,16 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["negativeTolerenceResistance"] = "true";
+                ValidationResults["contactResistanceText"] = "true";
 
             }
+            
         }
 
-        private void negativeTolResText_LostFocus(object sender, RoutedEventArgs e)
+        private void negativeTolResText_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            
             var box = negativeTolResText;
 
 
@@ -737,7 +1279,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["contactResistance"] = "false";
+                ValidationResults["negativeTolResText"] = "false";
 
             }
             else
@@ -746,54 +1288,89 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["contactResistance"] = "true";
+                ValidationResults["negativeTolResText"] = "true";
 
+            }
+            
+        }
+
+        private void diodeCodeText_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+            {
+                var box = diodeCodeText;
+                if (box.Text.Trim().Length == 0)
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Red);
+                    ValidationResults["diodeCode"] = "false";
+                }
+                else
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Black);
+                    ValidationResults["diodeCode"] = "true";
+                }
             }
         }
 
-        private void diodeCodeText_LostFocus(object sender, RoutedEventArgs e)
+        private void customerCodeText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var box = diodeCodeText;
-            if (box.Text.Length == 0)
+
             {
-                box.BorderBrush = new SolidColorBrush(Colors.Red);
-                ValidationResults["diodeCode"] = "false";
-            }
-            else
-            {
-                box.BorderBrush = new SolidColorBrush(Colors.Black);
-                ValidationResults["diodeCode"] = "true";
+                var box = customerCodeText;
+                if (box.Text.Trim().Length == 0)
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Red);
+                    ValidationResults["customerCode"] = "false";
+                }
+                else
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Black);
+                    ValidationResults["customerCode"] = "true";
+                }
             }
         }
 
-        private void customerCodeText_LostFocus(object sender, RoutedEventArgs e)
+        private void additionalCodeText_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var box = customerCodeText;
-            if (box.Text.Length == 0)
+
             {
-                box.BorderBrush = new SolidColorBrush(Colors.Red);
-                ValidationResults["customerCode"] = "false";
-            }
-            else
-            {
-                box.BorderBrush = new SolidColorBrush(Colors.Black);
-                ValidationResults["customerCode"] = "true";
+                var box = additionalCodeText;
+                if (box.Text.Trim().Length == 0)
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Red);
+                    ValidationResults["additionalCode"] = "false";
+                }
+                else
+                {
+                    box.BorderBrush = new SolidColorBrush(Colors.Black);
+                    ValidationResults["additionalCode"] = "true";
+                }
             }
         }
 
-        private void additionalCodeText_LostFocus(object sender, RoutedEventArgs e)
+        private void Textbox_GotFocus(object sender, RoutedEventArgs e)
         {
-            var box = additionalCodeText;
-            if (box.Text.Length == 0)
+            TextBox textBox = (TextBox)sender;
+
+            if(ValidationResults[textBox.Name.ToString()] == "true")
             {
-                box.BorderBrush = new SolidColorBrush(Colors.Red);
-                ValidationResults["additionalCode"] = "false";
+                var bc = new BrushConverter();
+                textBox.Background = (Brush)bc.ConvertFrom("#ffccff");
             }
-            else
+        }
+
+        private void Textbox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            
+            TextBox textBox = (TextBox)sender;
+
+            if (ValidationResults[textBox.Name.ToString()] == "true")
             {
-                box.BorderBrush = new SolidColorBrush(Colors.Black);
-                ValidationResults["additionalCode"] = "true";
+                var bc = new BrushConverter();
+                textBox.Background = (Brush)bc.ConvertFrom("#ccffff");
             }
+
+            
         }
     }
 }

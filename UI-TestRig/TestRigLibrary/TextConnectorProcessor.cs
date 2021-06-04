@@ -130,7 +130,7 @@ namespace TestRigLibrary
                 string[] cols = line.Split(',');
                 if (String.Equals(index,"Name"))
                 {
-                    if (cols.Length != 1)
+                    if (cols.Length != 1 || cols[0].Trim().Length == 0)
                     {
                         return false;
                     }
@@ -142,7 +142,7 @@ namespace TestRigLibrary
                     {
                         return false;
                     }
-                    else if(cols[0] != fileFormat[typeinfoIndex] || string.IsNullOrEmpty(cols[1]))
+                    else if(cols[0] != fileFormat[typeinfoIndex] || string.IsNullOrEmpty(cols[1]) || string.IsNullOrWhiteSpace(cols[1]))
                     {
                         return false;
                     }

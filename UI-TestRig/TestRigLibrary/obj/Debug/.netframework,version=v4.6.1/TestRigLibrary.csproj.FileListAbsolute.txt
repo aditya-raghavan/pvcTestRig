@@ -1,0 +1,13 @@
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\TestRigLibrary.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\TestRigLibrary.pdb
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\System.Configuration.ConfigurationManager.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\System.Security.AccessControl.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\System.Security.Permissions.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\bin\Debug\.netframework,version=v4.6.1\System.Security.Principal.Windows.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.csprojAssemblyReference.cache
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.AssemblyInfoInputs.cache
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.AssemblyInfo.cs
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.csproj.CoreCompileInputs.cache
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.csproj.CopyComplete
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.dll
+C:\Users\adity\source\repos\UI-TestRig\TestRigLibrary\obj\Debug\.netframework,version=v4.6.1\TestRigLibrary.pdb

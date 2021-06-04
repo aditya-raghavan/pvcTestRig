@@ -105,59 +105,8 @@ namespace UI_TestRig
             programTextBox.Text = "";
 
             RefreshComboBoxes();
-            //var bc = new BrushConverter();
-            //positiveTolVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //negativeTolVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //nominalFDVText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //postiveToleranceCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //nominalRevCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //negativeTolerenceCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //forwardMaxVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //forwardTestCurrentText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //ReverseTestVoltageText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //positiveTolResText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //contactResistanceText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //negativeTolResText.Background = (Brush)bc.ConvertFrom("#ccffff");
-            //programTextBox.Background = (Brush)bc.ConvertFrom("#ccffff");
-
-            //positiveTolVoltageText.Foreground = new SolidColorBrush(Colors.Black);
-            //negativeTolVoltageText.Foreground = new SolidColorBrush(Colors.Black);
-            //nominalFDVText.Foreground = new SolidColorBrush(Colors.Black);
-            //postiveToleranceCurrentText.Foreground = new SolidColorBrush(Colors.Black);
-            //nominalRevCurrentText.Foreground = new SolidColorBrush(Colors.Black);
-            //negativeTolerenceCurrentText.Foreground = new SolidColorBrush(Colors.Black);
-            //forwardMaxVoltageText.Foreground = new SolidColorBrush(Colors.Black);
-            //forwardTestCurrentText.Foreground = new SolidColorBrush(Colors.Black);
-            //ReverseTestVoltageText.Foreground = new SolidColorBrush(Colors.Black);
-            //positiveTolResText.Foreground = new SolidColorBrush(Colors.Black);
-            //contactResistanceText.Foreground = new SolidColorBrush(Colors.Black);
-            //negativeTolResText.Foreground = new SolidColorBrush(Colors.Black);
-            //programTextBox.Foreground = new SolidColorBrush(Colors.Black);
-
-            //RefreshValidationResults();
-        }
-
-        private void RefreshValidationResults()
-        {
-            ValidationResults["diodeCode"] = "false";
-            ValidationResults["additionalCode"] = "false";
-            ValidationResults["customerCode"] = "false";
-            ValidationResults["positiveTolerenceVoltage"] = "true";
-            ValidationResults["negativeTolerenceVoltage"] = "true";
-            ValidationResults["nominalForwardDropVolts"] = "true";
-            ValidationResults["positiveTolerenceCurrent"] = "true";
-            ValidationResults["negativeTolerenceCurrent"] = "true";
-            ValidationResults["nominalReverseCurrent"] = "true";
-            ValidationResults["forwardTestCurrent"] = "true";
-            ValidationResults["reverseTestVoltage"] = "true";
-            ValidationResults["forwardMaxVoltage"] = "true";
-            ValidationResults["positiveTolerenceResistance"] = "true";
-            ValidationResults["negativeTolerenceResistance"] = "true";
-            ValidationResults["contactResistance"] = "true";
-
             
         }
-
 
         //Disabled user from inputting values other than digits.
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -221,7 +170,7 @@ namespace UI_TestRig
                             ofd.FileName = "";
                             if (ofd.ShowDialog() == false)
                             {
-
+                                statusText.Text = "SAVE OPERATION CANCELLED";
                                 return;
                             }
 
@@ -261,118 +210,9 @@ namespace UI_TestRig
                 output = false;
                 
             }
-            //if (diodeCodeText.Text.Length == 0)
-            //{
-            //    output = false;
-            //}
-            //if (customerCodeText.Text.Length == 0)
-            //{
-            //    output = false;
-            //}
-            //if (additionalCodeText.Text.Length == 0)
-            //{
-            //    output = false;
-            //}
-            //double x;
-
-            //if (!double.TryParse(positiveTolVoltageText.Text, out x) || double.Parse(positiveTolVoltageText.Text) > LoadedModel.maxPositiveTolerenceVoltage || double.Parse(positiveTolVoltageText.Text) < LoadedModel.minPositiveTolerenceVoltage)
-            //{
-            //    positiveTolVoltageText.Background = new SolidColorBrush(Colors.Yellow);
-            //    positiveTolVoltageText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(negativeTolVoltageText.Text, out x) || double.Parse(negativeTolVoltageText.Text) > LoadedModel.maxNegativeTolerenceVoltage || double.Parse(negativeTolVoltageText.Text) < LoadedModel.minNegativeTolerenceVoltage)
-            //{
-            //    negativeTolVoltageText.Background = new SolidColorBrush(Colors.Yellow);
-            //    negativeTolVoltageText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(nominalFDVText.Text, out x) || double.Parse(nominalFDVText.Text) > LoadedModel.maxNominalForwardDropVolts || double.Parse(nominalFDVText.Text) < LoadedModel.minNominalForwardDropVolts)
-            //{
-            //    nominalFDVText.Background = new SolidColorBrush(Colors.Yellow);
-            //    nominalFDVText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(postiveToleranceCurrentText.Text, out x) || double.Parse(postiveToleranceCurrentText.Text) > LoadedModel.maxPositiveTolerenceCurrent || double.Parse(postiveToleranceCurrentText.Text) < LoadedModel.minPositiveTolerenceCurrent)
-            //{
-            //    postiveToleranceCurrentText.Background = new SolidColorBrush(Colors.Yellow);
-            //    postiveToleranceCurrentText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(negativeTolerenceCurrentText.Text, out x) || double.Parse(negativeTolerenceCurrentText.Text) > LoadedModel.maxNegativeTolerenceCurrent || double.Parse(negativeTolerenceCurrentText.Text) < LoadedModel.minNegativeTolerenceCurrent)
-            //{
-            //    negativeTolerenceCurrentText.Background = new SolidColorBrush(Colors.Yellow);
-            //    negativeTolerenceCurrentText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(nominalRevCurrentText.Text, out x) || double.Parse(nominalRevCurrentText.Text) > LoadedModel.maxNominalReverseCurrent || double.Parse(nominalRevCurrentText.Text) < LoadedModel.minNominalReverseCurrent)
-            //{
-            //    nominalRevCurrentText.Background = new SolidColorBrush(Colors.Yellow);
-            //    nominalRevCurrentText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(forwardTestCurrentText.Text, out x) || double.Parse(forwardTestCurrentText.Text) > LoadedModel.maxForwardTestCurrent || double.Parse(forwardTestCurrentText.Text) < LoadedModel.minForwardTestCurrent)
-            //{
-            //    forwardTestCurrentText.Background = new SolidColorBrush(Colors.Yellow);
-            //    forwardTestCurrentText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(ReverseTestVoltageText.Text, out x) || double.Parse(ReverseTestVoltageText.Text) > LoadedModel.maxReverseTestVoltage || double.Parse(ReverseTestVoltageText.Text) < LoadedModel.minReverseTestVoltage)
-            //{
-            //    ReverseTestVoltageText.Background = new SolidColorBrush(Colors.Yellow);
-            //    ReverseTestVoltageText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(forwardMaxVoltageText.Text, out x) || double.Parse(forwardMaxVoltageText.Text) > LoadedModel.maxForwardMaxVoltage || double.Parse(forwardMaxVoltageText.Text) < LoadedModel.minForwardMaxVoltage)
-            //{
-            //    forwardMaxVoltageText.Background = new SolidColorBrush(Colors.Yellow);
-            //    forwardMaxVoltageText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(positiveTolResText.Text, out x) || double.Parse(positiveTolResText.Text) > LoadedModel.maxPositiveTolerenceResistance || double.Parse(positiveTolResText.Text) < LoadedModel.minPositiveTolerenceResistance)
-            //{
-            //    positiveTolResText.Background = new SolidColorBrush(Colors.Yellow);
-            //    positiveTolResText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(negativeTolResText.Text, out x) || double.Parse(negativeTolResText.Text) > LoadedModel.maxNegativeTolerenceResistance || double.Parse(negativeTolResText.Text) < LoadedModel.minNegativeTolerenceResistance)
-            //{
-            //    negativeTolResText.Background = new SolidColorBrush(Colors.Yellow);
-            //    negativeTolResText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-            //}
-            //if (!double.TryParse(contactResistanceText.Text, out x) || double.Parse(contactResistanceText.Text) > LoadedModel.maxContactResistance || double.Parse(contactResistanceText.Text) < LoadedModel.minContactResistance)
-            //{
-            //    contactResistanceText.Background = new SolidColorBrush(Colors.Yellow);
-            //    contactResistanceText.Foreground = new SolidColorBrush(Colors.Red);
-            //    ValidationResults["positiveTolerenceVoltage"] = "false";
-            //    output = false;
-                
-            //}
 
             return output;
-
-
         }
-
-        private void diagnosticsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-
 
         //New Button event
         private void newButton_Click(object sender, RoutedEventArgs e)
@@ -447,6 +287,7 @@ namespace UI_TestRig
                 
                 GlobalConfig.Connection.SaveModel(model);
                 statusText.Text = "TEST CONFIGURATION FILE SAVED";
+
             }
             catch (Exception)
             {
@@ -471,7 +312,7 @@ namespace UI_TestRig
                         ofd.FileName = "";
                         if (ofd.ShowDialog() == false)
                         {
-
+                            statusText.Text = "SAVE OPERATION CANCELLED";
                             return;
                         }
 
@@ -509,7 +350,7 @@ namespace UI_TestRig
                     ofd.FileName = "";
                     if (ofd.ShowDialog() == false)
                     {
-
+                        statusText.Text = "DELETE OPERATION CANCELLED";
                         return;
                     }
 
@@ -582,9 +423,7 @@ namespace UI_TestRig
                     }
                     
                 }
-
                 
-
                 //Loads all the model information from text file to ModelTemplate Class.
                 try
                 {
@@ -595,21 +434,13 @@ namespace UI_TestRig
                         statusText.Text = "COULD NOT OPEN TEST CONGIGURATION FILE";
                         return;
                     }
-                    CopyModelToTextBox(model);
-                    
-                    //ValidateForm();
-
-                    //Initializes all the textboxes with loaded model details.
-
+                    CopyModelToTextBox(model);                                
                     statusText.Text = "TEST CONFIGURATION FILE OPENED SUCCESSFULLY";
                 }
                 catch(Exception)
                 {
                     statusText.Text = "COULD NOT OPEN TEST CONFIGURATION FILE";
                 }
-
-
-
             }
             else
             {

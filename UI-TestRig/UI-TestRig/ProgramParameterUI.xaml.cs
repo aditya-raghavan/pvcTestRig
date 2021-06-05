@@ -456,8 +456,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceVoltage ||
-                double.Parse(box.Text) < LoadedModel.minPositiveTolerenceVoltage)
+                || double.Parse(box.Text) > LoadedModel.positiveTolerenceVoltageMax ||
+                double.Parse(box.Text) < LoadedModel.positiveTolerenceVoltageMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -483,8 +483,8 @@ namespace UI_TestRig
 
 
                 if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                    || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceVoltage ||
-                    double.Parse(box.Text) < LoadedModel.minNegativeTolerenceVoltage)
+                    || double.Parse(box.Text) > LoadedModel.negativeTolerenceVoltageMax ||
+                    double.Parse(box.Text) < LoadedModel.negativeTolerenceVoltageMin)
                 {
                     box.Background = new SolidColorBrush(Colors.Yellow);
                     box.Foreground = new SolidColorBrush(Colors.Red);
@@ -511,8 +511,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNominalForwardDropVolts ||
-                double.Parse(box.Text) < LoadedModel.minNominalForwardDropVolts)
+                || double.Parse(box.Text) > LoadedModel.nominalForwardDropVoltsMax ||
+                double.Parse(box.Text) < LoadedModel.nominalForwardDropVoltsMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -539,8 +539,8 @@ namespace UI_TestRig
 
 
                 if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                    || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceCurrent ||
-                    double.Parse(box.Text) < LoadedModel.minPositiveTolerenceCurrent)
+                    || double.Parse(box.Text) > LoadedModel.positiveTolerenceCurrentMax ||
+                    double.Parse(box.Text) < LoadedModel.positiveTolerenceCurrentMin)
                 {
                     box.Background = new SolidColorBrush(Colors.Yellow);
                     box.Foreground = new SolidColorBrush(Colors.Red);
@@ -564,8 +564,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNominalReverseCurrent ||
-                double.Parse(box.Text) < LoadedModel.minNominalReverseCurrent)
+                || double.Parse(box.Text) > LoadedModel.nominalReverseCurrentMax ||
+                double.Parse(box.Text) < LoadedModel.nominalReverseCurrentMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -591,8 +591,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceCurrent ||
-                double.Parse(box.Text) < LoadedModel.minNegativeTolerenceCurrent)
+                || double.Parse(box.Text) > LoadedModel.negativeTolerenceCurrentMax ||
+                double.Parse(box.Text) < LoadedModel.negativeTolerenceCurrentMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -619,8 +619,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxForwardTestCurrent ||
-                double.Parse(box.Text) < LoadedModel.minForwardTestCurrent)
+                || double.Parse(box.Text) > LoadedModel.forwardTestCurrentMax ||
+                double.Parse(box.Text) < LoadedModel.forwardTestCurrentMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -647,8 +647,8 @@ namespace UI_TestRig
             
             
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxForwardMaxVoltage ||
-                double.Parse(box.Text) < LoadedModel.minForwardMaxVoltage)
+                || double.Parse(box.Text) > LoadedModel.forwardMaxVoltageMax ||
+                double.Parse(box.Text) < LoadedModel.forwardMaxVoltageMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -674,8 +674,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxReverseTestVoltage ||
-                double.Parse(box.Text) < LoadedModel.minReverseTestVoltage)
+                || double.Parse(box.Text) > LoadedModel.reverseTestVoltageMax ||
+                double.Parse(box.Text) < LoadedModel.reverseTestVoltageMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -702,8 +702,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxPositiveTolerenceResistance ||
-                double.Parse(box.Text) < LoadedModel.minPositiveTolerenceResistance)
+                || double.Parse(box.Text) > LoadedModel.positiveTolerenceResistanceMax ||
+                double.Parse(box.Text) < LoadedModel.positiveTolerenceResistanceMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -730,8 +730,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxContactResistance ||
-                double.Parse(box.Text) < LoadedModel.minContactResistance)
+                || double.Parse(box.Text) > LoadedModel.contactResistanceMax ||
+                double.Parse(box.Text) < LoadedModel.contactResistanceMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
@@ -758,8 +758,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.maxNegativeTolerenceResistance ||
-                double.Parse(box.Text) < LoadedModel.minNegativeTolerenceResistance)
+                || double.Parse(box.Text) > LoadedModel.negativeTolerenceResistanceMax ||
+                double.Parse(box.Text) < LoadedModel.negativeTolerenceResistanceMin)
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);

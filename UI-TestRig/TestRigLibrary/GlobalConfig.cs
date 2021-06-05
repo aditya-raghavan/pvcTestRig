@@ -33,31 +33,31 @@ namespace TestRigLibrary
             TestConfigurationTemplate template = new TestConfigurationTemplate();
 
 
-            template.maxPositiveTolerenceVoltage = 5;
-            template.maxNegativeTolerenceVoltage = 5;
-            template.maxNominalForwardDropVolts = 5;
-            template.maxPositiveTolerenceCurrent = 5;
-            template.maxNegativeTolerenceCurrent = 5;
-            template.maxNominalReverseCurrent = 5;
-            template.maxForwardTestCurrent = 5;
-            template.maxReverseTestVoltage = 5;
-            template.maxForwardMaxVoltage = 5;
-            template.maxPositiveTolerenceResistance = 5;
-            template.maxNegativeTolerenceResistance = 5;
-            template.maxContactResistance = 5;
+            template.positiveTolerenceVoltageMax = 1;
+            template.negativeTolerenceVoltageMax = 2;
+            template.nominalForwardDropVoltsMax = 3;
+            template.positiveTolerenceCurrentMax = 4;
+            template.negativeTolerenceCurrentMax = 5;
+            template.nominalReverseCurrentMax = 6;
+            template.forwardTestCurrentMax = 7;
+            template.reverseTestVoltageMax = 8;
+            template.forwardMaxVoltageMax = 9;
+            template.positiveTolerenceResistanceMax = 10;
+            template.negativeTolerenceResistanceMax =11;
+            template.contactResistanceMax = 12;
 
-            template.minPositiveTolerenceVoltage = 0;
-            template.minNegativeTolerenceVoltage = 0;
-            template.minNominalForwardDropVolts = 0;
-            template.minPositiveTolerenceCurrent = 0;
-            template.minNegativeTolerenceCurrent = 0;
-            template.minNominalReverseCurrent = 0;
-            template.minForwardTestCurrent = 0;
-            template.minReverseTestVoltage = 0;
-            template.minForwardMaxVoltage = 0;
-            template.minPositiveTolerenceResistance = 0;
-            template.minNegativeTolerenceResistance = 0;
-            template.minContactResistance = 0;
+            template.positiveTolerenceVoltageMin = -1;
+            template.negativeTolerenceVoltageMin = -2;
+            template.nominalForwardDropVoltsMin = -3;
+            template.positiveTolerenceCurrentMin = -4;
+            template.negativeTolerenceCurrentMin = -5;
+            template.nominalReverseCurrentMin = -6;
+            template.forwardTestCurrentMin = -7;
+            template.reverseTestVoltageMin = -8;
+            template.forwardMaxVoltageMin = -9;
+            template.positiveTolerenceResistanceMin = -10;
+            template.negativeTolerenceResistanceMin = -11;
+            template.contactResistanceMin = -12;
 
             return template;
         }

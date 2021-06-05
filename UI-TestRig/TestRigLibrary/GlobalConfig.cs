@@ -14,7 +14,7 @@ namespace TestRigLibrary
     /// </summary>
     public static class GlobalConfig
     {
-        public static string  AllowedFileType = "Text documents (.csv)|*.csv";
+        public static string  allowedFileTypes = "Text documents (.csv)|*.csv";
         
         public static IDataConnection Connection { get; set; }
 

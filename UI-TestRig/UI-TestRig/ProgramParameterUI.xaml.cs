@@ -41,7 +41,7 @@ namespace UI_TestRig
         //Barcode options (ENABLED, DISABLED)
         private static List<String> barCodeOptions = TestConfigurationTemplate.BarCodeOptions;
 
-        Dictionary<string, string> ValidationResults = new Dictionary<string, string>()
+        Dictionary<string, string> validationResults = new Dictionary<string, string>()
         {
             { "diodeCode", "false" },
             { "additionalCode", "false" },
@@ -143,7 +143,7 @@ namespace UI_TestRig
         {
             SaveFileDialog ofd = new SaveFileDialog();
             ofd.DefaultExt = ".csv";
-            ofd.Filter = GlobalConfig.AllowedFileType;
+            ofd.Filter = GlobalConfig.allowedFileTypes;
 
             ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
             return ofd;
@@ -206,7 +206,7 @@ namespace UI_TestRig
             bool output = true;
 
             
-            if (ValidationResults.ContainsValue("false"))
+            if (validationResults.ContainsValue("false"))
             {
                 output = false;
                 
@@ -395,7 +395,7 @@ namespace UI_TestRig
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.DefaultExt = ".csv";
-            ofd.Filter = GlobalConfig.AllowedFileType;
+            ofd.Filter = GlobalConfig.allowedFileTypes;
 
             ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
             ofd.Multiselect = false;
@@ -461,7 +461,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["positiveTolVoltageText"] = "false";
+                validationResults["positiveTolVoltageText"] = "false";
             }
             else
             {
@@ -469,7 +469,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["positiveTolVoltageText"] = "true";
+                validationResults["positiveTolVoltageText"] = "true";
                 
 
             }
@@ -488,7 +488,7 @@ namespace UI_TestRig
                 {
                     box.Background = new SolidColorBrush(Colors.Yellow);
                     box.Foreground = new SolidColorBrush(Colors.Red);
-                    ValidationResults["negativeTolVoltageText"] = "false";
+                    validationResults["negativeTolVoltageText"] = "false";
 
                 }
                 else
@@ -497,7 +497,7 @@ namespace UI_TestRig
                     //#ccffff
                     box.Background = (Brush)bc.ConvertFrom("#ccffff");
                     box.Foreground = new SolidColorBrush(Colors.Black);
-                    ValidationResults["negativeTolVoltageText"] = "true";
+                    validationResults["negativeTolVoltageText"] = "true";
 
                 }
             }
@@ -516,7 +516,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["nominalFDVText"] = "false";
+                validationResults["nominalFDVText"] = "false";
 
             }
             else
@@ -525,7 +525,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["nominalFDVText"] = "true";
+                validationResults["nominalFDVText"] = "true";
 
             }
             
@@ -544,7 +544,7 @@ namespace UI_TestRig
                 {
                     box.Background = new SolidColorBrush(Colors.Yellow);
                     box.Foreground = new SolidColorBrush(Colors.Red);
-                    ValidationResults["postiveToleranceCurrentText"] = "false";
+                    validationResults["postiveToleranceCurrentText"] = "false";
 
                 }
                 else
@@ -553,7 +553,7 @@ namespace UI_TestRig
                     //#ccffff
                     box.Background = (Brush)bc.ConvertFrom("#ccffff");
                     box.Foreground = new SolidColorBrush(Colors.Black);
-                    ValidationResults["postiveToleranceCurrentText"] = "true";
+                    validationResults["postiveToleranceCurrentText"] = "true";
 
                 }
             }
@@ -569,7 +569,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["nominalRevCurrentText"] = "false";
+                validationResults["nominalRevCurrentText"] = "false";
 
             }
             else
@@ -578,7 +578,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["nominalRevCurrentText"] = "true";
+                validationResults["nominalRevCurrentText"] = "true";
 
             }
         }
@@ -596,7 +596,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["negativeTolerenceCurrentText"] = "false";
+                validationResults["negativeTolerenceCurrentText"] = "false";
 
             }
             else
@@ -605,7 +605,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["negativeTolerenceCurrentText"] = "true";
+                validationResults["negativeTolerenceCurrentText"] = "true";
 
             }
             
@@ -624,7 +624,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["forwardTestCurrentText"] = "false";
+                validationResults["forwardTestCurrentText"] = "false";
 
             }
             else
@@ -633,7 +633,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["forwardTestCurrentText"] = "true";
+                validationResults["forwardTestCurrentText"] = "true";
 
             }
             
@@ -652,7 +652,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["forwardMaxVoltageText"] = "false";
+                validationResults["forwardMaxVoltageText"] = "false";
             
             }
             else
@@ -661,7 +661,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["forwardMaxVoltageText"] = "true";
+                validationResults["forwardMaxVoltageText"] = "true";
             }
             
         }
@@ -679,7 +679,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["ReverseTestVoltageText"] = "false";
+                validationResults["ReverseTestVoltageText"] = "false";
 
             }
             else
@@ -688,7 +688,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["ReverseTestVoltageText"] = "true";
+                validationResults["ReverseTestVoltageText"] = "true";
 
             }
             
@@ -707,7 +707,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["positiveTolResText"] = "false";
+                validationResults["positiveTolResText"] = "false";
 
             }
             else
@@ -716,7 +716,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["positiveTolResText"] = "true";
+                validationResults["positiveTolResText"] = "true";
 
             }
             
@@ -735,7 +735,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["contactResistanceText"] = "false";
+                validationResults["contactResistanceText"] = "false";
 
             }
             else
@@ -744,7 +744,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["contactResistanceText"] = "true";
+                validationResults["contactResistanceText"] = "true";
 
             }
             
@@ -763,7 +763,7 @@ namespace UI_TestRig
             {
                 box.Background = new SolidColorBrush(Colors.Yellow);
                 box.Foreground = new SolidColorBrush(Colors.Red);
-                ValidationResults["negativeTolResText"] = "false";
+                validationResults["negativeTolResText"] = "false";
 
             }
             else
@@ -772,7 +772,7 @@ namespace UI_TestRig
                 //#ccffff
                 box.Background = (Brush)bc.ConvertFrom("#ccffff");
                 box.Foreground = new SolidColorBrush(Colors.Black);
-                ValidationResults["negativeTolResText"] = "true";
+                validationResults["negativeTolResText"] = "true";
 
             }
             
@@ -786,12 +786,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    ValidationResults["diodeCode"] = "false";
+                    validationResults["diodeCode"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    ValidationResults["diodeCode"] = "true";
+                    validationResults["diodeCode"] = "true";
                 }
             }
         }
@@ -804,12 +804,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    ValidationResults["customerCode"] = "false";
+                    validationResults["customerCode"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    ValidationResults["customerCode"] = "true";
+                    validationResults["customerCode"] = "true";
                 }
             }
         }
@@ -822,12 +822,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    ValidationResults["additionalCode"] = "false";
+                    validationResults["additionalCode"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    ValidationResults["additionalCode"] = "true";
+                    validationResults["additionalCode"] = "true";
                 }
             }
         }
@@ -836,7 +836,7 @@ namespace UI_TestRig
         {
             TextBox textBox = (TextBox)sender;
 
-            if(ValidationResults[textBox.Name.ToString()] == "true")
+            if(validationResults[textBox.Name.ToString()] == "true")
             {
                 var bc = new BrushConverter();
                 textBox.Background = (Brush)bc.ConvertFrom("#ffccff");
@@ -848,7 +848,7 @@ namespace UI_TestRig
             
             TextBox textBox = (TextBox)sender;
 
-            if (ValidationResults[textBox.Name.ToString()] == "true")
+            if (validationResults[textBox.Name.ToString()] == "true")
             {
                 var bc = new BrushConverter();
                 textBox.Background = (Brush)bc.ConvertFrom("#ccffff");

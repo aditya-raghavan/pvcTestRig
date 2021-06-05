@@ -57,9 +57,6 @@ namespace TestRigLibrary.Templates
         public double negativeTolerenceResistanceMin;
         public double contactResistanceMin;
 
-        public static List<string> DiodeTypes = new List<string>() { "2 DIODES", "3 DIODES" };
-        public static List<string> BarCodeOptions { get; set; } = new List<string> { "ENABLED", "DISABLED" };
-
         public static string GetDiodeTypeFromIndex(int index)
         {
             return DiodeTypes.ElementAt(index);
@@ -80,13 +77,16 @@ namespace TestRigLibrary.Templates
             return BarCodeOptions.IndexOf(barcodeOption);
         }
 
-        
+        public static List<string> DiodeTypes = new List<string>() { "2 DIODES", "3 DIODES" };
+        public static List<string> BarCodeOptions { get; set; } = new List<string> { "ENABLED", "DISABLED" };
 
-        
 
-        
 
-        
+
+
+
+
+
     }
 
 

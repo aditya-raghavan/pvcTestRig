@@ -9,12 +9,12 @@ UI_TestRig
 none
 false
 DEBUG;TRACE
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\App.xaml
-21028063909
 
-71194768505
+61880565413
+
+11492556428
 251450886258
-MainWindow.xaml;ProgramParameterUI.xaml;
+App.xaml;DiagnosticsPage.xaml;MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;ProgramParameterPage.xaml;
 
 True
 

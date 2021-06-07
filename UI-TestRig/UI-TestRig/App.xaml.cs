@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TestRigLibrary;
 
 namespace UI_TestRig
 {
@@ -13,5 +14,13 @@ namespace UI_TestRig
     /// </summary>
     public partial class App : Application
     {
+        [STAThread]
+        public static void Main()
+        {
+            var application = new App();
+            application.InitializeComponent();            
+            application.Run();
+            
+        }
     }
 }

@@ -1,16 +1,15 @@
-﻿<Window x:Class="UI_TestRig.ProgramParameterUI"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        
-        
-        xmlns:local="clr-namespace:UI_TestRig"
-        mc:Ignorable="d"
-        Title="ProgramParameterUI" Height="768" Width="1366" WindowStyle="None" FontFamily="Arial">
+﻿<Page x:Class="UI_TestRig.ProgramParameterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UI_TestRig"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      
+      Title="ProgramParameterPage" MinHeight="768" MinWidth="1366" FontFamily="Arial" Background="White">
 
-    <Window.Resources>
+    <Page.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="IsFocused" Value="True">
@@ -18,8 +17,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-    </Window.Resources>
-
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -164,7 +162,7 @@
                         </Style>
                     </Border.Resources>
                     <Button x:Name="loadModelButton" Content="OPEN" Width="148" FontWeight="Bold"  Height="30" Foreground="white" Background="#999999" Click="Button_Click">
-                        
+
                     </Button>
                 </Border>
                 <Border Margin="0,10,0,10" Width="250" BorderThickness="2" BorderBrush="#4d4d4d">
@@ -523,6 +521,9 @@
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="7"></Setter>
                 </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Height" Value="44.8"></Setter>
+                </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -648,12 +649,4 @@
 
         </Grid>
     </Grid>
-
-
-
-
-
-
-
-
-</Window>
+</Page>

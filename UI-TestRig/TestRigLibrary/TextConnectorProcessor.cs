@@ -15,29 +15,55 @@ namespace TestRigLibrary
     /// </summary>
     public static class TextConnectorProcessor
     {
-
-
-        static List<string> fileFormat = new List<string>()
+        private static Dictionary<string,int> GetTypeIndexDict()
         {
-            "DIODE CODE","CUSTOMER CODE","ADDITIONAL CODE","DIODE TYPE","BAR CODE OPTION",
-            "POSITIVE TOLERENCE VOLTAGE","mV",
-            "NEGATIVE TOLERENCE VOLTAGE","mV",
-            "NOMINAL FORWARD DROP VOLTAGE","mV",
-            "POSTIVIE TOLERENCE CURRENT","uA",
-            "NEGATIVE TOLERENCE CURRENT","uA",
-            "NOMINAL REVERSE CURRENT","uA",
-            "FORWARD TEST CURRENT","A",
-            "REVERSE TEST VOLTAGE","V",
-            "FORWARD MAX VOLTAGE","V",
-            "POSITIVE TOLERENCE RESISTANCE","Ohms",
-            "NEGATIVE TOLERENCE RESISTANCE","Ohms",
-            "CONTACT RESISTANCE","Ohms",
-            
-        };
+            return new Dictionary<string, int>()
+            {
+            {"MODEL NAME", 0},
+            {"DIODE CODE", 1},
+            {"CUSTOMER CODE", 2},
+            {"ADDITIONAL CODE", 3},
+            {"DIODE TYPE", 4},
+            {"BAR CODE OPTION",5 }
+            };
+        }
+        private static Dictionary<string, int> GetReadingsIndexDict()
+        {
+            return new Dictionary<string, int>()
+            {
+            {"POSITIVE TOLERANCE DROP VOLTAGE", 6},
+            {"NEGATIVE TOLERANCE DROP VOLTAGE", 7},
+            {"NOMINAL FORWARD DROP VOLTAGE", 8},
+            {"POSITIVE TOLERANCE REVERSE CURRENT", 9},
+            {"NEGATIVE TOLERANCE REVERSE CURRENT", 10},
+            {"NOMINAL REVERSE CURRENT", 11},
+            {"FORWARD TEST CURRENT", 12},
+            {"REVERSE TEST VOLTAGE", 13},
+            {"FORWARD MAX VOLTAGE", 14},
+            {"POSITIVE TOLERANCE CONTACT RESISTANCE", 15},
+            {"NEGATIVE TOLERANCE CONTACT RESISTANCE", 16},
+            {"CONTACT RESISTANCE", 17}
+            };
+        }
+        private static Dictionary<string, string> GetUnitsDict()
+        {
+            return new Dictionary<string, string>()
+            {
+            {"POSITIVE TOLERANCE DROP VOLTAGE", "mV"},
+            {"NEGATIVE TOLERANCE DROP VOLTAGE","mV"},
+            {"NOMINAL FORWARD DROP VOLTAGE", "mV"},
+            {"POSITIVE TOLERANCE REVERSE CURRENT", "uA"},
+            {"NEGATIVE TOLERANCE REVERSE CURRENT", "uA"},
+            {"NOMINAL REVERSE CURRENT", "uA"},
+            {"FORWARD TEST CURRENT", "A"},
+            {"REVERSE TEST VOLTAGE", "V"},
+            {"FORWARD MAX VOLTAGE", "V"},
+            {"POSITIVE TOLERANCE CONTACT RESISTANCE", "Ohms"},
+            {"NEGATIVE TOLERANCE CONTACT RESISTANCE", "Ohms"},
+            {"CONTACT RESISTANCE", "Ohms"}
+            };
+        }
 
-        
-        
-        
         /// <summary>
         /// Returns full file path for a file.
         /// </summary>
@@ -112,103 +138,79 @@ namespace TestRigLibrary
 
         }
 
-        private static bool ValidateFile(List<string> lines)
-        {
-
-            bool result = true;
-            if (lines.Count == 0)
-            {
-                return false;
-
-            }
-            string index = "Name";
-            int typeinfoIndex = 0;
-            int readingsIndex = 5;
-            double x;
-            foreach(string line in lines)
-            {
-                string[] cols = line.Split(',');
-                if (String.Equals(index,"Name"))
-                {
-                    if (cols.Length != 1 || cols[0].Trim().Length == 0)
-                    {
-                        return false;
-                    }
-
-                }
-                if(string.Equals(index, "TypeInfo"))
-                {
-                    if(cols.Length != 2)
-                    {
-                        return false;
-                    }
-                    else if(cols[0] != fileFormat[typeinfoIndex] || string.IsNullOrEmpty(cols[1]) || string.IsNullOrWhiteSpace(cols[1]))
-                    {
-                        return false;
-                    }
-                    if(typeinfoIndex == 3)
-                    {
-                        List<string> diodeTypes = TestConfigurationTemplate.DiodeTypes;
-                        if(!diodeTypes.Contains(cols[1]))
-                        {
-                            return false;
-                        }
-                    }
-                    if (typeinfoIndex == 4)
-                    {
-                        List<string> barCodeOptions = TestConfigurationTemplate.BarCodeOptions;
-                        if (!barCodeOptions.Contains(cols[1]))
-                        {
-                            return false;
-                        }
-                    }
-                    typeinfoIndex++;
-                }
-                if(index == "Readings")
-                {
-                    if(cols.Length != 3)
-                    {
-                        return false;
-                    }
-                    if(cols[0] != fileFormat[readingsIndex] || cols[2] != fileFormat[readingsIndex + 1] || double.TryParse(cols[1],out x) == false)
-                    {
-                        return false;
-                    }
-                    readingsIndex = readingsIndex + 2;
-                }
-                if(index == "Name")
-                {
-                    index = "TypeInfo";
-                }
-                if(typeinfoIndex == 5)
-                {
-                    index = "Readings";
-                }
-            }
-            return result;
-        }
+      
 
         private static string ExtractValuesFromModelFile(List<string> lines)
         {
-            if (!ValidateFile(lines))
+            string[] valuesArray = new string[18];
+            string formattedString = "";
+            Dictionary<string, int> typeInfoIndex = GetTypeIndexDict();
+
+            Dictionary<string, int> readingsIndex = GetReadingsIndexDict();
+
+            Dictionary<string, string> units = GetUnitsDict();
+            
+
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+                for(int i =0; i < cols.Length; i++)
+                {
+                    cols[i] = cols[i].Trim();
+                }
+                if (typeInfoIndex.ContainsKey(cols[0]))
+                {
+                    if (cols[0] == "DIODE TYPE")
+                    {
+                        if (TestConfigurationTemplate.DiodeTypes.Contains(cols[1]))
+                        {
+                            valuesArray[typeInfoIndex[cols[0]]] = cols[1];
+                            typeInfoIndex.Remove(cols[0]);
+                        }
+                    }
+                    else if (cols[0] == "BAR CODE OPTION")
+                    {
+                        if (TestConfigurationTemplate.BarCodeOptions.Contains(cols[1]))
+                        {
+                            valuesArray[typeInfoIndex[cols[0]]] = cols[1];
+                            typeInfoIndex.Remove(cols[0]);
+                        }
+                    }
+                    else
+                    {
+                        if (cols[1].Trim().Length != 0)
+                        {
+                            valuesArray[typeInfoIndex[cols[0]]] = cols[1];
+                            typeInfoIndex.Remove(cols[0]);
+                        }
+                    }
+
+                }
+                else if (readingsIndex.ContainsKey(cols[0]))
+                {
+                    if (units[cols[0]] == cols[2] && double.TryParse(cols[1], out double x))
+                    {
+                        valuesArray[readingsIndex[cols[0]]] = cols[1];
+                        readingsIndex.Remove(cols[0]);
+                    }
+                }
+            }
+            if (typeInfoIndex.Count == 0 && readingsIndex.Count == 0)
+            {
+                foreach(string value in valuesArray)
+                {
+                    formattedString += $"{value},";
+                }
+                formattedString = formattedString.Substring(0, formattedString.Length - 1);
+                return formattedString;
+            }
+            else
             {
                 return null;
             }
 
-            string converted = "";
-            int index = 0;
-            foreach(string line in lines)
-            {
-                string[] cols = line.Split(',');
-                converted += $"{cols[index]},";
-                if(index == 0)
-                {
-                    index = 1;
-                }
-            }
 
-            converted = converted.Substring(0, converted.Length - 1);
-            return converted;
         }
 
         

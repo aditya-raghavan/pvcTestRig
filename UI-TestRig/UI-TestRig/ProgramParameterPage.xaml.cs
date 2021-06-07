@@ -17,25 +17,16 @@ using Microsoft.Win32;
 using System.Configuration;
 using System.Text.RegularExpressions;
 
-
-
 namespace UI_TestRig
 {
     /// <summary>
-    /// 
-    /// READ ME
-    /// 
-    /// Higher and lower limit assigning function in GlobalConfig class.
-    /// 
-    /// 
-    /// 
-    /// 
-    /// 
+    /// Interaction logic for ProgramParameterPage.xaml
     /// </summary>
-    public partial class ProgramParameterUI : Window
+    public partial class ProgramParameterPage : Page
     {
+        IContainer parent;
         //Current loaded model which has higher and lower limits.
-        TestConfigurationTemplate LoadedModel = GlobalConfig.SetLimits();
+        
         //DiodeTypes for Combobox
         private static List<String> diodeTypes = TestConfigurationTemplate.DiodeTypes;
         //Barcode options (ENABLED, DISABLED)
@@ -59,19 +50,12 @@ namespace UI_TestRig
             { "negativeTolResText", "true" },
             { "contactResistanceText", "true" }
         };
-        
-        public ProgramParameterUI()
+        public ProgramParameterPage(IContainer container)
         {
             InitializeComponent();
-            WindowState = WindowState.Maximized;
-            WindowStyle = WindowStyle.None;
-
-            //Initializes Text Connection
             GlobalConfig.InitialiseConnections();
             NewModel();
-            
-            
-
+            parent = container;
         }
 
         private void RefreshComboBoxes()
@@ -91,22 +75,22 @@ namespace UI_TestRig
             diodeCodeText.Text = "";
             customerCodeText.Text = "";
             additionalCodeText.Text = "";
-            positiveTolVoltageText.Text = decimal.Parse("0").ToString("N3");
-            negativeTolVoltageText.Text = decimal.Parse("0").ToString("N3"); ;
-            nominalFDVText.Text = decimal.Parse("0").ToString("N3");;
-            postiveToleranceCurrentText.Text = decimal.Parse("0").ToString("N3");;
-            nominalRevCurrentText.Text = decimal.Parse("0").ToString("N3");;
-            negativeTolerenceCurrentText.Text = decimal.Parse("0").ToString("N3");;
-            forwardMaxVoltageText.Text = decimal.Parse("0").ToString("N3");;
-            forwardTestCurrentText.Text = decimal.Parse("0").ToString("N3");;
-            ReverseTestVoltageText.Text = decimal.Parse("0").ToString("N3");;
-            positiveTolResText.Text = decimal.Parse("0").ToString("N3");;
-            contactResistanceText.Text = decimal.Parse("0").ToString("N3");;
-            negativeTolResText.Text = decimal.Parse("0").ToString("N3");;
+            positiveTolVoltageText.Text = double.Parse("0").ToString("N3");
+            negativeTolVoltageText.Text = double.Parse("0").ToString("N3"); ;
+            nominalFDVText.Text = double.Parse("0").ToString("N3"); ;
+            postiveToleranceCurrentText.Text = double.Parse("0").ToString("N3"); ;
+            nominalRevCurrentText.Text = double.Parse("0").ToString("N3"); ;
+            negativeTolerenceCurrentText.Text = double.Parse("0").ToString("N3"); ;
+            forwardMaxVoltageText.Text = double.Parse("0").ToString("N3"); ;
+            forwardTestCurrentText.Text = double.Parse("0").ToString("N3"); ;
+            ReverseTestVoltageText.Text = double.Parse("0").ToString("N3"); ;
+            positiveTolResText.Text = double.Parse("0").ToString("N3"); ;
+            contactResistanceText.Text = double.Parse("0").ToString("N3"); ;
+            negativeTolResText.Text = double.Parse("0").ToString("N3"); ;
             programTextBox.Text = "";
 
             RefreshComboBoxes();
-            
+
         }
 
         //Disabled user from inputting values other than digits.
@@ -114,7 +98,8 @@ namespace UI_TestRig
         {
             foreach (var ch in e.Text)
             {
-                if (!(Char.IsDigit(ch) || ch.Equals('.') | ch.Equals('-'))) {
+                if (!(Char.IsDigit(ch) || ch.Equals('.') | ch.Equals('-')))
+                {
                     e.Handled = true;
 
                     break;
@@ -149,7 +134,7 @@ namespace UI_TestRig
             ofd.InitialDirectory = $"{ConfigurationManager.AppSettings["filePath"] }\\";
             return ofd;
         }
-         
+
 
         //save Button Event
         private void saveButton_Click(object sender, RoutedEventArgs e)
@@ -157,10 +142,10 @@ namespace UI_TestRig
             if (ValidateForm())
             {
                 //If no model is loaded, calls Model name input form
-                if(modelTextBlock.Text.Length == 0)
+                if (modelTextBlock.Text.Length == 0)
                 {
                     SaveFileDialog ofd = GetSaveFileDialog();
-                    
+
 
                     Nullable<bool> result = ofd.ShowDialog();
                     if (result == true)
@@ -199,18 +184,15 @@ namespace UI_TestRig
             }
         }
 
-        
-
-
         private bool ValidateForm()
         {
             bool output = true;
 
-            
+
             if (validationResults.ContainsValue("false"))
             {
                 output = false;
-                
+
             }
 
             return output;
@@ -237,7 +219,7 @@ namespace UI_TestRig
             additionalCodeText.Text = model.additionalCode;
             customerCodeText.Text = model.customerCode;
             diodeTypeCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromDiodeType(model.diodeType);
-            barCodePrinterCombo.SelectedIndex =TestConfigurationTemplate.GetIndexFromBarcodeOption( model.barCodeOption);
+            barCodePrinterCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromBarcodeOption(model.barCodeOption);
             positiveTolVoltageText.Text = model.positiveTolerenceVoltage.ToString("N3");
             negativeTolVoltageText.Text = model.negativeTolerenceVoltage.ToString("N3");
             nominalFDVText.Text = model.nominalForwardDropVolts.ToString("N3");
@@ -264,13 +246,13 @@ namespace UI_TestRig
             TestConfigurationTemplate model = new TestConfigurationTemplate();
             model.modelName = modelName;
             modelTextBlock.Text = model.modelName;
-            
+
             model.diodeCode = diodeCodeText.Text;
             model.customerCode = customerCodeText.Text;
             model.additionalCode = additionalCodeText.Text;
             model.diodeType = TestConfigurationTemplate.GetDiodeTypeFromIndex(diodeTypeCombo.SelectedIndex);
             model.barCodeOption = TestConfigurationTemplate.GetBarcodeOptionFromIndex(barCodePrinterCombo.SelectedIndex);
-          
+
             model.positiveTolerenceVoltage = double.Parse(positiveTolVoltageText.Text);
             model.negativeTolerenceVoltage = double.Parse(negativeTolVoltageText.Text);
             model.nominalForwardDropVolts = double.Parse(nominalFDVText.Text);
@@ -286,7 +268,7 @@ namespace UI_TestRig
 
             try
             {
-                
+
                 GlobalConfig.Connection.SaveModel(model);
                 statusText.Text = "TEST CONFIGURATION FILE SAVED";
 
@@ -303,8 +285,8 @@ namespace UI_TestRig
             if (ValidateForm())
             {
                 SaveFileDialog ofd = GetSaveFileDialog();
-                
-                
+
+
                 Nullable<bool> result = ofd.ShowDialog();
                 if (result == true)
                 {
@@ -320,7 +302,7 @@ namespace UI_TestRig
 
                     }
 
-                    SaveModel(ofd.SafeFileName.Substring(0,ofd.SafeFileName.Length-4));
+                    SaveModel(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
                     statusText.Text = "TEST CONFIGURATION FILE SAVED";
                 }
                 else
@@ -336,15 +318,15 @@ namespace UI_TestRig
             }
         }
 
-        
+
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = GetOpenFileDialog();
-            
+
             ofd.Title = "Delete";
             Nullable<bool> result = ofd.ShowDialog();
-            if(result == true)
+            if (result == true)
             {
                 while (!ofd.FileName.Contains(ConfigurationManager.AppSettings["filePath"]))
                 {
@@ -365,7 +347,7 @@ namespace UI_TestRig
                     if (modelTextBlock.Text == ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4))
                     {
                         NewModel();
-                    
+
                     }
                 }
                 else
@@ -378,14 +360,14 @@ namespace UI_TestRig
             {
                 statusText.Text = "DELETE OPERATION CANCELLED";
             }
-            
 
-            
+
+
         }
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            parent.ChangeFrame(new MainPage(parent));
 
         }
 
@@ -420,23 +402,23 @@ namespace UI_TestRig
                         statusText.Text = "OPEN OPERATION CANCELLED";
                         return;
                     }
-                    
+
                 }
-                
+
                 //Loads all the model information from text file to ModelTemplate Class.
                 try
                 {
                     TestConfigurationTemplate model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
-                    if(model == null)
+                    if (model == null)
                     {
-                        MessageBox.Show("File has Invalid Fields.", "File Load Failed.",MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("File has Invalid Fields.", "File Load Failed.", MessageBoxButton.OK, MessageBoxImage.Error);
                         statusText.Text = "COULD NOT OPEN TEST CONGIGURATION FILE";
                         return;
                     }
-                    CopyModelToTextBox(model);                                
+                    CopyModelToTextBox(model);
                     statusText.Text = "TEST CONFIGURATION FILE OPENED SUCCESSFULLY";
                 }
-                catch(Exception exception)
+                catch (Exception exception)
                 {
                     statusText.Text = exception.Message;
                 }
@@ -454,10 +436,10 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.positiveTolerenceVoltageMax ||
-                double.Parse(box.Text) < LoadedModel.positiveTolerenceVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceVoltageMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceVoltageMin)
             {
-                if(box.IsFocused == false)
+                if (box.IsFocused == false)
                 {
                     box.Background = new SolidColorBrush(Colors.Yellow);
                     box.Foreground = new SolidColorBrush(Colors.Red);
@@ -468,14 +450,14 @@ namespace UI_TestRig
             {
                 var bc = new BrushConverter();
                 //#ccffff
-                if(box.IsFocused == false)
+                if (box.IsFocused == false)
                 {
                     box.Background = (Brush)bc.ConvertFrom("#ccffff");
                     box.Foreground = new SolidColorBrush(Colors.Black);
                 }
-               
+
                 validationResults["positiveTolVoltageText"] = "true";
-                
+
 
             }
         }
@@ -483,13 +465,13 @@ namespace UI_TestRig
         private void negativeTolVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = negativeTolVoltageText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.negativeTolerenceVoltageMax ||
-                double.Parse(box.Text) < LoadedModel.negativeTolerenceVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceVoltageMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceVoltageMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -508,23 +490,23 @@ namespace UI_TestRig
                     box.Background = (Brush)bc.ConvertFrom("#ccffff");
                     box.Foreground = new SolidColorBrush(Colors.Black);
                 }
-                
+
                 validationResults["negativeTolVoltageText"] = "true";
 
             }
-            
+
         }
 
         private void nominalFDVText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = nominalFDVText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.nominalForwardDropVoltsMax ||
-                double.Parse(box.Text) < LoadedModel.nominalForwardDropVoltsMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalForwardDropVoltsMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalForwardDropVoltsMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -543,11 +525,11 @@ namespace UI_TestRig
                     box.Background = (Brush)bc.ConvertFrom("#ccffff");
                     box.Foreground = new SolidColorBrush(Colors.Black);
                 }
-                
+
                 validationResults["nominalFDVText"] = "true";
 
             }
-            
+
         }
 
         private void postiveToleranceCurrentText_TextChanged(object sender, TextChangedEventArgs e)
@@ -558,8 +540,8 @@ namespace UI_TestRig
 
 
                 if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                    || double.Parse(box.Text) > LoadedModel.positiveTolerenceCurrentMax ||
-                    double.Parse(box.Text) < LoadedModel.positiveTolerenceCurrentMin)
+                    || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceCurrentMax ||
+                    double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceCurrentMin)
                 {
                     if (box.IsFocused == false)
                     {
@@ -589,8 +571,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.nominalReverseCurrentMax ||
-                double.Parse(box.Text) < LoadedModel.nominalReverseCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalReverseCurrentMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalReverseCurrentMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -617,13 +599,13 @@ namespace UI_TestRig
         private void negativeTolerenceCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = negativeTolerenceCurrentText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.negativeTolerenceCurrentMax ||
-                double.Parse(box.Text) < LoadedModel.negativeTolerenceCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceCurrentMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceCurrentMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -645,19 +627,19 @@ namespace UI_TestRig
                 validationResults["negativeTolerenceCurrentText"] = "true";
 
             }
-            
+
         }
 
         private void forwardTestCurrentText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = forwardTestCurrentText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.forwardTestCurrentMax ||
-                double.Parse(box.Text) < LoadedModel.forwardTestCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardTestCurrentMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardTestCurrentMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -679,19 +661,19 @@ namespace UI_TestRig
                 validationResults["forwardTestCurrentText"] = "true";
 
             }
-            
+
         }
 
         private void forwardMaxVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = forwardMaxVoltageText;
-            
-            
+
+
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.forwardMaxVoltageMax ||
-                double.Parse(box.Text) < LoadedModel.forwardMaxVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardMaxVoltageMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardMaxVoltageMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -699,7 +681,7 @@ namespace UI_TestRig
                     box.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 validationResults["forwardMaxVoltageText"] = "false";
-            
+
             }
             else
             {
@@ -712,19 +694,19 @@ namespace UI_TestRig
                 }
                 validationResults["forwardMaxVoltageText"] = "true";
             }
-            
+
         }
 
         private void ReverseTestVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = ReverseTestVoltageText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.reverseTestVoltageMax ||
-                double.Parse(box.Text) < LoadedModel.reverseTestVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.reverseTestVoltageMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.reverseTestVoltageMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -746,19 +728,19 @@ namespace UI_TestRig
                 validationResults["ReverseTestVoltageText"] = "true";
 
             }
-            
+
         }
 
         private void positiveTolResText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = positiveTolResText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.positiveTolerenceResistanceMax ||
-                double.Parse(box.Text) < LoadedModel.positiveTolerenceResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceResistanceMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceResistanceMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -780,19 +762,19 @@ namespace UI_TestRig
                 validationResults["positiveTolResText"] = "true";
 
             }
-            
+
         }
 
         private void contactResistanceText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = contactResistanceText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.contactResistanceMax ||
-                double.Parse(box.Text) < LoadedModel.contactResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.contactResistanceMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.contactResistanceMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -814,19 +796,19 @@ namespace UI_TestRig
                 validationResults["contactResistanceText"] = "true";
 
             }
-            
+
         }
 
         private void negativeTolResText_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            
+
             var box = negativeTolResText;
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > LoadedModel.negativeTolerenceResistanceMax ||
-                double.Parse(box.Text) < LoadedModel.negativeTolerenceResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceResistanceMax ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceResistanceMin)
             {
                 if (box.IsFocused == false)
                 {
@@ -848,7 +830,7 @@ namespace UI_TestRig
                 validationResults["negativeTolResText"] = "true";
 
             }
-            
+
         }
 
         private void diodeCodeText_TextChanged(object sender, TextChangedEventArgs e)
@@ -929,7 +911,7 @@ namespace UI_TestRig
                 textBox.Background = new SolidColorBrush(Colors.Yellow);
                 textBox.Foreground = new SolidColorBrush(Colors.Red);
             }
-            if(double.TryParse(textBox.Text, out d) == false)
+            if (double.TryParse(textBox.Text, out d) == false)
             {
                 textBox.Text = "0.000";
             }
@@ -938,7 +920,8 @@ namespace UI_TestRig
                 textBox.Text = d.ToString("N3");
             }
 
-            
+
         }
+
     }
 }

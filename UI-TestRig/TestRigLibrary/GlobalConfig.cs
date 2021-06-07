@@ -28,38 +28,37 @@ namespace TestRigLibrary
             Connection = txt;
         }
 
-        public static TestConfigurationTemplate SetLimits()
+        public static TestConfigurationTemplate machineDataModel { get; set; } = new TestConfigurationTemplate();
+
+        public static bool isMachineDataFileThere = false;
+
+        public static void LoadMachineData()
         {
-            TestConfigurationTemplate template = new TestConfigurationTemplate();
+            machineDataModel.positiveTolerenceVoltageMax = 0;
+            machineDataModel.negativeTolerenceVoltageMax = 0;
+            machineDataModel.nominalForwardDropVoltsMax = 0;
+            machineDataModel.positiveTolerenceCurrentMax = 0;
+            machineDataModel.negativeTolerenceCurrentMax = 0;
+            machineDataModel.nominalReverseCurrentMax = 0;
+            machineDataModel.forwardTestCurrentMax = 0;
+            machineDataModel.reverseTestVoltageMax = 0;
+            machineDataModel.forwardMaxVoltageMax = 0;
+            machineDataModel.positiveTolerenceResistanceMax = 0;
+            machineDataModel.negativeTolerenceResistanceMax = 0;
+            machineDataModel.contactResistanceMax = 0;
 
-
-            template.positiveTolerenceVoltageMax = 1;
-            template.negativeTolerenceVoltageMax = 2;
-            template.nominalForwardDropVoltsMax = 3;
-            template.positiveTolerenceCurrentMax = 4;
-            template.negativeTolerenceCurrentMax = 5;
-            template.nominalReverseCurrentMax = 6;
-            template.forwardTestCurrentMax = 7;
-            template.reverseTestVoltageMax = 8;
-            template.forwardMaxVoltageMax = 9;
-            template.positiveTolerenceResistanceMax = 10;
-            template.negativeTolerenceResistanceMax =11;
-            template.contactResistanceMax = 12;
-
-            template.positiveTolerenceVoltageMin = -1;
-            template.negativeTolerenceVoltageMin = -2;
-            template.nominalForwardDropVoltsMin = -3;
-            template.positiveTolerenceCurrentMin = -4;
-            template.negativeTolerenceCurrentMin = -5;
-            template.nominalReverseCurrentMin = -6;
-            template.forwardTestCurrentMin = -7;
-            template.reverseTestVoltageMin = -8;
-            template.forwardMaxVoltageMin = -9;
-            template.positiveTolerenceResistanceMin = -10;
-            template.negativeTolerenceResistanceMin = -11;
-            template.contactResistanceMin = -12;
-
-            return template;
+            machineDataModel.positiveTolerenceVoltageMin = 0;
+            machineDataModel.negativeTolerenceVoltageMin = 0;
+            machineDataModel.nominalForwardDropVoltsMin = 0;
+            machineDataModel.positiveTolerenceCurrentMin = 0;
+            machineDataModel.negativeTolerenceCurrentMin = 0;
+            machineDataModel.nominalReverseCurrentMin = 0;
+            machineDataModel.forwardTestCurrentMin = 0;
+            machineDataModel.reverseTestVoltageMin = 0;
+            machineDataModel.forwardMaxVoltageMin = 0;
+            machineDataModel.positiveTolerenceResistanceMin = 0;
+            machineDataModel.negativeTolerenceResistanceMin = 0;
+            machineDataModel.contactResistanceMin = 0;
         }
     }
 }

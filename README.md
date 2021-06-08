@@ -1,4 +1,4 @@
-All Textfiles will be stored at "C:\modelTextFiles"
+All Textfiles will be stored at "C:\pvcTestRigData"
 
 # pvcTestRig
 

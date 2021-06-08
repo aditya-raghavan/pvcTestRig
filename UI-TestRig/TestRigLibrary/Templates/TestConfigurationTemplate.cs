@@ -31,31 +31,31 @@ namespace TestRigLibrary.Templates
         public double negativeTolerenceResistance;
         public double contactResistance;
 
-        public double positiveTolerenceVoltageMax;
-        public double negativeTolerenceVoltageMax;
-        public double nominalForwardDropVoltsMax;
-        public double positiveTolerenceCurrentMax;
-        public double negativeTolerenceCurrentMax;
-        public double nominalReverseCurrentMax;
-        public double forwardTestCurrentMax;
-        public double reverseTestVoltageMax;
-        public double forwardMaxVoltageMax;
-        public double positiveTolerenceResistanceMax;
-        public double negativeTolerenceResistanceMax;
-        public double contactResistanceMax;
+        public double positiveTolerenceVoltageHigh;
+        public double negativeTolerenceVoltageHigh;
+        public double nominalForwardDropVoltsHigh;
+        public double positiveTolerenceCurrentHigh;
+        public double negativeTolerenceCurrentHigh;
+        public double nominalReverseCurrentHigh;
+        public double forwardTestCurrentHigh;
+        public double reverseTestVoltageHigh;
+        public double forwardMaxVoltageHigh;
+        public double positiveTolerenceResistanceHigh;
+        public double negativeTolerenceResistanceHigh;
+        public double contactResistanceHigh;
 
-        public double positiveTolerenceVoltageMin;
-        public double negativeTolerenceVoltageMin;
-        public double nominalForwardDropVoltsMin;
-        public double positiveTolerenceCurrentMin;
-        public double negativeTolerenceCurrentMin;
-        public double nominalReverseCurrentMin;
-        public double forwardTestCurrentMin;
-        public double reverseTestVoltageMin;
-        public double forwardMaxVoltageMin;
-        public double positiveTolerenceResistanceMin;
-        public double negativeTolerenceResistanceMin;
-        public double contactResistanceMin;
+        public double positiveTolerenceVoltageLow;
+        public double negativeTolerenceVoltageLow;
+        public double nominalForwardDropVoltsLow;
+        public double positiveTolerenceCurrentLow;
+        public double negativeTolerenceCurrentLow;
+        public double nominalReverseCurrentLow;
+        public double forwardTestCurrentLow;
+        public double reverseTestVoltageLow;
+        public double forwardMaxVoltageLow;
+        public double positiveTolerenceResistanceLow;
+        public double negativeTolerenceResistanceLow;
+        public double contactResistanceLow;
 
         public static string GetDiodeTypeFromIndex(int index)
         {

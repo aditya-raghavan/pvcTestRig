@@ -52,8 +52,7 @@ namespace UI_TestRig
         };
         public ProgramParameterPage(IContainer container)
         {
-            InitializeComponent();
-            GlobalConfig.InitialiseConnections();
+            InitializeComponent();            
             NewModel();
             parent = container;
         }
@@ -162,7 +161,7 @@ namespace UI_TestRig
 
                         }
 
-                        SaveModel(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
+                        SaveModel(ofd.FileName);
                     }
                     else
                     {
@@ -239,10 +238,10 @@ namespace UI_TestRig
 
 
         //Initiates save operation
-        public void SaveModel(string modelName)
+        public void SaveModel(string filePath)
         {
             //Utility method which saves Model to specified modelname file.
-
+            string modelName = System.IO.Path.GetFileNameWithoutExtension(filePath);
             TestConfigurationTemplate model = new TestConfigurationTemplate();
             model.modelName = modelName;
             modelTextBlock.Text = model.modelName;
@@ -302,7 +301,7 @@ namespace UI_TestRig
 
                     }
 
-                    SaveModel(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
+                    SaveModel(ofd.FileName);
                     statusText.Text = "TEST CONFIGURATION FILE SAVED";
                 }
                 else
@@ -436,8 +435,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceVoltageMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -470,8 +469,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceVoltageMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -505,8 +504,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalForwardDropVoltsMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalForwardDropVoltsMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalForwardDropVoltsLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -540,8 +539,8 @@ namespace UI_TestRig
 
 
                 if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                    || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceCurrentMax ||
-                    double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceCurrentMin)
+                    || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh ||
+                    double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceCurrentLow)
                 {
                     if (box.IsFocused == false)
                     {
@@ -571,8 +570,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalReverseCurrentMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalReverseCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalReverseCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalReverseCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -604,8 +603,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceCurrentMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -638,8 +637,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardTestCurrentMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardTestCurrentMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardTestCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardTestCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -672,8 +671,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardMaxVoltageMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardMaxVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardMaxVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardMaxVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -705,8 +704,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.reverseTestVoltageMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.reverseTestVoltageMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.reverseTestVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.reverseTestVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -739,8 +738,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceResistanceMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceResistanceLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -773,8 +772,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.contactResistanceMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.contactResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.contactResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.contactResistanceLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -807,8 +806,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceResistanceMax ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceResistanceMin)
+                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceResistanceLow)
             {
                 if (box.IsFocused == false)
                 {

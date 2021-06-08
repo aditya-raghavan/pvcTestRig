@@ -15,11 +15,20 @@ namespace TestRigLibrary
     public static class GlobalConfig
     {
         public static string  allowedFileTypes = "Text documents (.csv)|*.csv";
-        
+
+        public static string machinedDataFile = "MachineData.csv";
         public static IDataConnection Connection { get; set; }
 
         public static void InitialiseConnections()
         {
+            if (!Directory.Exists($"{ ConfigurationManager.AppSettings["dataPath"] }"))
+            {
+                Directory.CreateDirectory($"{ ConfigurationManager.AppSettings["dataPath"] }");
+            }
+            if (!Directory.Exists($"{ ConfigurationManager.AppSettings["machinedataPath"] }"))
+            {
+                Directory.CreateDirectory($"{ ConfigurationManager.AppSettings["machinedataPath"] }");
+            }
             if (!Directory.Exists($"{ ConfigurationManager.AppSettings["filePath"] }"))
             {
                 Directory.CreateDirectory($"{ ConfigurationManager.AppSettings["filePath"] }");
@@ -34,31 +43,39 @@ namespace TestRigLibrary
 
         public static void LoadMachineData()
         {
-            machineDataModel.positiveTolerenceVoltageMax = 0;
-            machineDataModel.negativeTolerenceVoltageMax = 0;
-            machineDataModel.nominalForwardDropVoltsMax = 0;
-            machineDataModel.positiveTolerenceCurrentMax = 0;
-            machineDataModel.negativeTolerenceCurrentMax = 0;
-            machineDataModel.nominalReverseCurrentMax = 0;
-            machineDataModel.forwardTestCurrentMax = 0;
-            machineDataModel.reverseTestVoltageMax = 0;
-            machineDataModel.forwardMaxVoltageMax = 0;
-            machineDataModel.positiveTolerenceResistanceMax = 0;
-            machineDataModel.negativeTolerenceResistanceMax = 0;
-            machineDataModel.contactResistanceMax = 0;
+            if(Connection.CheckMachineDataFile() == true)
+            {
+                machineDataModel = Connection.LoadMachineDataFile();
+                isMachineDataFileThere = true;
+            }
+            else
+            {
+                machineDataModel.positiveTolerenceVoltageHigh = 0;
+                machineDataModel.negativeTolerenceVoltageHigh = 0;
+                machineDataModel.nominalForwardDropVoltsHigh = 0;
+                machineDataModel.positiveTolerenceCurrentHigh = 0;
+                machineDataModel.negativeTolerenceCurrentHigh = 0;
+                machineDataModel.nominalReverseCurrentHigh = 0;
+                machineDataModel.forwardTestCurrentHigh = 0;
+                machineDataModel.reverseTestVoltageHigh = 0;
+                machineDataModel.forwardMaxVoltageHigh = 0;
+                machineDataModel.positiveTolerenceResistanceHigh = 0;
+                machineDataModel.negativeTolerenceResistanceHigh = 0;
+                machineDataModel.contactResistanceHigh = 0;
 
-            machineDataModel.positiveTolerenceVoltageMin = 0;
-            machineDataModel.negativeTolerenceVoltageMin = 0;
-            machineDataModel.nominalForwardDropVoltsMin = 0;
-            machineDataModel.positiveTolerenceCurrentMin = 0;
-            machineDataModel.negativeTolerenceCurrentMin = 0;
-            machineDataModel.nominalReverseCurrentMin = 0;
-            machineDataModel.forwardTestCurrentMin = 0;
-            machineDataModel.reverseTestVoltageMin = 0;
-            machineDataModel.forwardMaxVoltageMin = 0;
-            machineDataModel.positiveTolerenceResistanceMin = 0;
-            machineDataModel.negativeTolerenceResistanceMin = 0;
-            machineDataModel.contactResistanceMin = 0;
+                machineDataModel.positiveTolerenceVoltageLow = 0;
+                machineDataModel.negativeTolerenceVoltageLow = 0;
+                machineDataModel.nominalForwardDropVoltsLow = 0;
+                machineDataModel.positiveTolerenceCurrentLow = 0;
+                machineDataModel.negativeTolerenceCurrentLow = 0;
+                machineDataModel.nominalReverseCurrentLow = 0;
+                machineDataModel.forwardTestCurrentLow = 0;
+                machineDataModel.reverseTestVoltageLow = 0;
+                machineDataModel.forwardMaxVoltageLow = 0;
+                machineDataModel.positiveTolerenceResistanceLow = 0;
+                machineDataModel.negativeTolerenceResistanceLow = 0;
+                machineDataModel.contactResistanceLow = 0;
+            }
         }
     }
 }

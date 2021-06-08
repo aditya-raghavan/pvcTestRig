@@ -26,6 +26,23 @@ namespace TestRigLibrary
             return model;
         }
 
+        public TestConfigurationTemplate LoadMachineDataFile()
+        {
+            string fileName = GlobalConfig.machinedDataFile;
+            TestConfigurationTemplate model = new TestConfigurationTemplate();
+            model = fileName.FullMachineDataPath().LoadFile().ConvertToMachineDataModel();
+            return model;
+        }
+
+        public bool CheckMachineDataFile()
+        {
+            if (File.Exists(GlobalConfig.machinedDataFile.FullMachineDataPath()))
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Saves a model to its text file.
         /// </summary>
@@ -62,6 +79,51 @@ namespace TestRigLibrary
 
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
+        }
+
+        public void SaveMachineData()
+        {
+            List<string> lines = new List<string>();
+            string fileName = "MachineData.csv";
+
+            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh.ToString("N3")},mV");
+            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceVoltageLow.ToString("N3")},mV");
+
+            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh.ToString("N3")},mV");
+            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceVoltageLow.ToString("N3")},mV");
+
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh.ToString("N3")},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.nominalForwardDropVoltsLow.ToString("N3")},mV");
+
+            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh.ToString("N3")},uA");
+            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceCurrentLow.ToString("N3")},uA");
+
+            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh.ToString("N3")},uA");
+            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceCurrentLow.ToString("N3")},uA");
+
+            lines.Add($"NOMINAL REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.nominalReverseCurrentHigh.ToString("N3")},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.nominalReverseCurrentLow.ToString("N3")},uA");
+
+            lines.Add($"FORWARD TEST CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.forwardTestCurrentHigh.ToString("N3")},A");
+            lines.Add($"FORWARD TEST CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.forwardTestCurrentLow.ToString("N3")},A");
+
+            lines.Add($"REVERSE TEST VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.reverseTestVoltageHigh.ToString("N3")},V");
+            lines.Add($"REVERSE TEST VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.reverseTestVoltageLow.ToString("N3")},V");
+
+            lines.Add($"FORWARD MAX VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.forwardMaxVoltageHigh.ToString("N3")},V");
+            lines.Add($"FORWARD MAX VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.forwardMaxVoltageLow.ToString("N3")},V");
+
+            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceResistanceLow.ToString("N3")},Ohms");
+
+            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceResistanceLow.ToString("N3")},Ohms");
+
+            lines.Add($"CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.contactResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.contactResistanceLow.ToString("N3")},Ohms");
+
+            File.WriteAllLines(fileName.FullMachineDataPath(), lines);
+
         }
 
         /// <summary>

@@ -19,5 +19,11 @@ namespace TestRigLibrary
         List<string> GetAllModelNames();
 
         void DeleteModel(string modelName);
+
+        void SaveMachineData();
+
+        bool CheckMachineDataFile();
+
+        TestConfigurationTemplate LoadMachineDataFile();
     }
 }

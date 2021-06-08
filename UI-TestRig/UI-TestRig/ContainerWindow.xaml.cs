@@ -28,12 +28,14 @@ namespace UI_TestRig
         {
             InitializeComponent();
             mainFrame.Content = new MainPage(this);
+            GlobalConfig.InitialiseConnections();
             GlobalConfig.LoadMachineData();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             if(GlobalConfig.isMachineDataFileThere == false)
             {
-                MessageBox.Show("MACHINE DATA FILE NOT FOUND.");
+                MessageBox.Show("MACHINE DATA FILE NOT FOUND.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
 
         }

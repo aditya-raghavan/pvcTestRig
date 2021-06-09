@@ -19,7 +19,7 @@ namespace TestRigLibrary
         {
             return new Dictionary<string, int>()
             {
-            {"MODEL NAME", 0},
+            {"TEST CONFIGURATION NAME", 0},
             {"DIODE CODE", 1},
             {"CUSTOMER CODE", 2},
             {"ADDITIONAL CODE", 3},
@@ -161,16 +161,16 @@ namespace TestRigLibrary
         }
 
         /// <summary>
-        /// returns a populated ModelTemplate Object with values read from the specified model file.
+        /// returns a populated TestConfigurationTemplate Object with values read from the specified test config file.
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public static TestConfigurationTemplate ConvertToModelTemplate(this List<string> lines)
+        public static TestConfigurationTemplate ConvertToTestConfigurationTemplate(this List<string> lines)
         {
             TestConfigurationTemplate template = new TestConfigurationTemplate();
             
 
-            string line = ExtractValuesFromModelFile(lines);
+            string line = ExtractValuesFromTestConfigurationFile(lines);
             if(line == null)
             {
                 return null;
@@ -180,7 +180,7 @@ namespace TestRigLibrary
             {
                 string[] cols = line.Split(',');
 
-                template.modelName = cols[0];
+                template.testConfigurationName = cols[0];
                 template.diodeCode = cols[1];
                 template.customerCode = cols[2];
                 template.additionalCode = cols[3];
@@ -207,7 +207,7 @@ namespace TestRigLibrary
 
         }
 
-        public static TestConfigurationTemplate ConvertToMachineDataModel(this List<string> lines)
+        public static TestConfigurationTemplate ConvertTomachineDataObject(this List<string> lines)
         {
             TestConfigurationTemplate template = new TestConfigurationTemplate();
 
@@ -293,7 +293,7 @@ namespace TestRigLibrary
 
       
 
-        private static string ExtractValuesFromModelFile(List<string> lines)
+        private static string ExtractValuesFromTestConfigurationFile(List<string> lines)
         {
             string[] valuesArray = new string[18];
             string formattedString = "";

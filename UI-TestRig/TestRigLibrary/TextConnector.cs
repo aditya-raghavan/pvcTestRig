@@ -15,23 +15,23 @@ namespace TestRigLibrary
     public class TextConnector : IDataConnection
     {
         /// <summary>
-        /// returns a model object with loaded values from its file.
+        /// returns a test config object with loaded values from its file.
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public TestConfigurationTemplate LoadModel(string fileName)
+        public TestConfigurationTemplate LoadTestConfigurationFromFile(string fileName)
         {
-            TestConfigurationTemplate model = new TestConfigurationTemplate();
-            model = fileName.FullFilePath().LoadFile().ConvertToModelTemplate();
-            return model;
+            TestConfigurationTemplate template = new TestConfigurationTemplate();
+            template = fileName.FullFilePath().LoadFile().ConvertToTestConfigurationTemplate();
+            return template;
         }
 
         public TestConfigurationTemplate LoadMachineDataFile()
         {
             string fileName = GlobalConfig.machinedDataFile;
-            TestConfigurationTemplate model = new TestConfigurationTemplate();
-            model = fileName.FullMachineDataPath().LoadFile().ConvertToMachineDataModel();
-            return model;
+            TestConfigurationTemplate template = new TestConfigurationTemplate();
+            template = fileName.FullMachineDataPath().LoadFile().ConvertTomachineDataObject();
+            return template;
         }
 
         public bool CheckMachineDataFile()
@@ -44,38 +44,38 @@ namespace TestRigLibrary
         }
 
         /// <summary>
-        /// Saves a model to its text file.
+        /// Saves a test config to its text file.
         /// </summary>
-        /// <param name="model">Model object containing information about the model</param>
-        public void SaveModel(TestConfigurationTemplate model)
+        /// <param name="test config">template object containing information about the test config</param>
+        public void SaveTestConfigurationToFile(TestConfigurationTemplate template)
         {
             //TextFile saving format.
-            //modelname,diodecode,customercode,additionalcode,diodeindex,barcodeindex,postolvoltage,negtolvol,NFDV,postolcur,negtolcur,NRC,fortestcurrent,revtestvoltage,formaxvoltage,
+            //testconfigname,diodecode,customercode,additionalcode,diodeindex,barcodeindex,postolvoltage,negtolvol,NFDV,postolcur,negtolcur,NRC,fortestcurrent,revtestvoltage,formaxvoltage,
             //pottolres,negtolres,contactres
 
             List<string> lines = new List<string>();
 
-            string fileName = model.modelName+".csv";
+            string fileName = template.testConfigurationName+".csv";
 
-            lines.Add($"MODEL NAME,{model.modelName}");
-            lines.Add($"DIODE CODE,{model.diodeCode}");
-            lines.Add($"CUSTOMER CODE,{model.customerCode}");
-            lines.Add($"ADDITIONAL CODE,{model.additionalCode}");
-            lines.Add($"DIODE TYPE,{model.diodeType}");
-            lines.Add($"BAR CODE OPTION,{model.barCodeOption}");
+            lines.Add($"TEST CONFIGURATION NAME,{template.testConfigurationName}");
+            lines.Add($"DIODE CODE,{template.diodeCode}");
+            lines.Add($"CUSTOMER CODE,{template.customerCode}");
+            lines.Add($"ADDITIONAL CODE,{template.additionalCode}");
+            lines.Add($"DIODE TYPE,{template.diodeType}");
+            lines.Add($"BAR CODE OPTION,{template.barCodeOption}");
 
-            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE,{model.positiveTolerenceVoltage.ToString("N3")},mV");
-            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE,{model.negativeTolerenceVoltage.ToString("N3")},mV");
-            lines.Add($"NOMINAL FORWARD DROP VOLTAGE,{model.nominalForwardDropVolts.ToString("N3")},mV");
-            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT,{model.positiveTolerenceCurrent.ToString("N3")},uA");
-            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT,{model.negativeTolerenceCurrent.ToString("N3")},uA");
-            lines.Add($"NOMINAL REVERSE CURRENT,{model.nominalReverseCurrent.ToString("N3")},uA");
-            lines.Add($"FORWARD TEST CURRENT,{model.forwardTestCurrent.ToString("N3")},A");
-            lines.Add($"REVERSE TEST VOLTAGE,{model.reverseTestVoltage.ToString("N3")},V");
-            lines.Add($"FORWARD MAX VOLTAGE,{model.forwardMaxVoltage.ToString("N3")},V");
-            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE,{model.positiveTolerenceResistance.ToString("N3")},Ohms");
-            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE,{model.negativeTolerenceResistance.ToString("N3")},Ohms");
-            lines.Add($"CONTACT RESISTANCE,{model.contactResistance.ToString("N3")},Ohms");
+            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE,{template.positiveTolerenceVoltage.ToString("N3")},mV");
+            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE,{template.negativeTolerenceVoltage.ToString("N3")},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE,{template.nominalForwardDropVolts.ToString("N3")},mV");
+            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT,{template.positiveTolerenceCurrent.ToString("N3")},uA");
+            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT,{template.negativeTolerenceCurrent.ToString("N3")},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT,{template.nominalReverseCurrent.ToString("N3")},uA");
+            lines.Add($"FORWARD TEST CURRENT,{template.forwardTestCurrent.ToString("N3")},A");
+            lines.Add($"REVERSE TEST VOLTAGE,{template.reverseTestVoltage.ToString("N3")},V");
+            lines.Add($"FORWARD MAX VOLTAGE,{template.forwardMaxVoltage.ToString("N3")},V");
+            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE,{template.positiveTolerenceResistance.ToString("N3")},Ohms");
+            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE,{template.negativeTolerenceResistance.ToString("N3")},Ohms");
+            lines.Add($"CONTACT RESISTANCE,{template.contactResistance.ToString("N3")},Ohms");
 
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
@@ -86,74 +86,55 @@ namespace TestRigLibrary
             List<string> lines = new List<string>();
             string fileName = "MachineData.csv";
 
-            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh.ToString("N3")},mV");
-            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceVoltageLow.ToString("N3")},mV");
+            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceVoltageHigh.ToString("N3")},mV");
+            lines.Add($"POSITIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceVoltageLow.ToString("N3")},mV");
 
-            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh.ToString("N3")},mV");
-            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceVoltageLow.ToString("N3")},mV");
+            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceVoltageHigh.ToString("N3")},mV");
+            lines.Add($"NEGATIVE TOLERANCE DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceVoltageLow.ToString("N3")},mV");
 
-            lines.Add($"NOMINAL FORWARD DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh.ToString("N3")},mV");
-            lines.Add($"NOMINAL FORWARD DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.nominalForwardDropVoltsLow.ToString("N3")},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataObject.nominalForwardDropVoltsHigh.ToString("N3")},mV");
+            lines.Add($"NOMINAL FORWARD DROP VOLTAGE LOW LIMIT,{GlobalConfig.machineDataObject.nominalForwardDropVoltsLow.ToString("N3")},mV");
 
-            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh.ToString("N3")},uA");
-            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceCurrentLow.ToString("N3")},uA");
+            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceCurrentHigh.ToString("N3")},uA");
+            lines.Add($"POSITIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceCurrentLow.ToString("N3")},uA");
 
-            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh.ToString("N3")},uA");
-            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceCurrentLow.ToString("N3")},uA");
+            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceCurrentHigh.ToString("N3")},uA");
+            lines.Add($"NEGATIVE TOLERANCE REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceCurrentLow.ToString("N3")},uA");
 
-            lines.Add($"NOMINAL REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.nominalReverseCurrentHigh.ToString("N3")},uA");
-            lines.Add($"NOMINAL REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.nominalReverseCurrentLow.ToString("N3")},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT HIGH LIMIT,{GlobalConfig.machineDataObject.nominalReverseCurrentHigh.ToString("N3")},uA");
+            lines.Add($"NOMINAL REVERSE CURRENT LOW LIMIT,{GlobalConfig.machineDataObject.nominalReverseCurrentLow.ToString("N3")},uA");
 
-            lines.Add($"FORWARD TEST CURRENT HIGH LIMIT,{GlobalConfig.machineDataModel.forwardTestCurrentHigh.ToString("N3")},A");
-            lines.Add($"FORWARD TEST CURRENT LOW LIMIT,{GlobalConfig.machineDataModel.forwardTestCurrentLow.ToString("N3")},A");
+            lines.Add($"FORWARD TEST CURRENT HIGH LIMIT,{GlobalConfig.machineDataObject.forwardTestCurrentHigh.ToString("N3")},A");
+            lines.Add($"FORWARD TEST CURRENT LOW LIMIT,{GlobalConfig.machineDataObject.forwardTestCurrentLow.ToString("N3")},A");
 
-            lines.Add($"REVERSE TEST VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.reverseTestVoltageHigh.ToString("N3")},V");
-            lines.Add($"REVERSE TEST VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.reverseTestVoltageLow.ToString("N3")},V");
+            lines.Add($"REVERSE TEST VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataObject.reverseTestVoltageHigh.ToString("N3")},V");
+            lines.Add($"REVERSE TEST VOLTAGE LOW LIMIT,{GlobalConfig.machineDataObject.reverseTestVoltageLow.ToString("N3")},V");
 
-            lines.Add($"FORWARD MAX VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataModel.forwardMaxVoltageHigh.ToString("N3")},V");
-            lines.Add($"FORWARD MAX VOLTAGE LOW LIMIT,{GlobalConfig.machineDataModel.forwardMaxVoltageLow.ToString("N3")},V");
+            lines.Add($"FORWARD MAX VOLTAGE HIGH LIMIT,{GlobalConfig.machineDataObject.forwardMaxVoltageHigh.ToString("N3")},V");
+            lines.Add($"FORWARD MAX VOLTAGE LOW LIMIT,{GlobalConfig.machineDataObject.forwardMaxVoltageLow.ToString("N3")},V");
 
-            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh.ToString("N3")},Ohms");
-            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.positiveTolerenceResistanceLow.ToString("N3")},Ohms");
+            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"POSITIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataObject.positiveTolerenceResistanceLow.ToString("N3")},Ohms");
 
-            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh.ToString("N3")},Ohms");
-            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.negativeTolerenceResistanceLow.ToString("N3")},Ohms");
+            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"NEGATIVE TOLERANCE CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataObject.negativeTolerenceResistanceLow.ToString("N3")},Ohms");
 
-            lines.Add($"CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataModel.contactResistanceHigh.ToString("N3")},Ohms");
-            lines.Add($"CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataModel.contactResistanceLow.ToString("N3")},Ohms");
+            lines.Add($"CONTACT RESISTANCE HIGH LIMIT,{GlobalConfig.machineDataObject.contactResistanceHigh.ToString("N3")},Ohms");
+            lines.Add($"CONTACT RESISTANCE LOW LIMIT,{GlobalConfig.machineDataObject.contactResistanceLow.ToString("N3")},Ohms");
 
             File.WriteAllLines(fileName.FullMachineDataPath(), lines);
 
         }
 
-        /// <summary>
-        /// Reads all the existing models.
-        /// </summary>
-        /// <returns></returns>
-        public List<string> GetAllModelNames()
-        {
-            
-            string rootPath = $"{ ConfigurationManager.AppSettings["filePath"] }";
-            List<string> ModelNames = new List<string>();
-
-            var files = Directory.GetFiles(rootPath, "*.*", SearchOption.AllDirectories);
-
-            foreach(string file in files)
-            {
-                ModelNames.Add(Path.GetFileNameWithoutExtension(file));
-            }
-
-            return ModelNames;
-            
-        }
+        
 
         /// <summary>
-        /// Deletes Model File.
+        /// Deletes Test Configuration File.
         /// </summary>
-        /// <param name="modelName"></param>
-        public void DeleteModel(string modelName)
+        /// <param name="testConfigurationName"></param>
+        public void DeleteTestConfiguration(string testConfigurationName)
         {
-            string fileName = modelName + ".csv";
+            string fileName = testConfigurationName + ".csv";
             File.Delete(fileName.FullFilePath());
         }
 

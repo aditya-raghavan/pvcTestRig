@@ -24,9 +24,10 @@ namespace UI_TestRig
     /// </summary>
     public partial class ProgramParameterPage : Page
     {
-        IContainer parent;
-        //Current loaded model which has higher and lower limits.
+
+        public MainPage parent { get; set; }
         
+
         //DiodeTypes for Combobox
         private static List<String> diodeTypes = TestConfigurationTemplate.DiodeTypes;
         //Barcode options (ENABLED, DISABLED)
@@ -34,9 +35,9 @@ namespace UI_TestRig
 
         Dictionary<string, string> validationResults = new Dictionary<string, string>()
         {
-            { "diodeCode", "false" },
-            { "additionalCode", "false" },
-            { "customerCode", "false" },
+            { "diodeCodeText", "false" },
+            { "additionalCodeText", "false" },
+            { "customerCodeText", "false" },
             { "positiveTolVoltageText", "true" },
             { "negativeTolVoltageText", "true" },
             { "nominalFDVText", "true" },
@@ -50,12 +51,14 @@ namespace UI_TestRig
             { "negativeTolResText", "true" },
             { "contactResistanceText", "true" }
         };
-        public ProgramParameterPage(IContainer container)
+        public ProgramParameterPage(MainPage p)
         {
             InitializeComponent();            
-            NewModel();
-            parent = container;
+            NewTestConfiguration();           
+            parent = p;            
         }
+
+        
 
         private void RefreshComboBoxes()
         {
@@ -68,9 +71,9 @@ namespace UI_TestRig
             barCodePrinterCombo.SelectedIndex = 1;
         }
 
-        private void NewModel()
+        private void NewTestConfiguration()
         {
-            modelTextBlock.Text = "";
+            testConfigTextBlock.Text = "";
             diodeCodeText.Text = "";
             customerCodeText.Text = "";
             additionalCodeText.Text = "";
@@ -140,8 +143,8 @@ namespace UI_TestRig
         {
             if (ValidateForm())
             {
-                //If no model is loaded, calls Model name input form
-                if (modelTextBlock.Text.Length == 0)
+                
+                if (testConfigTextBlock.Text.Length == 0)
                 {
                     SaveFileDialog ofd = GetSaveFileDialog();
 
@@ -161,7 +164,7 @@ namespace UI_TestRig
 
                         }
 
-                        SaveModel(ofd.FileName);
+                        SaveTestConfiguration(ofd.FileName);
                     }
                     else
                     {
@@ -170,8 +173,8 @@ namespace UI_TestRig
                 }
                 else
                 {
-                    //If model is already loaded, sends the model name to Save the model
-                    SaveModel(modelTextBlock.Text);
+                    //If test configuration is already loaded, sends the test configuration name to Save the config
+                    SaveTestConfiguration(testConfigTextBlock.Text);
                     statusText.Text = "TEST CONFIGURATION FILE SAVED";
                 }
 
@@ -200,75 +203,75 @@ namespace UI_TestRig
         //New Button event
         private void newButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MessageBox.Show("Create New Model?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("Create New Test Configuration?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 //Refreshes form
-                NewModel();
+                NewTestConfiguration();
                 statusText.Text = "NEW TEST CONFIGURATION";
 
             }
         }
 
 
-        //Retrieved model from the database is copied to loaded model.
-        private void CopyModelToTextBox(TestConfigurationTemplate model)
+        //Retrieved Test Configuration from the database is copied to Textboxes.
+        private void CopyTestConfigurationToTextBox(TestConfigurationTemplate template)
         {
-            modelTextBlock.Text = model.modelName;
-            diodeCodeText.Text = model.diodeCode;
-            additionalCodeText.Text = model.additionalCode;
-            customerCodeText.Text = model.customerCode;
-            diodeTypeCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromDiodeType(model.diodeType);
-            barCodePrinterCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromBarcodeOption(model.barCodeOption);
-            positiveTolVoltageText.Text = model.positiveTolerenceVoltage.ToString("N3");
-            negativeTolVoltageText.Text = model.negativeTolerenceVoltage.ToString("N3");
-            nominalFDVText.Text = model.nominalForwardDropVolts.ToString("N3");
-            postiveToleranceCurrentText.Text = model.positiveTolerenceCurrent.ToString("N3");
-            negativeTolerenceCurrentText.Text = model.negativeTolerenceCurrent.ToString("N3");
-            nominalRevCurrentText.Text = model.nominalReverseCurrent.ToString("N3");
-            forwardTestCurrentText.Text = model.forwardTestCurrent.ToString("N3");
-            ReverseTestVoltageText.Text = model.reverseTestVoltage.ToString("N3");
-            forwardMaxVoltageText.Text = model.forwardMaxVoltage.ToString("N3");
-            positiveTolResText.Text = model.positiveTolerenceResistance.ToString("N3");
-            negativeTolResText.Text = model.negativeTolerenceResistance.ToString("N3");
-            contactResistanceText.Text = model.contactResistance.ToString("N3");
+            testConfigTextBlock.Text = template.testConfigurationName;
+            diodeCodeText.Text = template.diodeCode;
+            additionalCodeText.Text = template.additionalCode;
+            customerCodeText.Text = template.customerCode;
+            diodeTypeCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromDiodeType(template.diodeType);
+            barCodePrinterCombo.SelectedIndex = TestConfigurationTemplate.GetIndexFromBarcodeOption(template.barCodeOption);
+            positiveTolVoltageText.Text = template.positiveTolerenceVoltage.ToString("N3");
+            negativeTolVoltageText.Text = template.negativeTolerenceVoltage.ToString("N3");
+            nominalFDVText.Text = template.nominalForwardDropVolts.ToString("N3");
+            postiveToleranceCurrentText.Text = template.positiveTolerenceCurrent.ToString("N3");
+            negativeTolerenceCurrentText.Text = template.negativeTolerenceCurrent.ToString("N3");
+            nominalRevCurrentText.Text = template.nominalReverseCurrent.ToString("N3");
+            forwardTestCurrentText.Text = template.forwardTestCurrent.ToString("N3");
+            ReverseTestVoltageText.Text = template.reverseTestVoltage.ToString("N3");
+            forwardMaxVoltageText.Text = template.forwardMaxVoltage.ToString("N3");
+            positiveTolResText.Text = template.positiveTolerenceResistance.ToString("N3");
+            negativeTolResText.Text = template.negativeTolerenceResistance.ToString("N3");
+            contactResistanceText.Text = template.contactResistance.ToString("N3");
 
-            programTextBox.Text = model.modelName;
+            programTextBox.Text = template.testConfigurationName;
 
         }
 
 
         //Initiates save operation
-        public void SaveModel(string filePath)
+        public void SaveTestConfiguration(string filePath)
         {
-            //Utility method which saves Model to specified modelname file.
-            string modelName = System.IO.Path.GetFileNameWithoutExtension(filePath);
-            TestConfigurationTemplate model = new TestConfigurationTemplate();
-            model.modelName = modelName;
-            modelTextBlock.Text = model.modelName;
+            //Utility method which saves test configuration to specified testconfig name file.
+            string testConfigurationName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+            TestConfigurationTemplate template = new TestConfigurationTemplate();
+            template.testConfigurationName = testConfigurationName;
+            testConfigTextBlock.Text = template.testConfigurationName;
 
-            model.diodeCode = diodeCodeText.Text;
-            model.customerCode = customerCodeText.Text;
-            model.additionalCode = additionalCodeText.Text;
-            model.diodeType = TestConfigurationTemplate.GetDiodeTypeFromIndex(diodeTypeCombo.SelectedIndex);
-            model.barCodeOption = TestConfigurationTemplate.GetBarcodeOptionFromIndex(barCodePrinterCombo.SelectedIndex);
+            template.diodeCode = diodeCodeText.Text;
+            template.customerCode = customerCodeText.Text;
+            template.additionalCode = additionalCodeText.Text;
+            template.diodeType = TestConfigurationTemplate.GetDiodeTypeFromIndex(diodeTypeCombo.SelectedIndex);
+            template.barCodeOption = TestConfigurationTemplate.GetBarcodeOptionFromIndex(barCodePrinterCombo.SelectedIndex);
 
-            model.positiveTolerenceVoltage = double.Parse(positiveTolVoltageText.Text);
-            model.negativeTolerenceVoltage = double.Parse(negativeTolVoltageText.Text);
-            model.nominalForwardDropVolts = double.Parse(nominalFDVText.Text);
-            model.positiveTolerenceCurrent = double.Parse(postiveToleranceCurrentText.Text);
-            model.negativeTolerenceCurrent = double.Parse(negativeTolerenceCurrentText.Text);
-            model.nominalReverseCurrent = double.Parse(nominalRevCurrentText.Text);
-            model.forwardTestCurrent = double.Parse(forwardTestCurrentText.Text);
-            model.reverseTestVoltage = double.Parse(ReverseTestVoltageText.Text);
-            model.forwardMaxVoltage = double.Parse(forwardMaxVoltageText.Text);
-            model.positiveTolerenceResistance = double.Parse(positiveTolResText.Text);
-            model.negativeTolerenceResistance = double.Parse(negativeTolResText.Text);
-            model.contactResistance = double.Parse(contactResistanceText.Text);
+            template.positiveTolerenceVoltage = double.Parse(positiveTolVoltageText.Text);
+            template.negativeTolerenceVoltage = double.Parse(negativeTolVoltageText.Text);
+            template.nominalForwardDropVolts = double.Parse(nominalFDVText.Text);
+            template.positiveTolerenceCurrent = double.Parse(postiveToleranceCurrentText.Text);
+            template.negativeTolerenceCurrent = double.Parse(negativeTolerenceCurrentText.Text);
+            template.nominalReverseCurrent = double.Parse(nominalRevCurrentText.Text);
+            template.forwardTestCurrent = double.Parse(forwardTestCurrentText.Text);
+            template.reverseTestVoltage = double.Parse(ReverseTestVoltageText.Text);
+            template.forwardMaxVoltage = double.Parse(forwardMaxVoltageText.Text);
+            template.positiveTolerenceResistance = double.Parse(positiveTolResText.Text);
+            template.negativeTolerenceResistance = double.Parse(negativeTolResText.Text);
+            template.contactResistance = double.Parse(contactResistanceText.Text);
 
             try
             {
 
-                GlobalConfig.Connection.SaveModel(model);
+                GlobalConfig.Connection.SaveTestConfigurationToFile(template);
                 statusText.Text = "TEST CONFIGURATION FILE SAVED";
 
             }
@@ -301,7 +304,7 @@ namespace UI_TestRig
 
                     }
 
-                    SaveModel(ofd.FileName);
+                    SaveTestConfiguration(ofd.FileName);
                     statusText.Text = "TEST CONFIGURATION FILE SAVED";
                 }
                 else
@@ -341,11 +344,11 @@ namespace UI_TestRig
 
                 if (MessageBox.Show($"Delete Test Configuration {ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4)}?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    GlobalConfig.Connection.DeleteModel(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
+                    GlobalConfig.Connection.DeleteTestConfiguration(ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4));
                     statusText.Text = "TEST CONFIGURATION FILE DELETED";
-                    if (modelTextBlock.Text == ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4))
+                    if (testConfigTextBlock.Text == ofd.SafeFileName.Substring(0, ofd.SafeFileName.Length - 4))
                     {
-                        NewModel();
+                        NewTestConfiguration();
 
                     }
                 }
@@ -366,8 +369,8 @@ namespace UI_TestRig
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new MainPage(parent));
-
+            parent.programParameterPage = this;
+            ContainerWindow.container.ChangeFrame(parent);
         }
 
         private OpenFileDialog GetOpenFileDialog()
@@ -404,17 +407,17 @@ namespace UI_TestRig
 
                 }
 
-                //Loads all the model information from text file to ModelTemplate Class.
+                //Loads all the test config information from text file to TestConfigurationTemplate Class.
                 try
                 {
-                    TestConfigurationTemplate model = GlobalConfig.Connection.LoadModel(ofd.SafeFileName);
-                    if (model == null)
+                    TestConfigurationTemplate template = GlobalConfig.Connection.LoadTestConfigurationFromFile(ofd.SafeFileName);
+                    if (template == null)
                     {
                         MessageBox.Show("File has Invalid Fields.", "File Load Failed.", MessageBoxButton.OK, MessageBoxImage.Error);
                         statusText.Text = "COULD NOT OPEN TEST CONGIGURATION FILE";
                         return;
                     }
-                    CopyModelToTextBox(model);
+                    CopyTestConfigurationToTextBox(template);
                     statusText.Text = "TEST CONFIGURATION FILE OPENED SUCCESSFULLY";
                 }
                 catch (Exception exception)
@@ -428,6 +431,16 @@ namespace UI_TestRig
             }
         }
 
+        public void refreshTexts()
+        {
+            List<string> TextBoxNames = validationResults.Keys.ToList();
+            foreach(string textBoxName in TextBoxNames)
+            {
+                TextBox textBox = (TextBox)this.FindName(textBoxName);
+                textBox.Text = textBox.Text + '0';
+                textBox.Text = textBox.Text.Substring(0, textBox.Text.Length - 1);
+            }
+        }
 
         private void positiveTolVoltageText_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -435,8 +448,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceVoltageLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.positiveTolerenceVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.positiveTolerenceVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -469,8 +482,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceVoltageLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.negativeTolerenceVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.negativeTolerenceVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -504,8 +517,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalForwardDropVoltsLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.nominalForwardDropVoltsHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.nominalForwardDropVoltsLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -539,8 +552,8 @@ namespace UI_TestRig
 
 
                 if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                    || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh ||
-                    double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceCurrentLow)
+                    || double.Parse(box.Text) > GlobalConfig.machineDataObject.positiveTolerenceCurrentHigh ||
+                    double.Parse(box.Text) < GlobalConfig.machineDataObject.positiveTolerenceCurrentLow)
                 {
                     if (box.IsFocused == false)
                     {
@@ -570,8 +583,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.nominalReverseCurrentHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.nominalReverseCurrentLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.nominalReverseCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.nominalReverseCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -603,8 +616,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceCurrentLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.negativeTolerenceCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.negativeTolerenceCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -637,8 +650,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardTestCurrentHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardTestCurrentLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.forwardTestCurrentHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.forwardTestCurrentLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -671,8 +684,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.forwardMaxVoltageHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.forwardMaxVoltageLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.forwardMaxVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.forwardMaxVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -704,8 +717,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.reverseTestVoltageHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.reverseTestVoltageLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.reverseTestVoltageHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.reverseTestVoltageLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -738,8 +751,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.positiveTolerenceResistanceLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.positiveTolerenceResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.positiveTolerenceResistanceLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -772,8 +785,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.contactResistanceHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.contactResistanceLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.contactResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.contactResistanceLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -806,8 +819,8 @@ namespace UI_TestRig
 
 
             if (box.Text.Length == 0 || !double.TryParse(box.Text, out double d)
-                || double.Parse(box.Text) > GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh ||
-                double.Parse(box.Text) < GlobalConfig.machineDataModel.negativeTolerenceResistanceLow)
+                || double.Parse(box.Text) > GlobalConfig.machineDataObject.negativeTolerenceResistanceHigh ||
+                double.Parse(box.Text) < GlobalConfig.machineDataObject.negativeTolerenceResistanceLow)
             {
                 if (box.IsFocused == false)
                 {
@@ -840,12 +853,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    validationResults["diodeCode"] = "false";
+                    validationResults["diodeCodeText"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    validationResults["diodeCode"] = "true";
+                    validationResults["diodeCodeText"] = "true";
                 }
             }
         }
@@ -858,12 +871,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    validationResults["customerCode"] = "false";
+                    validationResults["customerCodeText"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    validationResults["customerCode"] = "true";
+                    validationResults["customerCodeText"] = "true";
                 }
             }
         }
@@ -876,12 +889,12 @@ namespace UI_TestRig
                 if (box.Text.Trim().Length == 0)
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Red);
-                    validationResults["additionalCode"] = "false";
+                    validationResults["additionalCodeText"] = "false";
                 }
                 else
                 {
                     box.BorderBrush = new SolidColorBrush(Colors.Black);
-                    validationResults["additionalCode"] = "true";
+                    validationResults["additionalCodeText"] = "true";
                 }
             }
         }

@@ -486,7 +486,7 @@
             </Border>
 
             <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button x:Name="applyButton" Content="Apply" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0,0.2,0.4" VerticalAlignment="Bottom" Click="applyButton_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -496,7 +496,7 @@
             </Border>
 
             <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button x:Name="saveButton"  Content="Save" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="saveButton_Click" >
+                <Button x:Name="saveButton"  Content="Save to File" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="saveButton_Click" >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>

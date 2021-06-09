@@ -7,11 +7,11 @@ using System.Text;
 namespace TestRigLibrary.Templates
 {
     /// <summary>
-    /// Represents a model
+    /// Represents a test configuration
     /// </summary>
     public class TestConfigurationTemplate 
     {
-        public string modelName;
+        public string testConfigurationName;
         public string diodeCode;
         public string additionalCode;
         public string customerCode;

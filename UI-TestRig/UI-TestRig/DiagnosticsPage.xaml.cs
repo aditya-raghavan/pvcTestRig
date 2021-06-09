@@ -20,21 +20,30 @@ namespace UI_TestRig
     /// </summary>
     public partial class DiagnosticsPage : Page
     {
-        IContainer parent;
-        public DiagnosticsPage(IContainer container)
+        public MainPage parent { get; set; }
+
+        public MachineDataPage machineDataPage { get; set; }
+        public DiagnosticsPage(MainPage p)
         {
             InitializeComponent();
-            parent = container;
+            parent = p;            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new MainPage(parent));
+            parent.diagnosticsPage = this;
+            ContainerWindow.container.ChangeFrame(parent);
         }
 
         private void machineDataButton_Click(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new MachineDataPage(parent));
+            if(machineDataPage == null)
+            {
+                machineDataPage = new MachineDataPage(this);
+            }
+            machineDataPage.parent = this;
+            machineDataPage.getMachineData();
+            ContainerWindow.container.ChangeFrame(machineDataPage);
         }
     }
 }

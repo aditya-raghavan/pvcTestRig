@@ -23,11 +23,11 @@ namespace UI_TestRig
     /// </summary>
     public partial class ContainerWindow : Window,IContainer
     {
-        
+        public static ContainerWindow container;
         public ContainerWindow()
         {
             InitializeComponent();
-            mainFrame.Content = new MainPage(this);
+            mainFrame.Content = new MainPage();
             GlobalConfig.InitialiseConnections();
             GlobalConfig.LoadMachineData();
             WindowState = WindowState.Maximized;
@@ -37,11 +37,12 @@ namespace UI_TestRig
                 MessageBox.Show("MACHINE DATA FILE NOT FOUND.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+            container = this;
 
         }
 
         public void ChangeFrame(Page page)
-        {
+        {            
             mainFrame.Content = page;
         }
     }

@@ -16,5 +16,5 @@ DEBUG;TRACE
 251450886258
 App.xaml;DiagnosticsPage.xaml;MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;ProgramParameterPage.xaml;
 
-True
+False
 

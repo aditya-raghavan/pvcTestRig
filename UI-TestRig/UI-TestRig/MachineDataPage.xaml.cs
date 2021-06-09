@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TestRigLibrary;
 
+
 namespace UI_TestRig
 {
     /// <summary>
@@ -21,7 +22,8 @@ namespace UI_TestRig
     /// </summary>
     public partial class MachineDataPage : Page
     {
-        IContainer parent;
+
+        public DiagnosticsPage parent { get; set; }
         Dictionary<string, string> validationTextBox = new Dictionary<string, string>()
         {
             {"positiveToleranceVoltageHighText","true" },
@@ -62,53 +64,53 @@ namespace UI_TestRig
                         
         };
 
-        public MachineDataPage(IContainer container)
+        public MachineDataPage(DiagnosticsPage p)
         {
             InitializeComponent();
-            parent = container;
+            parent = p;
             statusLabel.Text = "READY";
             getMachineData();
 
 
         }
 
-        private void getMachineData()
+        public void getMachineData()
         {
-            positiveToleranceVoltageHighText.Text = GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh.ToString("N3");
-            positiveToleranceVoltageLowText.Text = GlobalConfig.machineDataModel.positiveTolerenceVoltageLow.ToString("N3");
+            positiveToleranceVoltageHighText.Text = GlobalConfig.machineDataObject.positiveTolerenceVoltageHigh.ToString("N3");
+            positiveToleranceVoltageLowText.Text = GlobalConfig.machineDataObject.positiveTolerenceVoltageLow.ToString("N3");
 
-            negativeToleranceVoltageHighText.Text = GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh.ToString("N3");
-            negativeToleranceVoltageLowText.Text = GlobalConfig.machineDataModel.negativeTolerenceVoltageLow.ToString("N3");
+            negativeToleranceVoltageHighText.Text = GlobalConfig.machineDataObject.negativeTolerenceVoltageHigh.ToString("N3");
+            negativeToleranceVoltageLowText.Text = GlobalConfig.machineDataObject.negativeTolerenceVoltageLow.ToString("N3");
 
-            nominalForwardDropVoltageHighText.Text = GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh.ToString("N3");
-            nominalForwardDropVoltageLowText.Text = GlobalConfig.machineDataModel.nominalForwardDropVoltsLow.ToString("N3");
+            nominalForwardDropVoltageHighText.Text = GlobalConfig.machineDataObject.nominalForwardDropVoltsHigh.ToString("N3");
+            nominalForwardDropVoltageLowText.Text = GlobalConfig.machineDataObject.nominalForwardDropVoltsLow.ToString("N3");
 
-            positiveToleranceReverseCurrentHighText.Text = GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh.ToString("N3");
-            positiveToleranceReverseCurrentLowText.Text = GlobalConfig.machineDataModel.positiveTolerenceCurrentLow.ToString("N3");
+            positiveToleranceReverseCurrentHighText.Text = GlobalConfig.machineDataObject.positiveTolerenceCurrentHigh.ToString("N3");
+            positiveToleranceReverseCurrentLowText.Text = GlobalConfig.machineDataObject.positiveTolerenceCurrentLow.ToString("N3");
 
-            negativeToleranceReverseCurrentHighText.Text = GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh.ToString("N3");
-            negativeToleranceReverseCurrentLowText.Text = GlobalConfig.machineDataModel.negativeTolerenceCurrentLow.ToString("N3");
+            negativeToleranceReverseCurrentHighText.Text = GlobalConfig.machineDataObject.negativeTolerenceCurrentHigh.ToString("N3");
+            negativeToleranceReverseCurrentLowText.Text = GlobalConfig.machineDataObject.negativeTolerenceCurrentLow.ToString("N3");
 
-            nominalReverseCurrentHighText.Text = GlobalConfig.machineDataModel.nominalReverseCurrentHigh.ToString("N3");
-            nominalReverseCurrentLowText.Text = GlobalConfig.machineDataModel.nominalReverseCurrentLow.ToString("N3");
+            nominalReverseCurrentHighText.Text = GlobalConfig.machineDataObject.nominalReverseCurrentHigh.ToString("N3");
+            nominalReverseCurrentLowText.Text = GlobalConfig.machineDataObject.nominalReverseCurrentLow.ToString("N3");
 
-            forwardTestCurrentHighText.Text = GlobalConfig.machineDataModel.forwardTestCurrentHigh.ToString("N3");
-            forwardTestCurrentLowText.Text = GlobalConfig.machineDataModel.forwardTestCurrentLow.ToString("N3");
+            forwardTestCurrentHighText.Text = GlobalConfig.machineDataObject.forwardTestCurrentHigh.ToString("N3");
+            forwardTestCurrentLowText.Text = GlobalConfig.machineDataObject.forwardTestCurrentLow.ToString("N3");
 
-            reverseTestVoltageHighText.Text = GlobalConfig.machineDataModel.reverseTestVoltageHigh.ToString("N3");
-            reverseTestVoltageLowText.Text = GlobalConfig.machineDataModel.reverseTestVoltageLow.ToString("N3");
+            reverseTestVoltageHighText.Text = GlobalConfig.machineDataObject.reverseTestVoltageHigh.ToString("N3");
+            reverseTestVoltageLowText.Text = GlobalConfig.machineDataObject.reverseTestVoltageLow.ToString("N3");
 
-            forwardMaxVoltageHighText.Text = GlobalConfig.machineDataModel.forwardMaxVoltageHigh.ToString("N3");
-            forwardMaxVoltageLowText.Text = GlobalConfig.machineDataModel.forwardMaxVoltageLow.ToString("N3");
+            forwardMaxVoltageHighText.Text = GlobalConfig.machineDataObject.forwardMaxVoltageHigh.ToString("N3");
+            forwardMaxVoltageLowText.Text = GlobalConfig.machineDataObject.forwardMaxVoltageLow.ToString("N3");
 
-            positiveToleranceContactResistanceHighText.Text = GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh.ToString("N3");
-            positiveToleranceContactResistanceLowText.Text = GlobalConfig.machineDataModel.positiveTolerenceResistanceLow.ToString("N3");
+            positiveToleranceContactResistanceHighText.Text = GlobalConfig.machineDataObject.positiveTolerenceResistanceHigh.ToString("N3");
+            positiveToleranceContactResistanceLowText.Text = GlobalConfig.machineDataObject.positiveTolerenceResistanceLow.ToString("N3");
 
-            negativeToleranceContactResistanceHighText.Text = GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh.ToString("N3");
-            negativeToleranceContactResistanceLowText.Text = GlobalConfig.machineDataModel.negativeTolerenceResistanceLow.ToString("N3");
+            negativeToleranceContactResistanceHighText.Text = GlobalConfig.machineDataObject.negativeTolerenceResistanceHigh.ToString("N3");
+            negativeToleranceContactResistanceLowText.Text = GlobalConfig.machineDataObject.negativeTolerenceResistanceLow.ToString("N3");
 
-            contactResistanceHighText.Text = GlobalConfig.machineDataModel.contactResistanceHigh.ToString("N3");
-            contactResistanceLowText.Text = GlobalConfig.machineDataModel.contactResistanceLow.ToString("N3");
+            contactResistanceHighText.Text = GlobalConfig.machineDataObject.contactResistanceHigh.ToString("N3");
+            contactResistanceLowText.Text = GlobalConfig.machineDataObject.contactResistanceLow.ToString("N3");
         }
 
         private bool ValidateForm()
@@ -123,7 +125,8 @@ namespace UI_TestRig
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new DiagnosticsPage(parent));
+            parent.machineDataPage = this;
+            ContainerWindow.container.ChangeFrame(parent);
         }
 
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -197,42 +200,7 @@ namespace UI_TestRig
 
         private void SaveMachineData()
         {
-            GlobalConfig.machineDataModel.positiveTolerenceVoltageHigh = double.Parse(positiveToleranceVoltageHighText.Text);
-            GlobalConfig.machineDataModel.positiveTolerenceVoltageLow = double.Parse(positiveToleranceVoltageLowText.Text);
-
-            GlobalConfig.machineDataModel.negativeTolerenceVoltageHigh = double.Parse(negativeToleranceVoltageHighText.Text);
-            GlobalConfig.machineDataModel.negativeTolerenceVoltageLow = double.Parse(negativeToleranceVoltageLowText.Text);
-
-            GlobalConfig.machineDataModel.nominalForwardDropVoltsHigh = double.Parse(nominalForwardDropVoltageHighText.Text);
-            GlobalConfig.machineDataModel.nominalForwardDropVoltsLow = double.Parse(nominalForwardDropVoltageLowText.Text);
-
-            GlobalConfig.machineDataModel.positiveTolerenceCurrentHigh = double.Parse(positiveToleranceReverseCurrentHighText.Text);
-            GlobalConfig.machineDataModel.positiveTolerenceCurrentLow = double.Parse(positiveToleranceReverseCurrentLowText.Text);
-
-            GlobalConfig.machineDataModel.negativeTolerenceCurrentHigh = double.Parse(negativeToleranceReverseCurrentHighText.Text);
-            GlobalConfig.machineDataModel.negativeTolerenceCurrentLow = double.Parse(negativeToleranceReverseCurrentLowText.Text);
-
-            GlobalConfig.machineDataModel.nominalReverseCurrentHigh = double.Parse(nominalReverseCurrentHighText.Text);
-            GlobalConfig.machineDataModel.nominalReverseCurrentLow = double.Parse(nominalReverseCurrentLowText.Text);
-
-            GlobalConfig.machineDataModel.forwardTestCurrentHigh = double.Parse(forwardTestCurrentHighText.Text);
-            GlobalConfig.machineDataModel.forwardTestCurrentLow = double.Parse(forwardTestCurrentLowText.Text);
-
-            GlobalConfig.machineDataModel.reverseTestVoltageHigh = double.Parse(reverseTestVoltageHighText.Text);
-            GlobalConfig.machineDataModel.reverseTestVoltageLow = double.Parse(reverseTestVoltageLowText.Text);
-
-            GlobalConfig.machineDataModel.forwardMaxVoltageHigh = double.Parse(forwardMaxVoltageHighText.Text);
-            GlobalConfig.machineDataModel.forwardMaxVoltageLow = double.Parse(forwardMaxVoltageLowText.Text);
-
-            GlobalConfig.machineDataModel.positiveTolerenceResistanceHigh = double.Parse(positiveToleranceContactResistanceHighText.Text);
-            GlobalConfig.machineDataModel.positiveTolerenceResistanceLow = double.Parse(positiveToleranceContactResistanceLowText.Text);
-
-            GlobalConfig.machineDataModel.negativeTolerenceResistanceHigh = double.Parse(negativeToleranceContactResistanceHighText.Text);
-            GlobalConfig.machineDataModel.negativeTolerenceResistanceLow = double.Parse(negativeToleranceContactResistanceLowText.Text);
-
-            GlobalConfig.machineDataModel.contactResistanceHigh = double.Parse(contactResistanceHighText.Text);
-            GlobalConfig.machineDataModel.contactResistanceLow = double.Parse(contactResistanceLowText.Text);
-
+            ApplyMachineData();
             GlobalConfig.Connection.SaveMachineData();
         }
 
@@ -256,6 +224,51 @@ namespace UI_TestRig
             {
                 statusLabel.Text = "SAVE FAILED";
             }
+        }
+
+        private void ApplyMachineData()
+        {
+            GlobalConfig.machineDataObject.positiveTolerenceVoltageHigh = double.Parse(positiveToleranceVoltageHighText.Text);
+            GlobalConfig.machineDataObject.positiveTolerenceVoltageLow = double.Parse(positiveToleranceVoltageLowText.Text);
+
+            GlobalConfig.machineDataObject.negativeTolerenceVoltageHigh = double.Parse(negativeToleranceVoltageHighText.Text);
+            GlobalConfig.machineDataObject.negativeTolerenceVoltageLow = double.Parse(negativeToleranceVoltageLowText.Text);
+
+            GlobalConfig.machineDataObject.nominalForwardDropVoltsHigh = double.Parse(nominalForwardDropVoltageHighText.Text);
+            GlobalConfig.machineDataObject.nominalForwardDropVoltsLow = double.Parse(nominalForwardDropVoltageLowText.Text);
+
+            GlobalConfig.machineDataObject.positiveTolerenceCurrentHigh = double.Parse(positiveToleranceReverseCurrentHighText.Text);
+            GlobalConfig.machineDataObject.positiveTolerenceCurrentLow = double.Parse(positiveToleranceReverseCurrentLowText.Text);
+
+            GlobalConfig.machineDataObject.negativeTolerenceCurrentHigh = double.Parse(negativeToleranceReverseCurrentHighText.Text);
+            GlobalConfig.machineDataObject.negativeTolerenceCurrentLow = double.Parse(negativeToleranceReverseCurrentLowText.Text);
+
+            GlobalConfig.machineDataObject.nominalReverseCurrentHigh = double.Parse(nominalReverseCurrentHighText.Text);
+            GlobalConfig.machineDataObject.nominalReverseCurrentLow = double.Parse(nominalReverseCurrentLowText.Text);
+
+            GlobalConfig.machineDataObject.forwardTestCurrentHigh = double.Parse(forwardTestCurrentHighText.Text);
+            GlobalConfig.machineDataObject.forwardTestCurrentLow = double.Parse(forwardTestCurrentLowText.Text);
+
+            GlobalConfig.machineDataObject.reverseTestVoltageHigh = double.Parse(reverseTestVoltageHighText.Text);
+            GlobalConfig.machineDataObject.reverseTestVoltageLow = double.Parse(reverseTestVoltageLowText.Text);
+
+            GlobalConfig.machineDataObject.forwardMaxVoltageHigh = double.Parse(forwardMaxVoltageHighText.Text);
+            GlobalConfig.machineDataObject.forwardMaxVoltageLow = double.Parse(forwardMaxVoltageLowText.Text);
+
+            GlobalConfig.machineDataObject.positiveTolerenceResistanceHigh = double.Parse(positiveToleranceContactResistanceHighText.Text);
+            GlobalConfig.machineDataObject.positiveTolerenceResistanceLow = double.Parse(positiveToleranceContactResistanceLowText.Text);
+
+            GlobalConfig.machineDataObject.negativeTolerenceResistanceHigh = double.Parse(negativeToleranceContactResistanceHighText.Text);
+            GlobalConfig.machineDataObject.negativeTolerenceResistanceLow = double.Parse(negativeToleranceContactResistanceLowText.Text);
+
+            GlobalConfig.machineDataObject.contactResistanceHigh = double.Parse(contactResistanceHighText.Text);
+            GlobalConfig.machineDataObject.contactResistanceLow = double.Parse(contactResistanceLowText.Text);
+            statusLabel.Text = "APPLIED CHANGES";
+        }
+
+        private void applyButton_Click(object sender, RoutedEventArgs e)
+        {
+            ApplyMachineData();
         }
     }
 }

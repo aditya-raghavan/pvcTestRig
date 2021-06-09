@@ -21,14 +21,12 @@ namespace UI_TestRig
     /// </summary>
     public partial class MainPage : Page
     {
-        IContainer parent;
-        
-        public MainPage(IContainer container)
+        public ProgramParameterPage programParameterPage;
+        public DiagnosticsPage diagnosticsPage { get; set; }
+
+        public MainPage()
         {
-            InitializeComponent();
-            parent = container;
-            
-            
+            InitializeComponent();            
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -41,12 +39,23 @@ namespace UI_TestRig
 
         private void editProcessParameterButton_Click(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new ProgramParameterPage(parent));
+            if(programParameterPage == null)
+            {
+                programParameterPage = new ProgramParameterPage(this);
+            }
+            programParameterPage.parent = this;
+            programParameterPage.refreshTexts();
+            ContainerWindow.container.ChangeFrame(programParameterPage);
         }
 
         private void diagnosticsButton_Click(object sender, RoutedEventArgs e)
         {
-            parent.ChangeFrame(new DiagnosticsPage(parent));
+            if(diagnosticsPage == null)
+            {
+                diagnosticsPage = new DiagnosticsPage(this);
+            }
+            diagnosticsPage.parent = this;
+            ContainerWindow.container.ChangeFrame(diagnosticsPage);
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TestRigLibrary.Templates;
 
+
 namespace TestRigLibrary
 {
     /// <summary>
@@ -18,6 +19,7 @@ namespace TestRigLibrary
 
         public static string machinedDataFile = "MachineData.csv";
         public static IDataConnection Connection { get; set; }
+
 
         public static void InitialiseConnections()
         {
@@ -37,7 +39,7 @@ namespace TestRigLibrary
             Connection = txt;
         }
 
-        public static TestConfigurationTemplate machineDataModel { get; set; } = new TestConfigurationTemplate();
+        public static TestConfigurationTemplate machineDataObject { get; set; } = new TestConfigurationTemplate();
 
         public static bool isMachineDataFileThere = false;
 
@@ -45,36 +47,36 @@ namespace TestRigLibrary
         {
             if(Connection.CheckMachineDataFile() == true)
             {
-                machineDataModel = Connection.LoadMachineDataFile();
+                machineDataObject = Connection.LoadMachineDataFile();
                 isMachineDataFileThere = true;
             }
             else
             {
-                machineDataModel.positiveTolerenceVoltageHigh = 0;
-                machineDataModel.negativeTolerenceVoltageHigh = 0;
-                machineDataModel.nominalForwardDropVoltsHigh = 0;
-                machineDataModel.positiveTolerenceCurrentHigh = 0;
-                machineDataModel.negativeTolerenceCurrentHigh = 0;
-                machineDataModel.nominalReverseCurrentHigh = 0;
-                machineDataModel.forwardTestCurrentHigh = 0;
-                machineDataModel.reverseTestVoltageHigh = 0;
-                machineDataModel.forwardMaxVoltageHigh = 0;
-                machineDataModel.positiveTolerenceResistanceHigh = 0;
-                machineDataModel.negativeTolerenceResistanceHigh = 0;
-                machineDataModel.contactResistanceHigh = 0;
+                machineDataObject.positiveTolerenceVoltageHigh = 0;
+                machineDataObject.negativeTolerenceVoltageHigh = 0;
+                machineDataObject.nominalForwardDropVoltsHigh = 0;
+                machineDataObject.positiveTolerenceCurrentHigh = 0;
+                machineDataObject.negativeTolerenceCurrentHigh = 0;
+                machineDataObject.nominalReverseCurrentHigh = 0;
+                machineDataObject.forwardTestCurrentHigh = 0;
+                machineDataObject.reverseTestVoltageHigh = 0;
+                machineDataObject.forwardMaxVoltageHigh = 0;
+                machineDataObject.positiveTolerenceResistanceHigh = 0;
+                machineDataObject.negativeTolerenceResistanceHigh = 0;
+                machineDataObject.contactResistanceHigh = 0;
 
-                machineDataModel.positiveTolerenceVoltageLow = 0;
-                machineDataModel.negativeTolerenceVoltageLow = 0;
-                machineDataModel.nominalForwardDropVoltsLow = 0;
-                machineDataModel.positiveTolerenceCurrentLow = 0;
-                machineDataModel.negativeTolerenceCurrentLow = 0;
-                machineDataModel.nominalReverseCurrentLow = 0;
-                machineDataModel.forwardTestCurrentLow = 0;
-                machineDataModel.reverseTestVoltageLow = 0;
-                machineDataModel.forwardMaxVoltageLow = 0;
-                machineDataModel.positiveTolerenceResistanceLow = 0;
-                machineDataModel.negativeTolerenceResistanceLow = 0;
-                machineDataModel.contactResistanceLow = 0;
+                machineDataObject.positiveTolerenceVoltageLow = 0;
+                machineDataObject.negativeTolerenceVoltageLow = 0;
+                machineDataObject.nominalForwardDropVoltsLow = 0;
+                machineDataObject.positiveTolerenceCurrentLow = 0;
+                machineDataObject.negativeTolerenceCurrentLow = 0;
+                machineDataObject.nominalReverseCurrentLow = 0;
+                machineDataObject.forwardTestCurrentLow = 0;
+                machineDataObject.reverseTestVoltageLow = 0;
+                machineDataObject.forwardMaxVoltageLow = 0;
+                machineDataObject.positiveTolerenceResistanceLow = 0;
+                machineDataObject.negativeTolerenceResistanceLow = 0;
+                machineDataObject.contactResistanceLow = 0;
             }
         }
     }

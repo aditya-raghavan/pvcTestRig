@@ -145,33 +145,35 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
                 <ColumnDefinition Width="1.7*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Background="#cccccc">
-                <Label x:Name="modelLabel" Margin="38,10,0,0" FontSize="14" FontWeight="Bold" Content="Test Configuration"></Label>
-                <Border Margin="0,0,0,0" Width="250" BorderThickness="2" BorderBrush="#4d4d4d">
-                    <TextBlock x:Name="modelTextBlock" TextAlignment="Center"  Padding="5"  FontSize="14" Background="White" FontWeight="Bold" Width="250" ></TextBlock>
-                </Border>
-                <Border Margin="0,10,0,0" Width="150" BorderThickness="2" BorderBrush="#4d4d4d">
-                    <Border.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="7"></Setter>
-                        </Style>
-                    </Border.Resources>
-                    <Button x:Name="loadModelButton" Content="OPEN" Width="148" FontWeight="Bold"  Height="30" Foreground="white" Background="#999999" Click="Button_Click">
+            <Border BorderThickness="2" BorderBrush="#4d4d4d">
+                <StackPanel Grid.Column="0" Background="#cccccc">
+                    <Label x:Name="testConfigLabel" Margin="10,0,0,0" FontSize="12" FontWeight="Bold" Content="Test Configuration"></Label>
+                    <Border Margin="0,0,0,0" Width="250" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="testConfigTextBlock" TextAlignment="Center"  Padding="2"  FontSize="14" Background="White" FontWeight="Bold" Width="250" ></TextBlock>
+                    </Border>
+                    <Border Margin="0,10,0,0" Width="132.8" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <Border.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="7"></Setter>
+                            </Style>
+                        </Border.Resources>
+                        <Button x:Name="loadTestConfigButton" Content="Open" Width="132.8" FontWeight="Bold"  Height="44.8" Foreground="white" Background="#999999" Click="Button_Click" FontSize="18">
 
-                    </Button>
-                </Border>
-                <Border Margin="0,10,0,10" Width="250" BorderThickness="2" BorderBrush="#4d4d4d">
-                    <TextBlock x:Name="statusText" FontWeight="Bold" Background="White" FontSize="8" Padding="4" Foreground="Red" Width="250" TextAlignment="Left" Text="READY"></TextBlock>
-                </Border>
+                        </Button>
+                    </Border>
+                    <Border Margin="0,10,0,10" Width="250" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="statusText" FontWeight="Bold" Background="White" FontSize="8" Padding="4" Foreground="Red" Width="250" TextAlignment="Left" Text="READY"></TextBlock>
+                    </Border>
 
-            </StackPanel>
+                </StackPanel>
+            </Border>
 
-            <StackPanel Grid.Column="1" Margin="10,0,0,0">
+            <StackPanel Grid.Column="1" Margin="30,0">
                 <Border BorderThickness="2" BorderBrush="#4d4d4d">
                     <TextBlock x:Name="typeInformationTextBlock" Background="#cccccc" TextAlignment="Center" Padding="5" FontWeight="Bold" Text="Type Information"></TextBlock>
                 </Border>

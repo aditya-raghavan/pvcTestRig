@@ -12,13 +12,13 @@ namespace TestRigLibrary
     /// </summary>
     public interface IDataConnection
     {
-        void SaveModel(TestConfigurationTemplate model);
+        void SaveTestConfigurationToFile(TestConfigurationTemplate template);
 
-        TestConfigurationTemplate LoadModel(string modelName);
+        TestConfigurationTemplate LoadTestConfigurationFromFile(string testConfigurationName);
 
-        List<string> GetAllModelNames();
+        
 
-        void DeleteModel(string modelName);
+        void DeleteTestConfiguration(string testConfigurationName);
 
         void SaveMachineData();
 

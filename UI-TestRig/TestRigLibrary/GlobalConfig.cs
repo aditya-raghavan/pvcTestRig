@@ -18,7 +18,13 @@ namespace TestRigLibrary
         public static string  allowedFileTypes = "Text documents (.csv)|*.csv";
 
         public static string machinedDataFile = "MachineData.csv";
+        public static string groups_functions_file { get; set; } = "Groups_Functions.csv";
+        public static string UsersFile { get; set; } = "Users.csv";
         public static IDataConnection Connection { get; set; }
+
+        public static UserTemplate uAdmin_CurrentUser { get; set; } = null;
+        public static List<GroupTemplate> GroupsList { get; set; }
+        public static List<UserTemplate> UsersList { get; set; }
 
 
         public static void InitialiseConnections()
@@ -35,6 +41,10 @@ namespace TestRigLibrary
             {
                 Directory.CreateDirectory($"{ ConfigurationManager.AppSettings["filePath"] }");
             }
+            if (!Directory.Exists($"{ ConfigurationManager.AppSettings["userFilesPath"] }"))
+            {
+                Directory.CreateDirectory($"{ ConfigurationManager.AppSettings["userFilesPath"] }");
+            }
             TextConnector txt = new TextConnector();
             Connection = txt;
         }
@@ -42,6 +52,15 @@ namespace TestRigLibrary
         public static TestConfigurationTemplate machineDataObject { get; set; } = new TestConfigurationTemplate();
 
         public static bool isMachineDataFileThere = false;
+
+        public static void LoadAllData()
+        {
+            LoadMachineData();
+            GroupsList = Connection.LoadGroups();
+            UsersList = Connection.LoadUsers();
+
+            
+        }
 
         public static void LoadMachineData()
         {

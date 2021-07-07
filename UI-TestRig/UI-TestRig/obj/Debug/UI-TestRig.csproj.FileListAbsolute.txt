@@ -29,3 +29,12 @@ C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\DiagnosticsPage.baml
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MachineDataPage.g.cs
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MachineDataPage.baml
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\App.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\LoginPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\LoginPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UserAdministration_UsersTabPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UserAdministration_UsersTabPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\AddUserWindow.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\AddUserWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModifyUserWindow.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModifyUserWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ChangePasswordWindow.baml

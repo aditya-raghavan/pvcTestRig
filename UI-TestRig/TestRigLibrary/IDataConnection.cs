@@ -25,5 +25,10 @@ namespace TestRigLibrary
         bool CheckMachineDataFile();
 
         TestConfigurationTemplate LoadMachineDataFile();
+
+        List<GroupTemplate> LoadGroups();
+        List<UserTemplate> LoadUsers();
+
+        void SaveUsersToFile();
     }
 }

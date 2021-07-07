@@ -20,7 +20,7 @@ namespace UI_TestRig
     /// <summary>
     /// Interaction logic for MachineData.xaml
     /// </summary>
-    public partial class MachineDataPage : Page
+    public partial class MachineDataPage : Page,IPage
     {
 
         public DiagnosticsPage parent { get; set; }
@@ -269,6 +269,18 @@ namespace UI_TestRig
         private void applyButton_Click(object sender, RoutedEventArgs e)
         {
             ApplyMachineData();
+        }
+
+        public void CheckUser()
+        {
+            if (GlobalConfig.uAdmin_CurrentUser != null)
+            {
+                userTextBox.Text = GlobalConfig.uAdmin_CurrentUser.UserId;
+            }
+            else
+            {
+                userTextBox.Text = "";
+            }
         }
     }
 }

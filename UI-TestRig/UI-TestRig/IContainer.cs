@@ -9,6 +9,6 @@ namespace UI_TestRig
 {
     public interface IContainer
     {
-        void ChangeFrame(Page page);
+        void ChangeFrame(IPage page);
     }
 }

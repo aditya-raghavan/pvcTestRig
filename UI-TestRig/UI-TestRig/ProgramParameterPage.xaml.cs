@@ -22,7 +22,7 @@ namespace UI_TestRig
     /// <summary>
     /// Interaction logic for ProgramParameterPage.xaml
     /// </summary>
-    public partial class ProgramParameterPage : Page
+    public partial class ProgramParameterPage : Page,IPage
     {
 
         public MainPage parent { get; set; }
@@ -373,6 +373,17 @@ namespace UI_TestRig
             ContainerWindow.container.ChangeFrame(parent);
         }
 
+        public void CheckUser()
+        {
+            if (GlobalConfig.uAdmin_CurrentUser != null)
+            {
+                userTextBox.Text = GlobalConfig.uAdmin_CurrentUser.UserId;
+            }
+            else
+            {
+                userTextBox.Text = "";
+            }
+        }
         private OpenFileDialog GetOpenFileDialog()
         {
             OpenFileDialog ofd = new OpenFileDialog();

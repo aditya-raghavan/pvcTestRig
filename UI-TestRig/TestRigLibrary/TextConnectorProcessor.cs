@@ -15,7 +15,7 @@ namespace TestRigLibrary
     /// </summary>
     public static class TextConnectorProcessor
     {
-        private static Dictionary<string,int> GetTypeIndexDict()
+        private static Dictionary<string, int> GetTypeIndexDict()
         {
             return new Dictionary<string, int>()
             {
@@ -64,7 +64,7 @@ namespace TestRigLibrary
             };
         }
 
-        private static Dictionary<string,int> GetMachineDataReadings()
+        private static Dictionary<string, int> GetMachineDataReadings()
         {
             return new Dictionary<string, int>()
             {
@@ -95,7 +95,7 @@ namespace TestRigLibrary
             };
         }
 
-        private static Dictionary<string,string> GetMachineDataUnits()
+        private static Dictionary<string, string> GetMachineDataUnits()
         {
             return new Dictionary<string, string>()
             {
@@ -133,7 +133,7 @@ namespace TestRigLibrary
         /// <returns></returns>
         public static string FullFilePath(this string fileName)
         {
-            
+
             return $"{ ConfigurationManager.AppSettings["filePath"] }\\{fileName}";
 
         }
@@ -143,6 +143,11 @@ namespace TestRigLibrary
 
             return $"{ ConfigurationManager.AppSettings["machinedataPath"] }\\{fileName}";
 
+        }
+
+        public static string FullUserDataPath(this string fileName)
+        {
+            return $"{ ConfigurationManager.AppSettings["userFilesPath"] }\\{fileName}";
         }
 
         /// <summary>
@@ -168,15 +173,15 @@ namespace TestRigLibrary
         public static TestConfigurationTemplate ConvertToTestConfigurationTemplate(this List<string> lines)
         {
             TestConfigurationTemplate template = new TestConfigurationTemplate();
-            
+
 
             string line = ExtractValuesFromTestConfigurationFile(lines);
-            if(line == null)
+            if (line == null)
             {
                 return null;
             }
 
-            if(line.Length != 0)
+            if (line.Length != 0)
             {
                 string[] cols = line.Split(',');
 
@@ -200,7 +205,7 @@ namespace TestRigLibrary
                 template.negativeTolerenceResistance = double.Parse(cols[16]);
                 template.contactResistance = double.Parse(cols[17]);
 
-                
+
             }
 
             return template;
@@ -242,6 +247,126 @@ namespace TestRigLibrary
 
 
             return template;
+        }
+
+        public static List<GroupTemplate> ConvertToGroupObject(this List<string> lines)
+        {
+            List<GroupTemplate> GroupsList = new List<GroupTemplate>();
+            List<string> FunctionsList = new List<string>();
+            List<string> LinesCopy = new List<string>();
+            if(lines == null || lines.Count == 0)
+            {
+                return GroupsList;
+            }
+            foreach (string line in lines)
+            {
+                LinesCopy.Add(line);
+            }
+            foreach (string line in lines)
+            {
+                if (line == "GROUP DETAILS")
+                {
+                    LinesCopy.Remove(line);
+                    break;
+                }
+                FunctionsList.Add(line);
+                LinesCopy.Remove(line);
+
+            }
+            foreach (string line in LinesCopy)
+            {
+                GroupTemplate template = new GroupTemplate();
+                string[] cols = line.Split(',');
+                if(cols.Length == 3 && int.TryParse(cols[0],out int x)== true)
+                {
+                    bool isDuplicateGroup = false;
+                    foreach(GroupTemplate group in GroupsList)
+                    {
+                        if(group.GroupId == x || group.GroupName == cols[1])
+                        {
+                            isDuplicateGroup = true;
+                        }
+                        
+                    }
+                    if (isDuplicateGroup == false)
+                    {
+                        template.GroupId = int.Parse(cols[0]);
+                        template.GroupName = cols[1];
+                        string[] groupFunctions = cols[2].Split('|');
+                        foreach (string function in groupFunctions)
+                        {
+                            if (FunctionsList.Contains(function))
+                            {
+                                template.AllowedFunctions.Add(function);
+                            }
+
+                        }
+                        GroupsList.Add(template);
+                    }
+                }
+                
+            }
+            return GroupsList;
+
+        }
+
+        public static List<UserTemplate> ConvertToUserObject(this List<string> lines)
+        {
+            
+            List<UserTemplate> usersList = new List<UserTemplate>();
+            if(lines == null || lines.Count == 0)
+            {
+                return usersList;
+            }
+            foreach(string line in lines)
+            {
+                string[] cols = line.Split(',');
+                UserTemplate user = new UserTemplate();
+                if(cols.Length == 3)
+                {
+                    user.UserId = cols[0];
+                    user.Password = cols[1];
+                    if(int.TryParse(cols[2], out int x))
+                    {
+                        user.Group = GetGroupFromId(cols[2]);
+                        if(user.Group != null)
+                        {
+                            usersList.Add(user);
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            return usersList;
+            
+        }
+
+        private static GroupTemplate GetGroupFromId(string id)
+        {
+            bool found = false;
+            GroupTemplate obj = new GroupTemplate();
+            if(GlobalConfig.GroupsList == null || GlobalConfig.GroupsList.Count == 0)
+            {
+                return null;
+            }
+            foreach(GroupTemplate group in GlobalConfig.GroupsList)
+            {
+                if(group.GroupId == int.Parse(id))
+                {
+                    obj = group;
+                    found = true;
+                }
+            }
+            if (found)
+            {
+                return obj;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private static string ExtractValuesFromMachineDataFile(List<string> lines)

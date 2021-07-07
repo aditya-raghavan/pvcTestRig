@@ -19,14 +19,18 @@ namespace UI_TestRig
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class MainPage : Page,IPage
     {
         public ProgramParameterPage programParameterPage;
         public DiagnosticsPage diagnosticsPage { get; set; }
 
+        public LoginPage loginPage { get; set; }
+
+        bool buttonFlag = false;
+
         public MainPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -39,23 +43,74 @@ namespace UI_TestRig
 
         private void editProcessParameterButton_Click(object sender, RoutedEventArgs e)
         {
-            if(programParameterPage == null)
+            if (programParameterPage == null)
             {
                 programParameterPage = new ProgramParameterPage(this);
             }
             programParameterPage.parent = this;
             programParameterPage.refreshTexts();
+            programParameterPage.CheckUser();
             ContainerWindow.container.ChangeFrame(programParameterPage);
         }
 
         private void diagnosticsButton_Click(object sender, RoutedEventArgs e)
         {
-            if(diagnosticsPage == null)
+            if (diagnosticsPage == null)
             {
                 diagnosticsPage = new DiagnosticsPage(this);
             }
             diagnosticsPage.parent = this;
+            diagnosticsPage.CheckUser();
             ContainerWindow.container.ChangeFrame(diagnosticsPage);
+        }
+
+        private void logInButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (GlobalConfig.GroupsList == null || GlobalConfig.GroupsList.Count == 0)
+            {
+                MessageBox.Show("MASTER FILE FOR USER ADMINISTRATION IS EITHER NOT FOUND OR NOT IN A CORRECT FORMAT. USER ADMINISTRATION FEATURE CANNOT BE USED.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (GlobalConfig.uAdmin_CurrentUser == null)
+            {
+                if(buttonFlag == false)
+                {
+                    loginPage = new LoginPage(this);
+                    loginPage.Owner = Application.Current.MainWindow;
+                    loginPage.Closing += OnLoginClose;
+                    buttonFlag = true;
+                    loginPage.Show();
+                }
+            }
+            else
+            {
+                if(MessageBox.Show("CONFIRM LOG OUT?","CONFIRMATION",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    GlobalConfig.uAdmin_CurrentUser = null;
+                    logInButton.Content = "Log In";
+                    CheckUser();
+                }
+                
+            }
+        }
+
+        private void OnLoginClose(object sender, System.ComponentModel.CancelEventArgs e) 
+        {
+            buttonFlag = false;
+        }
+
+        public void CheckUser()
+        {
+            if(GlobalConfig.uAdmin_CurrentUser != null)
+            {
+                userTextBox.Text = GlobalConfig.uAdmin_CurrentUser.UserId;
+                logInButton.Content = "Log Out";
+            }
+            else
+            {
+                userTextBox.Text = "";
+                logInButton.Content = "Log In";
+            }
         }
     }
 }

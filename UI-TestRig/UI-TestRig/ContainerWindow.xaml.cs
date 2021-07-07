@@ -29,7 +29,7 @@ namespace UI_TestRig
             InitializeComponent();
             mainFrame.Content = new MainPage();
             GlobalConfig.InitialiseConnections();
-            GlobalConfig.LoadMachineData();
+            GlobalConfig.LoadAllData();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
             if(GlobalConfig.isMachineDataFileThere == false)
@@ -37,13 +37,21 @@ namespace UI_TestRig
                 MessageBox.Show("MACHINE DATA FILE NOT FOUND.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
+            if (GlobalConfig.GroupsList == null || GlobalConfig.GroupsList.Count == 0)
+            {
+                MessageBox.Show("MASTER FILE FOR USER ADMINISTRATION IS EITHER NOT FOUND OR NOT IN A CORRECT FORMAT. USER ADMINISTRATION FEATURE CANNOT BE USED.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
+                
+            }
             container = this;
 
         }
 
-        public void ChangeFrame(Page page)
-        {            
+        public void ChangeFrame(IPage page)
+        {
+            page.CheckUser();
             mainFrame.Content = page;
         }
+
+
     }
 }

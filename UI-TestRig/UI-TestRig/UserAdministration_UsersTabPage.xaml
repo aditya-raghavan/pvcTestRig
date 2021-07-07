@@ -1,0 +1,354 @@
+﻿<Page x:Class="UI_TestRig.UserAdministration_UsersTabPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:UI_TestRig"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserAdministration_UsersTabPage" MinHeight="768" MinWidth="1366" FontFamily="Arial" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="TopGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TitleTextBox" Background="#cccccc" VerticalAlignment="Center" Padding="0,16" Grid.Column="0" TextAlignment="Center" Text="PhotoVoltaic Junction Box Diode Test Rig" FontWeight="Bold" FontSize="21"></TextBlock>
+            <StackPanel Name="UserStack" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="userTextBox" IsReadOnly="True" Grid.Column="1" FontSize="14" FontWeight="Bold" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80.5"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="programTextBlock" TextAlignment="Right" Text="Program" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="programTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+                    <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="nrTextBlock" TextAlignment="Right" Text="Nr" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="nrTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Name="ModeStack" Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="modeTextBlock" TextAlignment="Right" Text="Mode" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoTextBlock" Text="AUTO" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" Background="#66ffff"></TextBlock>
+                    </Border>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="statusTextBlock" TextAlignment="Right" Text="Status" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border x:Name="autoRunningTextBlock" Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoRunningTextBlock1" Text="AUTO RUNNING" Foreground="Red" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                    </Border>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="dateTextBlock" Text="{Binding Source={x:Static sys:DateTime.Today},StringFormat='{}{0:dd-MM-yyyy}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="timeTextBlock" Text="{Binding Source={x:Static sys:DateTime.Now},
+                   StringFormat='{}{0: hh:mm:ss}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <Border  BorderThickness="2" BorderBrush="#4d4d4d" Grid.Row="1">
+            <TextBlock x:Name="screenNameTextBlock" Text="User Administration" Padding="5" FontSize="14" FontWeight="Bold" Foreground="white" Background="#ff6600"></TextBlock>
+        </Border>
+
+        <TabControl x:Name="tabControl" TabStripPlacement="Top" Grid.Row="2" Margin="0,20,0,0">
+            <TabItem IsSelected="True">
+                <TabItem.Header>
+                    <TextBlock Text="Users" FontSize="16" Padding="5"></TextBlock>
+                </TabItem.Header>
+                <Grid x:Name="usersParentGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Name="usersGrid" Grid.Column ="1" Margin="0,30,0,0">
+                        
+                    </Grid>
+
+                    
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Groups" FontSize="16" Padding="5"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1" Margin="0,30,0,0" x:Name="groupGrid">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Background" Value="White"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                                <Setter Property="FontSize" Value="12"></Setter>
+                                <Setter Property="Padding" Value="8,12"></Setter>
+                                <Setter Property="FontWeight" Value="Bold"></Setter>
+                                <Setter Property="TextAlignment" Value="Left"></Setter>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Background" Value="#ccffff"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                                <Setter Property="FontSize" Value="14"></Setter>
+                                <Setter Property="FontWeight" Value="Bold"></Setter>
+                                <Setter Property="TextAlignment" Value="Center"></Setter>
+                                <Setter Property="Width" Value="80.8"></Setter>
+                                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Background" Value="#ffccff"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+
+                        <Border BorderThickness="2" BorderBrush="#4d4d4d">
+                            <TextBlock x:Name="parameterTextBlock" Text="GROUP NAME" Grid.Row="0" Grid.Column="0" Background="Orange" Foreground="White"></TextBlock>
+                        </Border>
+
+
+                        <Border BorderThickness="2" BorderBrush="#4d4d4d" Grid.Row="0" Grid.Column="3">
+                            <TextBlock x:Name="unitsTextBlock" Text="FUNCTIONS" Background="Orange" Foreground="White" ></TextBlock>
+                        </Border>
+
+
+
+
+
+
+
+
+
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+        
+
+
+
+
+
+
+
+        <Grid Grid.Row="4">
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="7"></Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Height" Value="44.8"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button Padding="3"   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button    FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  x:Name="addUserButton" Content="Add User" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="addUserButton_Click" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="saveButton"  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+            <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="exitButton"  Content="Back" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0,0.2,0.4" Click="Button_Click_2" VerticalAlignment="Bottom" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+        </Grid>
+
+    </Grid>
+</Page>

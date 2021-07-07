@@ -39,7 +39,7 @@
                         <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="userTextBox" Grid.Column="1" Padding="3"></TextBox>
+                        <TextBox x:Name="userTextBox" IsReadOnly="True" Grid.Column="1" FontSize="14" FontWeight="Bold" Padding="3"></TextBox>
                     </Border>
 
                 </Grid>
@@ -209,7 +209,7 @@
             </Border>
 
             <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button    FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>
@@ -219,7 +219,7 @@
             </Border>
 
             <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
-                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                <Button   FontSize="16" x:Name="userAdminButton" Content="User&#xD;&#xA;Administration" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" Click="Button_Click_1"  >
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="7"/>

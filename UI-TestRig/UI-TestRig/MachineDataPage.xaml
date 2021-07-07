@@ -39,7 +39,7 @@
                         <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
                     </Border>
                     <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
-                        <TextBox x:Name="userTextBox" Grid.Column="1" Padding="3"></TextBox>
+                        <TextBox x:Name="userTextBox" IsReadOnly="True" Grid.Column="1" FontSize="14" FontWeight="Bold" Padding="3"></TextBox>
                     </Border>
 
                 </Grid>

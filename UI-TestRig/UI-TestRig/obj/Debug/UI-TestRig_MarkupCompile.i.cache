@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-61880565413
+10701515529
 
-11492556428
+16-1728693322
 251450886258
-App.xaml;DiagnosticsPage.xaml;MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;ProgramParameterPage.xaml;
+AddUserWindow.xaml;App.xaml;DiagnosticsPage.xaml;LoginPage.xaml;MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;ModifyUserWindow.xaml;ProgramParameterPage.xaml;UserAdministration_UsersTabPage.xaml;
 
-False
+True
 

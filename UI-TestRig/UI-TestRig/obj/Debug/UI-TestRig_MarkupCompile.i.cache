@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-10701515529
+9-585921454
 
-16-1728693322
-251450886258
-AddUserWindow.xaml;App.xaml;DiagnosticsPage.xaml;LoginPage.xaml;MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;ModifyUserWindow.xaml;ProgramParameterPage.xaml;UserAdministration_UsersTabPage.xaml;
+31-865016720
+241019894261
+App.xaml;User Administration\ChangePasswordWindow.xaml;DiagnosticsPage.xaml;User Administration\LoginPage.xaml;Machine Data\MachineDataPage.xaml;MainPage.xaml;ContainerWindow.xaml;Program Parameter\ProgramParameterPage.xaml;User Administration\UserAdministration_UsersTabPage.xaml;
 
 True
 

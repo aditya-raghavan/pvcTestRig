@@ -1,0 +1,477 @@
+﻿<Page x:Class="UI_TestRig.UserAdministration_UsersTabPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:local="clr-namespace:UI_TestRig"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserAdministration_UsersTabPage" MinHeight="768" MinWidth="1366" FontFamily="Arial" Background="White">
+
+    <Page.Resources>
+        <Style x:Key="DGHeaderStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="ColumnHeaderStyle" Value="{DynamicResource DGCHeaderStyle}"/>
+            <Setter Property="CellStyle" Value="{DynamicResource DGCCellStyle}"/>
+        </Style>
+        <Style x:Key="DGCHeaderStyle" TargetType="DataGridColumnHeader">
+            
+            
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0.5"></Setter>
+            <Setter Property="Padding" Value="8"></Setter>
+            
+            
+        </Style>
+        <Style x:Key="DGCCellStyle" TargetType="DataGridCell">
+
+            <Setter Property="Background" Value="White" />
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontSize" Value="10" />
+            
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+            
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="TopGrid" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.7*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="TitleTextBox" Background="#cccccc" VerticalAlignment="Center" Padding="0,16" Grid.Column="0" TextAlignment="Center" Text="PhotoVoltaic Junction Box Diode Test Rig" FontWeight="Bold" FontSize="21"></TextBlock>
+            <StackPanel Name="UserStack" Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="userTextBlock" TextAlignment="Right" Text="User" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="userTextBox" IsReadOnly="True" Grid.Column="1" FontSize="14" FontWeight="Bold" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80.5"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="programTextBlock" TextAlignment="Right" Text="Program" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="programTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+                    <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="nrTextBlock" TextAlignment="Right" Text="Nr" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBox x:Name="nrTextBox" Grid.Column="1" Padding="3"></TextBox>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+
+
+            <StackPanel Name="ModeStack" Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="modeTextBlock" TextAlignment="Right" Text="Mode" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoTextBlock" Text="AUTO" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" Background="#66ffff"></TextBlock>
+                    </Border>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Border Grid.Column="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="statusTextBlock" TextAlignment="Right" Text="Status" FontWeight="Bold" FontSize="18" Padding="2" Background="#999999" ></TextBlock>
+                    </Border>
+                    <Border x:Name="autoRunningTextBlock" Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                        <TextBlock x:Name="autoRunningTextBlock1" Text="AUTO RUNNING" Foreground="Red" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                    </Border>
+
+                </Grid>
+
+            </StackPanel>
+
+            <StackPanel Grid.Column="3">
+                <Border  BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="dateTextBlock" Text="{Binding Source={x:Static sys:DateTime.Today},StringFormat='{}{0:dd-MM-yyyy}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+                <Border BorderThickness="2" BorderBrush="#4d4d4d">
+                    <TextBlock x:Name="timeTextBlock" Text="{Binding Source={x:Static sys:DateTime.Now},
+                   StringFormat='{}{0: hh:mm:ss}'}" Foreground="White" Background="Black" TextAlignment="Center" Padding="2" FontSize="18" FontWeight="Bold" ></TextBlock>
+                </Border>
+
+
+            </StackPanel>
+
+
+        </Grid>
+
+        <Border  BorderThickness="2" BorderBrush="#4d4d4d" Grid.Row="1">
+            <TextBlock x:Name="screenNameTextBlock" Text="User Administration" Padding="5" FontSize="14" FontWeight="Bold" Foreground="white" Background="#ff6600"></TextBlock>
+        </Border>
+
+        <TabControl x:Name="tabControl" TabStripPlacement="Top" Grid.Row="2" Margin="0,20,0,0">
+            <TabItem IsSelected="True">
+                <TabItem.Header>
+                    <TextBlock Text="Users" FontSize="16" Padding="5"></TextBlock>
+                </TabItem.Header>
+                <Grid x:Name="usersParentGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel x:Name="addUserStackPanel" Grid.Row="0" Grid.Column="1">
+                        <TextBlock Text="Add User" Margin="0,0,0,5"></TextBlock>
+                        <DataGrid x:Name="addUserDataGrid"  ItemsSource="{Binding}" Margin="0,0,0,20" CanUserAddRows="False" AutoGenerateColumns="False">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="User Id" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox x:Name="useridTextBox" MaxLength="20" MinWidth="150" GotFocus="useridTextBox_GotFocus" LostFocus="useridTextBox_LostFocus">
+
+                                            </TextBox>
+
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Password" >
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <PasswordBox x:Name="passwordTextBox" MinWidth="150" GotFocus="passwordTextBox_GotFocus" LostFocus="passwordTextBox_LostFocus">
+
+                                            </PasswordBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Confirm Password">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <PasswordBox x:Name="confirmPasswordTextBox" MinWidth="150" GotFocus="passwordTextBox_GotFocus" LostFocus="passwordTextBox_LostFocus"></PasswordBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Group">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ComboBox x:Name="groupComboBox" MinWidth="150" ItemsSource="{Binding Path=Group}" DisplayMemberPath="GroupName" SelectedIndex="0"></ComboBox>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Action">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Content="Add User" MinWidth="150" Click="AddUserButtonClick"></Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+
+
+                        </DataGrid>
+                    </StackPanel>
+                    
+                    
+                    
+
+
+                    <DataGrid x:Name="usersDataGrid" Grid.Row="1" SelectionMode="Single" MaxHeight="500" CanUserSortColumns="False" ItemsSource="{Binding}" CanUserAddRows="False" Style="{DynamicResource DGHeaderStyle}"  AutoGenerateColumns="False" Grid.Column="1" AlternatingRowBackground="LightGray" SelectionChanged="usersDataGrid_SelectionChanged"  LostFocus="usersDataGrid_LostFocus">
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="8"/>
+                                <Setter Property="BorderBrush" Value="Black"></Setter>
+                                <Setter Property="BorderThickness" Value="0.5"></Setter>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                
+                            </Style>
+                            
+                        </DataGrid.CellStyle>
+                        
+                        
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="User ID">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=UserId}" ></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=UserId}" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"></TextBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Password" IsReadOnly="True" Binding="{Binding Path=PasswordEncrypted}"></DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Group">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text ="{Binding Path=Group.GroupName}"></TextBlock>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=GroupsList}" DisplayMemberPath="GroupName" SelectedItem="{Binding Path=Group, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu >
+                                <MenuItem x:Name="deleteContextMenu" Header="Delete User" Click="DeleteButtonClicked" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridRow">
+                                <EventSetter Event="MouseDoubleClick" Handler="DataGridRow_MouseDoubleClick" />
+                            </Style>
+                        </DataGrid.Resources>
+
+                    </DataGrid>
+
+
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Text="Groups" FontSize="16" Padding="5"></TextBlock>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="groupsDataGrid" ItemsSource="{Binding}" Style="{DynamicResource DGHeaderStyle}" IsReadOnly="True" AutoGenerateColumns="False" Grid.Column="1" AlternatingRowBackground="LightGray" >
+                        <DataGrid.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="Padding" Value="10"/>
+                                <Setter Property="BorderBrush" Value="Black"></Setter>
+                                <Setter Property="BorderThickness" Value="0.5"></Setter>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                            <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </DataGrid.CellStyle>
+                        
+                    </DataGrid>
+                </Grid>
+
+            </TabItem>
+        </TabControl>
+
+        <Grid Grid.Row="4" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+        <Grid Grid.Row="5">
+            <Grid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="7"></Setter>
+                </Style>
+                <Style TargetType="Button">
+                    <Setter Property="Height" Value="44.8"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Padding="0" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="1" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="2" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="3" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button Padding="3"   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="4" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="5" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button   FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="6" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button    FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="7" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button  x:Name="addUserButton" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+            <Border Grid.Column="8" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="saveButton"  FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0,0"  >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+            <Border Grid.Column="9" BorderThickness="2" BorderBrush="#4d4d4d">
+                <Button x:Name="exitButton"  Content="Back" FontSize="18" FontWeight="Bold" Foreground="white" Background="#999999" Margin="0.4,0,0.2,0.4" Click="Button_Click_2" VerticalAlignment="Bottom" >
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="7"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Border>
+
+
+        </Grid>
+
+    </Grid>
+</Page>

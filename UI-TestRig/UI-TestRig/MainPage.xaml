@@ -607,7 +607,7 @@
 
                             <Grid x:Name="functioningGrid" Height="313" Margin="10,0,9.8,0">
                                 <Grid.Background>
-                                    <ImageBrush ImageSource="images/background.jpg"></ImageBrush>
+                                    <ImageBrush ImageSource="background.jpg"></ImageBrush>
                                 </Grid.Background>
 
                                 <Grid Margin="199,95,190,191">

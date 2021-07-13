@@ -5,12 +5,26 @@ C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Configuration
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Security.AccessControl.dll
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Security.Permissions.dll
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\System.Security.Principal.Windows.dll
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.dll
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\bin\Debug\TestRigLibrary.pdb
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csprojAssemblyReference.cache
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\App.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\ChangePasswordWindow.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\DiagnosticsPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\LoginPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\Machine Data\MachineDataPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MainPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ContainerWindow.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\Program Parameter\ProgramParameterPage.g.cs
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\UserAdministration_UsersTabPage.g.cs
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig_MarkupCompile.cache
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig_MarkupCompile.lref
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\App.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\ChangePasswordWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\DiagnosticsPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\LoginPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\Machine Data\MachineDataPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MainPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ContainerWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\Program Parameter\ProgramParameterPage.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\User Administration\UserAdministration_UsersTabPage.baml
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.g.resources
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI_TestRig.Properties.Resources.resources
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.GenerateResource.cache
@@ -18,23 +32,4 @@ C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.Co
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.CopyComplete
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.exe
 C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.pdb
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MainPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MainPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ProgramParameterPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ContainerWindow.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ContainerWindow.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\DiagnosticsPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\DiagnosticsPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MachineDataPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\MachineDataPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\App.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\LoginPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\LoginPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UserAdministration_UsersTabPage.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UserAdministration_UsersTabPage.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\AddUserWindow.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\AddUserWindow.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModifyUserWindow.g.cs
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ModifyUserWindow.baml
-C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\ChangePasswordWindow.baml
+C:\Users\adity\source\repos\UI-TestRig\UI-TestRig\obj\Debug\UI-TestRig.csproj.AssemblyReference.cache

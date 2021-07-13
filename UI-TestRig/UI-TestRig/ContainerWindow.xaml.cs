@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TestRigLibrary;
+
 using UI_TestRig;
 
 namespace UI_TestRig
@@ -32,12 +32,12 @@ namespace UI_TestRig
             GlobalConfig.LoadAllData();
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
-            if(GlobalConfig.isMachineDataFileThere == false)
+            if(MachineDataGlobalConfig.isMachineDataFileThere == false)
             {
                 MessageBox.Show("MACHINE DATA FILE NOT FOUND.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
 
             }
-            if (GlobalConfig.GroupsList == null || GlobalConfig.GroupsList.Count == 0)
+            if (UserAdministrationGlobalConfig.uAdmin_GroupsList == null || UserAdministrationGlobalConfig.uAdmin_GroupsList.Count == 0)
             {
                 MessageBox.Show("MASTER FILE FOR USER ADMINISTRATION IS EITHER NOT FOUND OR NOT IN A CORRECT FORMAT. USER ADMINISTRATION FEATURE CANNOT BE USED.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
                 

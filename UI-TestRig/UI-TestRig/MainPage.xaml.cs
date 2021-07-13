@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TestRigLibrary;
+
 
 namespace UI_TestRig
 {
@@ -66,12 +66,12 @@ namespace UI_TestRig
 
         private void logInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (GlobalConfig.GroupsList == null || GlobalConfig.GroupsList.Count == 0)
+            if (UserAdministrationGlobalConfig.uAdmin_GroupsList == null || UserAdministrationGlobalConfig.uAdmin_GroupsList.Count == 0)
             {
                 MessageBox.Show("MASTER FILE FOR USER ADMINISTRATION IS EITHER NOT FOUND OR NOT IN A CORRECT FORMAT. USER ADMINISTRATION FEATURE CANNOT BE USED.", "FILE MISSING", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (GlobalConfig.uAdmin_CurrentUser == null)
+            if (UserAdministrationGlobalConfig.uAdmin_CurrentUser == null)
             {
                 if(buttonFlag == false)
                 {
@@ -86,7 +86,7 @@ namespace UI_TestRig
             {
                 if(MessageBox.Show("CONFIRM LOG OUT?","CONFIRMATION",MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    GlobalConfig.uAdmin_CurrentUser = null;
+                    UserAdministrationGlobalConfig.uAdmin_CurrentUser = null;
                     logInButton.Content = "Log In";
                     CheckUser();
                 }
@@ -101,9 +101,9 @@ namespace UI_TestRig
 
         public void CheckUser()
         {
-            if(GlobalConfig.uAdmin_CurrentUser != null)
+            if(UserAdministrationGlobalConfig.uAdmin_CurrentUser != null)
             {
-                userTextBox.Text = GlobalConfig.uAdmin_CurrentUser.UserId;
+                userTextBox.Text = UserAdministrationGlobalConfig.uAdmin_CurrentUser.UserId;
                 logInButton.Content = "Log Out";
             }
             else

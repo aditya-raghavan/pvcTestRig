@@ -53,20 +53,29 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddUserWindow.xaml.cs">
-      <DependentUpon>AddUserWindow.xaml</DependentUpon>
+    <Compile Include="GlobalConfig.cs" />
+    <Compile Include="Machine Data\IMachineDataDataConnection.cs" />
+    <Compile Include="Machine Data\MachineDataGlobalConfig.cs" />
+    <Compile Include="Machine Data\MachineDataTextConnector.cs" />
+    <Compile Include="Machine Data\MachineDataTextConnectorProcessor.cs" />
+    <Compile Include="Program Parameter\IProgramParameterDataConnection.cs" />
+    <Compile Include="Program Parameter\ProgramParameterTextConnector.cs" />
+    <Compile Include="Program Parameter\ProgramParameterTextConnectorProcessor.cs" />
+    <Compile Include="Program Parameter\TestConfigurationTemplate.cs" />
+    <Compile Include="TextConnectorProcessor.cs" />
+    <Compile Include="User Administration\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="IPage.cs" />
-    <Compile Include="ModifyUserWindow.xaml.cs">
-      <DependentUpon>ModifyUserWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserAdministration_UsersTabPage.xaml.cs">
+    <Compile Include="User Administration\GroupTemplate.cs" />
+    <Compile Include="User Administration\IUserAdministrationDataConnection.cs" />
+    <Compile Include="User Administration\UserAdministrationGlobalConfig.cs" />
+    <Compile Include="User Administration\UserAdministrationTextConnector.cs" />
+    <Compile Include="User Administration\UserAdministrationTextConnectorProcessor.cs" />
+    <Compile Include="User Administration\UserAdministration_UsersTabPage.xaml.cs">
       <DependentUpon>UserAdministration_UsersTabPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddUserWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="User Administration\UserTemplate.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,27 +84,31 @@
       <DependentUpon>DiagnosticsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="IContainer.cs" />
-    <Compile Include="LoginPage.xaml.cs">
+    <Compile Include="User Administration\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MachineDataPage.xaml.cs">
+    <Compile Include="Machine Data\MachineDataPage.xaml.cs">
       <DependentUpon>MachineDataPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ProgramParameterPage.xaml.cs">
+    <Compile Include="Program Parameter\ProgramParameterPage.xaml.cs">
       <DependentUpon>ProgramParameterPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="User Administration\ChangePasswordWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="DiagnosticsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginPage.xaml">
+    <Page Include="User Administration\LoginPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MachineDataPage.xaml">
+    <Page Include="Machine Data\MachineDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,15 +128,11 @@
       <DependentUpon>ContainerWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ModifyUserWindow.xaml">
+    <Page Include="Program Parameter\ProgramParameterPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ProgramParameterPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserAdministration_UsersTabPage.xaml">
+    <Page Include="User Administration\UserAdministration_UsersTabPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,25 +156,18 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <Resource Include="background.JPG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\background.JPG" />
+    <Resource Include="Program Parameter\programParameterBackground.JPG" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\programParameterBackground.JPG" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TestRigLibrary\TestRigLibrary.csproj">
-      <Project>{482a074f-76fd-4546-b5fd-018d4b6c5d36}</Project>
-      <Name>TestRigLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

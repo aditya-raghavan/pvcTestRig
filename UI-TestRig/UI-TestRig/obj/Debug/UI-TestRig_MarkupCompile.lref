@@ -1,14 +1,12 @@
 ﻿
 
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\AddUserWindow.xaml;;
 FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\App.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\ChangePasswordWindow.xaml;;
+FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\User Administration\ChangePasswordWindow.xaml;;
 FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\DiagnosticsPage.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\LoginPage.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\MachineDataPage.xaml;;
+FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\User Administration\LoginPage.xaml;;
+FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\Machine Data\MachineDataPage.xaml;;
 FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\MainPage.xaml;;
 FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\ContainerWindow.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\ModifyUserWindow.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\ProgramParameterPage.xaml;;
-FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\UserAdministration_UsersTabPage.xaml;;
+FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\Program Parameter\ProgramParameterPage.xaml;;
+FC:\Users\adity\source\repos\UI-TestRig\UI-TestRig\User Administration\UserAdministration_UsersTabPage.xaml;;
 

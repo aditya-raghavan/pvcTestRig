@@ -26,6 +26,7 @@ namespace UI_TestRig
             InitializeComponent();
             this.mainPage = mainPage;
             userIdTextbox.Focus();
+            
         }
 
         private void logInButton_Click(object sender, RoutedEventArgs e)
@@ -37,7 +38,7 @@ namespace UI_TestRig
                 bool result = false;
                 foreach(UserTemplate user in UserAdministrationGlobalConfig.uAdmin_UsersList)
                 {
-                    if(userId == user.UserId && password == user.Password)
+                    if(userId == user.UserId && password == user.Password && user.Group != null)
                     {
                         UserAdministrationGlobalConfig.uAdmin_CurrentUser = user;
                         this.Close();
@@ -84,6 +85,11 @@ namespace UI_TestRig
             {
                 passwordTextbox.BorderBrush = new SolidColorBrush(Colors.Red);
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
         }
     }
 }

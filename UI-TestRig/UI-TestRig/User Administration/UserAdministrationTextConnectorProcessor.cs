@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 
 namespace UI_TestRig
@@ -123,10 +124,10 @@ namespace UI_TestRig
 
         }
 
-        public static List<UserTemplate> ConvertToUserObject(this List<string> lines)
+        public static ObservableCollection<UserTemplate> ConvertToUserObject(this List<string> lines)
         {
 
-            List<UserTemplate> usersList = new List<UserTemplate>();
+            ObservableCollection<UserTemplate> usersList = new ObservableCollection<UserTemplate>();
             if (lines == null || lines.Count == 0)
             {
                 return usersList;
@@ -181,5 +182,6 @@ namespace UI_TestRig
                 return null;
             }
         }
+
     }
 }

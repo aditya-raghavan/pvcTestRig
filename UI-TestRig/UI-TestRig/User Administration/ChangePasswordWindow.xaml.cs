@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -35,6 +37,7 @@ namespace UI_TestRig
             parent = p;
             user = u;
             userIdLabel.Text = user.UserId;
+            newpasswordTextbox.Focus();
         }
 
         private void passwordTextbox_LostFocus(object sender, RoutedEventArgs e)
@@ -116,13 +119,27 @@ namespace UI_TestRig
         {
             bool output = true;
 
+            if(ValidationResults["password"] == "false")
+            {
+                passwordInvalidLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                passwordInvalidLabel.Visibility = Visibility.Hidden;
+            }
+            if (ValidationResults["confirmpassword"] == "false")
+            {
+                confirmPasswordInvalidLabel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                confirmPasswordInvalidLabel.Visibility = Visibility.Hidden;
+            }
 
             if (ValidationResults.ContainsValue("false"))
             {
                 output = false;
-
             }
-
             return output;
         }
 
@@ -130,10 +147,28 @@ namespace UI_TestRig
         {
             if (FormValidation())
             {
+                
+                //bool isEditing = false;
+                //foreach (UserTemplate user in UserAdministrationGlobalConfig.uAdmin_UsersList)
+                //{
+                //    if (!(user.UserId != null && user.UserId.Length != 0 && user.Password != null && user.Password.Length != 0 && user.Group != null))
+                //    {
+                //        isEditing = true;
+                //    }
+                //}
                 user.Password = confirmPasswordTextbox.Password;
-                parent.LoadUsers();
+                user.PasswordEncrypted = new string('*', user.Password.Length);
+                //if (isEditing == false)
+                //{
+                //    parent.LoadUsers();
+                //}
+                //parent.usersDataGrid.SelectedItem = user;
                 this.Close();
             }
         }
+
+        
+
+        
     }
 }

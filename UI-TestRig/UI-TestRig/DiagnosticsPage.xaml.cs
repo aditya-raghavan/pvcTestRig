@@ -64,7 +64,7 @@ namespace UI_TestRig
             }
         }
 
-        
+
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -78,9 +78,15 @@ namespace UI_TestRig
                 userTabPage = new UserAdministration_UsersTabPage(this);
             }
             userTabPage.parent = this;
-            userTabPage.CheckUser();
+            if (userTabPage.isAdmin())
+            {
+                userTabPage.isCurrentUserAdmin = true;
+            }
+            else
+            {
+                userTabPage.isCurrentUserAdmin = false;
+            }
             userTabPage.RefreshData();
-            userTabPage.isAdmin();
             ContainerWindow.container.ChangeFrame(userTabPage);
         }
     }

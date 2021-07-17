@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 
 namespace UI_TestRig
@@ -26,10 +27,10 @@ namespace UI_TestRig
             return FunctionsList;
         }
 
-        public List<UserTemplate> LoadUsers()
+        public ObservableCollection<UserTemplate> LoadUsers()
         {
             string fileName = GlobalConfig.UsersFile;
-            List<UserTemplate> usersList = fileName.FullUserDataPath().LoadFile().ConvertToUserObject();
+            ObservableCollection<UserTemplate> usersList = fileName.FullUserDataPath().LoadFile().ConvertToUserObject();
             return usersList;
         }
 
@@ -40,8 +41,12 @@ namespace UI_TestRig
             string fileName = GlobalConfig.UsersFile;
             foreach (UserTemplate user in UserAdministrationGlobalConfig.uAdmin_UsersList)
             {
-                string line = $"{user.UserId},{user.Password},{user.Group.GroupId}";
-                lines.Add(line);
+                if(user.UserId != null && user.UserId.Length != 0 && user.Password != null && user.Password.Length != 0 && user.Group != null )
+                {
+                    string line = $"{user.UserId},{user.Password},{user.Group.GroupId}";
+                    lines.Add(line);
+                }
+                
             }
             File.WriteAllLines(fileName.FullUserDataPath(), lines);
         }

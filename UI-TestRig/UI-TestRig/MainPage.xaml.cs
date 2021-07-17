@@ -79,7 +79,7 @@ namespace UI_TestRig
                     loginPage.Owner = Application.Current.MainWindow;
                     loginPage.Closing += OnLoginClose;
                     buttonFlag = true;
-                    loginPage.Show();
+                    loginPage.ShowDialog();
                 }
             }
             else

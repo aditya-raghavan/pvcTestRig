@@ -147,22 +147,8 @@ namespace UI_TestRig
         {
             if (FormValidation())
             {
-                
-                //bool isEditing = false;
-                //foreach (UserTemplate user in UserAdministrationGlobalConfig.uAdmin_UsersList)
-                //{
-                //    if (!(user.UserId != null && user.UserId.Length != 0 && user.Password != null && user.Password.Length != 0 && user.Group != null))
-                //    {
-                //        isEditing = true;
-                //    }
-                //}
                 user.Password = confirmPasswordTextbox.Password;
-                user.PasswordEncrypted = new string('*', user.Password.Length);
-                //if (isEditing == false)
-                //{
-                //    parent.LoadUsers();
-                //}
-                //parent.usersDataGrid.SelectedItem = user;
+                user.PasswordEncrypted = new string('*', user.Password.Length);                
                 this.Close();
             }
         }

@@ -339,12 +339,7 @@ namespace UI_TestRig
             }
             else
             {
-                //if (!(user.UserId.Length == 0 && user.Password.Length == 0 && user.Group == null))
-                //{
-                //    MessageBox.Show("Please fill in all the credentials.", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                //}
-                //LoadUsers();
-                //usersDataGrid.SelectedItem = UserAdministrationGlobalConfig.uAdmin_CurrentUser;
+               
                 e.Cancel = true;
             }
         }
